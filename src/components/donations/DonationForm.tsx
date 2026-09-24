@@ -163,7 +163,7 @@ export default function DonationForm() {
 
       {/* Frequência */}
       <div className="mb-6">
-        <label className="form-label mb-2">Frequência da Contribuição</label>
+        <span className="form-label mb-2">Frequência da Contribuição</span>
         <div className="grid grid-cols-2 gap-3">
           <button
             type="button"
@@ -192,7 +192,7 @@ export default function DonationForm() {
 
       {/* Presets de Valores */}
       <div className="mb-6">
-        <label className="form-label mb-2">Selecione o Valor</label>
+        <span className="form-label mb-2">Selecione o Valor</span>
         <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 mb-3">
           {presets.map((p) => (
             <button
