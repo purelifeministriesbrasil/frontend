@@ -1,0 +1,57 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Container from "../components/ui/Container.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+---
+
+<ContentLayout
+  title="Política de Privacidade e Proteção de Dados | Pure Life Ministries Brasil"
+  description="Conheça nossos padrões rígidos de proteção de dados sensíveis, criptografia AES-256-GCM com AAD e conformidade com a LGPD."
+  canonical="https://purelifebrasil.org/politica-de-privacidade/"
+  currentPath="/politica-de-privacidade/"
+>
+  <section class="py-20 bg-[#1C2530] text-white">
+    <Container size="wide">
+      <SectionHeading
+        tag="Governança e Proteção de Dados"
+        title="Política de Privacidade e Sigilo Pastoral"
+        description="Versão Canônica: 2026-09-19 | Pure Life Ministries Brasil"
+        invert={true}
+      />
+    </Container>
+  </section>
+
+  <section class="py-24 bg-white">
+    <Container size="narrow" class="space-y-8 font-montserrat text-[#1C2530] leading-relaxed">
+      <div>
+        <h3 class="font-ruda font-bold text-2xl text-[#044A82] mb-3">1. Compromisso de Sigilo</h3>
+        <p class="text-sm sm:text-base text-[#575757]">
+          O Pure Life Ministries Brasil reconhece a extrema delicadeza e sensibilidade dos relatos espirituais, morais e comportamentais compartilhados pelos solicitantes. Nenhuma informação submetida no processo de triagem ou aconselhamento pastoral é comercializada, compartilhada com terceiros ou utilizada para fins de marketing/rastreamento.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-ruda font-bold text-2xl text-[#044A82] mb-3">2. Criptografia e Isolamento de Dados</h3>
+        <p class="text-sm sm:text-base text-[#575757]">
+          Todos os dados de contato e relatos são protegidos por criptografia de campo AES-256-GCM com Dados Autenticados Adicionais (AAD) vinculados rigidamente ao identificador único do registro e à versão da chave de segurança. Nossos operadores só acessam informações mediante reautenticação e justificativa formal de atendimento.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-ruda font-bold text-2xl text-[#044A82] mb-3">3. Retenção e Expurgo</h3>
+        <p class="text-sm sm:text-base text-[#575757]">
+          Submissões de triagem não convertidas em atendimento são mantidas apenas pelo período necessário para avaliação e expurgadas após o término do prazo de retenção, eliminando dados identificadores e preservando apenas o consentimento nos termos da LGPD (Lei 13.709/2018).
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-ruda font-bold text-2xl text-[#044A82] mb-3">4. Direitos do Titular</h3>
+        <p class="text-sm sm:text-base text-[#575757]">
+          Você possui o direito de confirmar a existência de tratamento, solicitar o acesso, retificação ou eliminação dos seus dados a qualquer momento pelo e-mail institucional: <strong>contato@purelifebrasil.org</strong>.
+        </p>
+      </div>
+    </Container>
+  </section>
+</ContentLayout>

@@ -1,0 +1,45 @@
+---
+interface Props {
+  currentPath?: string;
+  isMobile?: boolean;
+}
+
+const { currentPath = "", isMobile = false } = Astro.props;
+
+const navItems = [
+  { href: "/sobre/", label: "Sobre" },
+  { href: "/programas/", label: "Programas" },
+  { href: "/programas/residencial/", label: "Residencial" },
+  { href: "/campus/", label: "Campus" },
+  { href: "/conferencia/", label: "Conferência" },
+  { href: "/editora/", label: "Editora" },
+  { href: "/viagem-eua/", label: "Viagem EUA" },
+  { href: "/perguntas-frequentes/", label: "FAQ" },
+  { href: "/contato/", label: "Contato" },
+];
+---
+
+<nav aria-label={isMobile ? "Navegação móvel" : "Navegação principal"}>
+  <ul class={isMobile ? "flex flex-col gap-4 text-left" : "flex items-center gap-6"}>
+    {
+      navItems.map((item) => {
+        const isActive = currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href));
+        return (
+          <li>
+            <a
+              href={item.href}
+              class={`font-montserrat text-xs uppercase tracking-wider transition-colors duration-150 py-1 ${
+                isActive
+                  ? "text-[#C1BDA6] font-bold border-b-2 border-[#C1BDA6]"
+                  : "text-[#DEDEDE] hover:text-white"
+              }`}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>

@@ -1,0 +1,37 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import Button from "../../components/ui/Button.astro";
+---
+
+<ContentLayout
+  title="Agradecimento pela Doação | Pure Life Ministries Brasil"
+  description="Agradecemos de coração pelo seu apoio financeiro ao ministério Pure Life Brasil."
+  canonical="https://purelifebrasil.org/doar/obrigado/"
+  robots="noindex, nofollow"
+  currentPath="/doar/obrigado/"
+>
+  <section class="py-24 bg-[#F5F2EC]">
+    <Container size="narrow" class="text-center">
+      <div class="bg-white border border-[#DEDEDE] p-8 sm:p-12 shadow-xs">
+        <div class="w-16 h-16 bg-[#1D6F42] text-white rounded-full flex items-center justify-center font-bold text-3xl mx-auto mb-4">
+          ✓
+        </div>
+        <h1 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-4">
+          Muito Obrigado por sua Contribuição!
+        </h1>
+        <p class="font-montserrat text-[#575757] text-sm sm:text-base leading-relaxed mb-6">
+          Sua generosidade permite que continuemos acolhendo homens e famílias que necessitam de renovação espiritual e vitória sobre o pecado. Que o Senhor recompense ricamente sua fidelidade.
+        </p>
+        <p class="font-editorial text-[#044A82] text-base italic mb-8">
+          "Cada um contribua segundo propôs no seu coração; não com tristeza, ou por necessidade; porque Deus ama ao que dá com alegria." — 2 Coríntios 9:7
+        </p>
+        <Button href="/" variant="primary">
+          Voltar à página inicial
+        </Button>
+      </div>
+    </Container>
+  </section>
+</ContentLayout>

@@ -1,0 +1,68 @@
+---
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+const testimonials = [
+  {
+    name: "Rafael M.",
+    location: "Goiânia, GO",
+    program: "Programa Residencial",
+    text: "Cheguei ao PLM destruído por anos de vício e mentira. Nove meses de aconselhamento bíblico intenso me devolveram à família, à igreja e, acima de tudo, a Cristo. Não há palavras para descrever o que Deus fez aqui.",
+  },
+  {
+    name: "Ana C.",
+    location: "São Paulo, SP",
+    program: "Online Vida Pura – Esposas",
+    text: "Quando meu marido entrou no programa, eu estava prestes a desistir. O acompanhamento para esposas me ensinou a orar, a esperar e a perdoar de maneira bíblica. Nossa família foi restaurada.",
+  },
+  {
+    name: "Marcos T.",
+    location: "Belo Horizonte, MG",
+    program: "Online Vida Pura",
+    text: "A metodologia do Pr. Filipe é sólida teologicamente e humana na aplicação. Aprendi que a pureza não é conquista humana, mas fruto de rendição diária a Cristo. Mudou minha vida.",
+  },
+  {
+    name: "Pastor João F.",
+    location: "Curitiba, PR",
+    program: "Conferência Anual",
+    text: "A Conferência Anual da PLM é o evento mais consistente em aconselhamento bíblico reformado do Brasil. Levo minha equipe pastoral todos os anos. Formação densa, prática e profundamente cristocêntrica.",
+  },
+];
+---
+
+<section id="testemunhos" class="py-24 bg-white">
+  <Container size="wide">
+    <SectionHeading
+      tag="Testemunhos"
+      title="Vidas transformadas pela graça soberana de Deus"
+      description="Relatos reais de homens, esposas e pastores cujas vidas e ministérios foram transformados pelo poder do Evangelho."
+    />
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {
+        testimonials.map((t) => (
+          <div class="border border-[#DEDEDE] p-8 sm:p-10 bg-[#F5F2EC]/40 flex flex-col justify-between">
+            <div>
+              <div class="text-[#044A82] font-editorial text-4xl mb-3 leading-none select-none" aria-hidden="true">
+                “
+              </div>
+              <blockquote class="font-montserrat text-[#1C2530] text-sm sm:text-base leading-relaxed mb-6 italic">
+                {t.text}
+              </blockquote>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-4 border-t border-[#DEDEDE] pt-4">
+              <div>
+                <div class="font-ruda font-bold text-[#1C2530] text-sm">{t.name}</div>
+                <div class="font-montserrat text-[#575757] text-xs uppercase tracking-wider">{t.location}</div>
+              </div>
+              <span class="font-montserrat text-xs font-bold uppercase tracking-widest text-[#044A82] border border-[#044A82]/30 px-3 py-1 bg-white">
+                {t.program}
+              </span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Container>
+</section>

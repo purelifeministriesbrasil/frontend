@@ -1,0 +1,41 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Hero from "../components/home/Hero.astro";
+import ImmediateHelp from "../components/home/ImmediateHelp.astro";
+import AboutPreview from "../components/home/AboutPreview.astro";
+import MissionPillars from "../components/home/MissionPillars.astro";
+import ProgramsSection from "../components/home/ProgramsSection.astro";
+import ConferencePreview from "../components/home/ConferencePreview.astro";
+import BooksPreview from "../components/home/BooksPreview.astro";
+import TestimonialsPreview from "../components/home/TestimonialsPreview.astro";
+import MediaPreview from "../components/home/MediaPreview.astro";
+import CampusPreview from "../components/home/CampusPreview.astro";
+import UsaTripPreview from "../components/home/UsaTripPreview.astro";
+import DonationPreview from "../components/home/DonationPreview.astro";
+import FAQPreview from "../components/home/FAQPreview.astro";
+import NewsletterSection from "../components/home/NewsletterSection.astro";
+---
+
+<ContentLayout
+  title="Pure Life Ministries Brasil | Aconselhamento Bíblico e Restauração"
+  description="Ministério dedicado à vitória bíblica sobre o pecado sexual e restauração espiritual e familiar de homens e casais desde 1986."
+  canonical="https://purelifebrasil.org/"
+  currentPath="/"
+>
+  <Hero />
+  <ImmediateHelp />
+  <AboutPreview />
+  <MissionPillars />
+  <ProgramsSection />
+  <ConferencePreview />
+  <BooksPreview />
+  <TestimonialsPreview />
+  <MediaPreview />
+  <CampusPreview />
+  <UsaTripPreview />
+  <DonationPreview />
+  <NewsletterSection />
+  <FAQPreview />
+</ContentLayout>

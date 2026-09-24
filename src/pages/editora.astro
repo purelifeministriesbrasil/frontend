@@ -1,0 +1,43 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Container from "../components/ui/Container.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import BooksPreview from "../components/home/BooksPreview.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<ContentLayout
+  title="Editora e Livraria Pure Life | Obras de Santidade Bíblica"
+  description="Publicações e literatura cristã para aconselhamento bíblico, vitória sobre a impureza e fortalecimento de casais."
+  canonical="https://purelifebrasil.org/editora/"
+  currentPath="/editora/"
+>
+  <section class="py-20 bg-[#1C2530] text-white">
+    <Container size="wide">
+      <SectionHeading
+        tag="Literatura Reformada"
+        title="Editora Pure Life Ministries Brasil"
+        description="Textos fundamentais para a renovação da mente e santificação à luz da Palavra de Deus."
+        invert={true}
+      />
+    </Container>
+  </section>
+
+  <BooksPreview />
+
+  <section class="py-20 bg-white border-t border-[#DEDEDE]">
+    <Container size="narrow" class="text-center">
+      <h3 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-4">
+        Deseja distribuir nossos livros em sua igreja ou livraria?
+      </h3>
+      <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-8">
+        Oferecemos condições especiais e pacotes pastorais com descontos para ministérios locais e escolas teológicas.
+      </p>
+      <Button href="/contato/" variant="primary">
+        Falar com o setor editorial
+      </Button>
+    </Container>
+  </section>
+</ContentLayout>

@@ -1,0 +1,72 @@
+---
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import Button from "../ui/Button.astro";
+
+const faqs = [
+  {
+    q: "Quem pode participar do Programa Residencial?",
+    a: "O Programa Residencial é direcionado a homens cristãos que enfrentam desafios comportamentais, vícios ou padrões de pecado recorrentes e desejam transformação genuína fundamentada nas Escrituras. A admissão é feita após avaliação prévia confidencial.",
+  },
+  {
+    q: "Qual é a duração do programa Online Vida Pura?",
+    a: "O programa Online Vida Pura tem duração variável conforme o plano escolhido, com sessões semanais ao vivo com conselheiros certificados. Há também acompanhamento pastoral específico para esposas.",
+  },
+  {
+    q: "A Pure Life Ministries Brasil é denominacional?",
+    a: "Não somos afiliados a uma denominação específica. Nossa base teológica é a tradição Reformada e nossas portas estão abertas a cristãos de diversas igrejas protestantes evangélicas fiéis à Palavra.",
+  },
+  {
+    q: "Como é feita a inscrição no Programa Residencial?",
+    a: "O processo inicia com o preenchimento do formulário de triagem confidencial. Após análise pela equipe pastoral, o candidato é contatado para uma entrevista de avaliação. A admissão ocorre após aprovação mútua.",
+  },
+  {
+    q: "A Pure Life oferece aconselhamento para mulheres?",
+    a: "Sim. O programa Online Vida Pura inclui acompanhamento dedicado para esposas, com conselheiras certificadas que compreendem as feridas e desafios específicos vividos por cônjuges.",
+  },
+  {
+    q: "Onde fica o Campus Residencial?",
+    a: "O campus residencial está localizado em Águas Lindas de Goiás – GO, a aproximadamente 50 km de Brasília, em ambiente calmo e reservado que favorece a oração, o estudo e a disciplina espiritual.",
+  },
+  {
+    q: "O que é a Viagem PLM aos EUA?",
+    a: "É uma viagem organizada pela PLM Brasil ao campus da Pure Life Ministries Internacional em Dry Ridge, Kentucky (EUA). Os participantes conhecem as instalações, assistem a ministrações, reúnem-se com a equipe americana e vivenciam o modelo fundacional do ministério.",
+  },
+  {
+    q: "Como posso apoiar financeiramente o ministério?",
+    a: "Doações podem ser feitas via chave Pix oficial instantânea ou transferência bancária. Cada contribuição sustenta diretamente o atendimento subsidiado ou integral de participantes sem recursos financeiros.",
+  },
+];
+---
+
+<section id="faq" class="py-24 bg-white">
+  <Container size="narrow">
+    <SectionHeading
+      tag="FAQ"
+      title="Perguntas Frequentes"
+      description="Respostas diretas e esclarecedoras sobre nossos programas, doutrina, acolhimento e funcionamento."
+    />
+
+    <!-- Acordeão Nativo em HTML5 com details e summary (0 KB JS) conforme §2.5 e §3.4 -->
+    <div class="divide-y divide-[#DEDEDE] border-y border-[#DEDEDE] mb-12">
+      {
+        faqs.map((faq) => (
+          <details class="faq-item group">
+            <summary class="faq-trigger font-ruda font-bold text-base sm:text-lg text-[#1C2530] hover:text-[#044A82] transition-colors py-5 flex items-center justify-between cursor-pointer list-none">
+              <span>{faq.q}</span>
+            </summary>
+            <div class="faq-content font-montserrat text-sm sm:text-base text-[#575757] leading-relaxed pb-6 pt-1">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+
+    <div class="text-center">
+      <Button href="/perguntas-frequentes/" variant="outline">
+        Ver todas as perguntas e respostas
+      </Button>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,89 @@
+---
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import Button from "../ui/Button.astro";
+---
+
+<section id="viagem" class="py-24 bg-[#1C2530] text-white relative overflow-hidden">
+  <Container size="wide">
+    <div class="text-center mb-16 max-w-3xl mx-auto">
+      <span class="font-montserrat text-[#C1BDA6] text-xs font-bold tracking-[0.15em] uppercase block mb-4">
+        Viagem PLM aos EUA
+      </span>
+      <h2 class="font-ruda font-black text-white text-balance text-3xl sm:text-4xl lg:text-5xl mb-6">
+        Conheça a sede da Pure Life Ministries Internacional
+      </h2>
+      <p class="font-montserrat text-[#DEDEDE] text-base sm:text-lg leading-relaxed mb-6">
+        Uma experiência única de imersão na fonte do ministério que inspirou a PLM Brasil em Dry Ridge, Kentucky.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+      <div>
+        <h3 class="font-ruda font-bold text-white text-2xl mb-4">Sobre a Viagem</h3>
+        <p class="font-montserrat text-[#DEDEDE] text-sm sm:text-base leading-relaxed mb-5">
+          A <strong class="text-white font-semibold">Viagem PLM aos EUA</strong> é organizada pela Pure Life Ministries Brasil para pastores, líderes, conselheiros e cristãos interessados em conhecer pessoalmente o campus e o modelo comprovado por quatro décadas de ministério.
+        </p>
+        <p class="font-montserrat text-[#DEDEDE] text-sm sm:text-base leading-relaxed mb-8">
+          Durante a estadia, os participantes visitam as instalações residenciais americanas, participam de ministrações com a liderança sênior e vivenciam de perto o rigor bíblico e o acolhimento pastoral que caracterizam a obra internacional.
+        </p>
+
+        <div class="flex flex-col gap-3 mb-8">
+          {
+            [
+              "Visita às instalações do campus PLM Internacional",
+              "Ensinamentos com a equipe de liderança americana",
+              "Participação em sessões e dinâmicas do programa",
+              "Comunhão com a equipe e ex-participantes do programa",
+              "Vivência da cultura e espiritualidade do ministério",
+            ].map((item) => (
+              <div class="flex items-start gap-3">
+                <span class="text-[#C1BDA6] mt-0.5 text-xs font-bold" aria-hidden="true">✦</span>
+                <span class="font-montserrat text-[#DEDEDE] text-sm">{item}</span>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          <Button href="/viagem-eua/" variant="primary">
+            Ver detalhes da viagem
+          </Button>
+          <Button href="/contato/" variant="outline-light">
+            Manifestar interesse
+          </Button>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {
+            [
+              { label: "Destino", val: "Dry Ridge, Kentucky – EUA" },
+              { label: "Público", val: "Pastores, líderes e conselheiros" },
+              { label: "Formato", val: "Grupo guiado pela PLM Brasil" },
+              { label: "Inscrições", val: "Conforme calendário oficial" },
+            ].map((d) => (
+              <div class="border border-[#3B4C60] bg-[#1C2530]/80 p-6">
+                <div class="font-montserrat text-[#C1BDA6] text-xs uppercase tracking-widest font-semibold mb-2">
+                  {d.label}
+                </div>
+                <div class="font-ruda font-bold text-white text-base leading-snug">{d.val}</div>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="border border-[#3B4C60]/60 p-6 bg-white/5">
+          <h4 class="font-ruda font-bold text-white text-base mb-3">Para quem é indicada?</h4>
+          <ul class="flex flex-col gap-2.5 font-montserrat text-xs text-[#DEDEDE]">
+            <li>• Pastores e presbíteros que desejam implementar aconselhamento bíblico em suas igrejas</li>
+            <li>• Conselheiros bíblicos em formação ou em atividade pastoral</li>
+            <li>• Líderes de ministérios de restauração e discipulado</li>
+            <li>• Antigos participantes do programa que desejam aprofundar sua formação</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

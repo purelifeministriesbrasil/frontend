@@ -1,0 +1,91 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import ProgramProcess from "../../components/programs/ProgramProcess.astro";
+import Button from "../../components/ui/Button.astro";
+---
+
+<ContentLayout
+  title="Programa Residencial | Pure Life Ministries Brasil"
+  description="Imersão de 9 meses em Águas Lindas de Goiás para restauração completa de homens através de aconselhamento bíblico intensivo."
+  canonical="https://purelifebrasil.org/programas/residencial/"
+  currentPath="/programas/residencial/"
+>
+  <section class="py-20 bg-[#1C2530] text-white">
+    <Container size="wide">
+      <SectionHeading
+        tag="Imersão Presencial"
+        title="Programa Residencial Pure Life"
+        description="Nove meses de dedicação exclusiva à renovação da mente, oração e discipulado bíblico intensivo em nosso campus em Goiás."
+        invert={true}
+      />
+    </Container>
+  </section>
+
+  <section class="py-24 bg-[#F5F2EC]">
+    <Container size="wide">
+      <div class="grid lg:grid-cols-2 gap-16 items-center mb-24">
+        <div>
+          <span class="font-montserrat text-xs uppercase tracking-widest text-[#044A82] font-bold block mb-2">
+            Metodologia Fundamentada na Graça
+          </span>
+          <h3 class="font-ruda font-black text-2xl sm:text-3xl text-[#1C2530] mb-6">
+            Um ambiente protegido para um recomeço definitivo
+          </h3>
+          <p class="font-montserrat text-[#1C2530] text-base leading-relaxed mb-6">
+            O Programa Residencial é projetado para homens que reconhecem a necessidade de afastar-se temporariamente das pressões, gatilhos e distrações do cotidiano para tratar as causas raízes do pecado no coração.
+          </p>
+          <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-6">
+            Durante os 9 meses no campus, o residente vivencia uma rotina centrada na Palavra de Deus: devocionais matinais diárias, aconselhamento bíblico individual semanal, aulas de teologia aplicada e convívio fraternal honesto com outros irmãos em processo de restauração.
+          </p>
+          <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-8">
+            Não utilizamos abordagens psicológicas seculares nem modelos de passos impessoais. Cremos que a exposição fiel das Escrituras pelo Espírito Santo é o único poder capaz de quebrar a idolatria do coração e renovar os afetos em Cristo.
+          </p>
+
+          <Button href="/triagem/" variant="primary" class="text-xs px-8 py-4">
+            Solicitar Vaga Confidencial
+          </Button>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white border border-[#DEDEDE] p-8 shadow-xs">
+            <h4 class="font-ruda font-bold text-xl text-[#044A82] mb-3">Rotina do Campus</h4>
+            <ul class="space-y-3 font-montserrat text-sm text-[#575757]">
+              <li class="flex items-start gap-2">
+                <span class="text-[#044A82] font-bold">✦</span>
+                <span>Devocionais e momentos sistemáticos de oração congregacional</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#044A82] font-bold">✦</span>
+                <span>Sessões de aconselhamento pastoral individualizado</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#044A82] font-bold">✦</span>
+                <span>Trabalho diário em equipe desenvolvendo disciplina e caráter</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-[#044A82] font-bold">✦</span>
+                <span>Participação nos cultos e vida da igreja local em Goiás</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-[#1C2530] text-white p-8 border border-[#3B4C60]">
+            <span class="font-montserrat text-xs text-[#C1BDA6] uppercase tracking-wider block mb-2 font-semibold">
+              Supervisão Pastoral
+            </span>
+            <h4 class="font-ruda font-bold text-2xl text-white mb-2">Pr. Paulo Adriano Gouvêa</h4>
+            <p class="font-montserrat text-xs text-[#DEDEDE] leading-relaxed">
+              Diretor do Programa Residencial da Pure Life Ministries Brasil, conselheiro bíblico experiente e autor dedicado à restauração de lares cristãos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <ProgramProcess />
+    </Container>
+  </section>
+</ContentLayout>

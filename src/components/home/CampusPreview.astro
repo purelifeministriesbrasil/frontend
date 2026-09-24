@@ -1,0 +1,62 @@
+---
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import Button from "../ui/Button.astro";
+---
+
+<section id="campus" class="py-24 bg-white">
+  <Container size="wide">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <SectionHeading
+          tag="Campus PLM Brasil"
+          title="Conheça nosso Campus Residencial"
+          description="Convidamos igrejas, grupos de pastores e líderes para visitar o campus residencial em Águas Lindas de Goiás – GO, a aproximadamente 50 km de Brasília. Conheça as instalações, participe de um dia de imersão e aconselhamento, reúna-se com a equipe e leve para sua comunidade a visão da PLM Brasil."
+        />
+
+        <p class="font-montserrat text-[#575757] text-sm leading-relaxed mb-8">
+          As visitas são organizadas para grupos de até 10 pessoas, mediante agendamento prévio com a equipe do ministério.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+          {
+            ["Visita ao campus", "Reunião pastoral", "Dia de imersão"].map((item) => (
+              <div class="border border-[#DEDEDE] bg-[#F5F2EC] p-4 text-center">
+                <span class="font-montserrat text-[#3B4C60] text-xs font-bold uppercase tracking-wider block">
+                  {item}
+                </span>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          <Button href="/campus/" variant="dark">
+            Ver detalhes do campus
+          </Button>
+          <Button href="/contato/" variant="outline">
+            Agendar visita
+          </Button>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="overflow-hidden border border-[#DEDEDE] shadow-md">
+          <img
+            src="/images/campus.webp"
+            alt="Campus Residencial PLM Brasil em Águas Lindas de Goiás"
+            width="700"
+            height="520"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-[360px] sm:h-[420px] object-cover"
+          />
+        </div>
+        <div class="absolute bottom-6 left-6 bg-[#1C2530] text-white px-5 py-4 shadow-lg">
+          <div class="font-ruda font-bold text-[#C1BDA6] text-sm">Águas Lindas de Goiás</div>
+          <div class="font-montserrat text-xs uppercase tracking-widest text-[#DEDEDE] mt-0.5">Goiás, Brasil</div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /triagem/
+Disallow: /triagem/*
+Disallow: /doar/obrigado
+Disallow: /404
+
+Sitemap: https://purelifebrasil.org/sitemap-index.xml

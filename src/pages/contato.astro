@@ -1,0 +1,72 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Container from "../components/ui/Container.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import ContactForm from "../components/forms/ContactForm";
+---
+
+<ContentLayout
+  title="Fale Conosco | Pure Life Ministries Brasil"
+  description="Entre em contato com nossa equipe pastoral para tirar dúvidas sobre programas, livros ou agendar atendimentos."
+  canonical="https://purelifebrasil.org/contato/"
+  currentPath="/contato/"
+>
+  <section class="py-20 bg-[#1C2530] text-white">
+    <Container size="wide">
+      <SectionHeading
+        tag="Atendimento"
+        title="Entre em Contato com Nossa Equipe"
+        description="Estamos à disposição para prestar esclarecimentos, orientar sobre nossos programas e acolher sua família."
+        invert={true}
+      />
+    </Container>
+  </section>
+
+  <section class="py-24 bg-[#F5F2EC]">
+    <Container size="wide">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        <div>
+          <span class="font-montserrat text-xs uppercase tracking-widest text-[#044A82] font-bold block mb-2">
+            Canais de Comunicação
+          </span>
+          <h3 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-6">
+            Orientações Pastorais e Informações Gerais
+          </h3>
+          <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-8">
+            Nossa equipe responde prontamente a contatos institucionais. Se você precisa de orientação urgente sobre avaliação residencial ou online, também pode iniciar diretamente a triagem confidencial.
+          </p>
+
+          <div class="space-y-4 mb-8">
+            <div class="bg-white border border-[#DEDEDE] p-6 flex items-start gap-4">
+              <span class="text-[#044A82] text-xl font-bold">✉</span>
+              <div>
+                <strong class="font-ruda font-bold text-[#1C2530] block">E-mail Institucional</strong>
+                <span class="font-montserrat text-sm text-[#575757]">contato@purelifebrasil.org</span>
+              </div>
+            </div>
+
+            <div class="bg-white border border-[#DEDEDE] p-6 flex items-start gap-4">
+              <span class="text-[#044A82] text-xl font-bold">⌖</span>
+              <div>
+                <strong class="font-ruda font-bold text-[#1C2530] block">Localização do Campus</strong>
+                <span class="font-montserrat text-sm text-[#575757]">Águas Lindas de Goiás – GO (a 50 km de Brasília)</span>
+              </div>
+            </div>
+
+            <div class="bg-white border border-[#DEDEDE] p-6 flex items-start gap-4">
+              <span class="text-[#044A82] text-xl font-bold">🛡</span>
+              <div>
+                <strong class="font-ruda font-bold text-[#1C2530] block">Sigilo Pastoral</strong>
+                <span class="font-montserrat text-sm text-[#575757]">Todas as comunicações são tratadas com discrição absoluta.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ContactForm client:visible />
+      </div>
+    </Container>
+  </section>
+</ContentLayout>

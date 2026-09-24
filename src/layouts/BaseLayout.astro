@@ -1,0 +1,75 @@
+---
+import { buildOrganizationJsonLd } from "@/lib/seo";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  robots?: string;
+  ogImage?: string;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  robots = "index, follow",
+  ogImage = "/images/hero.webp",
+  jsonLd = [],
+} = Astro.props;
+
+const schemas = [buildOrganizationJsonLd(), ...jsonLd];
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Font preload prioritário conforme §14.1 -->
+    <link
+      rel="preload"
+      href="/fonts/ruda-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
+    <!-- JSON-LD Estruturado -->
+    {
+      schemas.map((schema) => (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    }
+  </head>
+  <body class="min-h-screen flex flex-col bg-[#F5F2EC] text-[#1C2530] font-montserrat antialiased selection:bg-[#044A82] selection:text-white">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+    <slot name="header" />
+    <main id="conteudo" class="flex-1">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>

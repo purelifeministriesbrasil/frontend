@@ -1,0 +1,30 @@
+---
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+---
+
+<section class="bg-[#044A82] text-white py-8 border-y border-[#3B4C60]">
+  <Container size="wide">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="max-w-2xl">
+        <span class="font-montserrat text-xs uppercase tracking-widest text-[#C1BDA6] font-bold block mb-1">
+          Atendimento Confidencial
+        </span>
+        <h2 class="font-ruda font-bold text-xl sm:text-2xl text-white">
+          Precisa de orientação pastoral para você ou sua família?
+        </h2>
+        <p class="font-montserrat text-sm text-[#DEDEDE] mt-1">
+          Nossa equipe realiza avaliações confidenciais e gratuitas com total discrição e acolhimento bíblico.
+        </p>
+      </div>
+      <div class="shrink-0 flex flex-wrap items-center justify-center gap-4">
+        <Button href="/triagem/" variant="dark" class="text-xs px-6 py-3 border border-white/20">
+          Iniciar Triagem Confidencial
+        </Button>
+        <Button href="/contato/" variant="outline-light" class="text-xs px-6 py-3">
+          Falar com a Equipe
+        </Button>
+      </div>
+    </div>
+  </Container>
+</section>

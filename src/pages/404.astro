@@ -1,0 +1,32 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Container from "../components/ui/Container.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<ContentLayout
+  title="Página Não Encontrada (404) | Pure Life Ministries Brasil"
+  description="A página solicitada não foi encontrada no servidor."
+  canonical="https://purelifebrasil.org/404"
+  robots="noindex, nofollow"
+  currentPath="/404"
+>
+  <section class="py-32 bg-[#F5F2EC] text-center">
+    <Container size="narrow">
+      <div class="bg-white border border-[#DEDEDE] p-12 sm:p-16 shadow-xs max-w-lg mx-auto">
+        <div class="font-ruda font-black text-6xl sm:text-7xl text-[#044A82] mb-4">404</div>
+        <h1 class="font-ruda font-bold text-2xl text-[#1C2530] mb-4">
+          Página Não Encontrada
+        </h1>
+        <p class="font-montserrat text-sm text-[#575757] leading-relaxed mb-8">
+          O endereço acessado pode ter sido removido, renomeado ou está temporariamente indisponível.
+        </p>
+        <Button href="/" variant="primary">
+          Voltar para a Página Inicial
+        </Button>
+      </div>
+    </Container>
+  </section>
+</ContentLayout>

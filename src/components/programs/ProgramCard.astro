@@ -1,0 +1,96 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+  badge: string;
+  badgeVariant?: "blue" | "dark";
+  title: string;
+  subtitle: string;
+  description: string;
+  features: string[];
+  imageSrc: string;
+  imageAlt: string;
+  leaderLabel?: string;
+  leaderName: string;
+  ctaText: string;
+  ctaHref: string;
+}
+
+const {
+  badge,
+  badgeVariant = "blue",
+  title,
+  subtitle,
+  description,
+  features,
+  imageSrc,
+  imageAlt,
+  leaderLabel = "Liderança Pastoral",
+  leaderName,
+  ctaText,
+  ctaHref,
+} = Astro.props;
+---
+
+<div class="bg-white border border-[#DEDEDE] overflow-hidden flex flex-col justify-between shadow-xs">
+  <div>
+    <!-- Imagem de Destaque -->
+    <div class="relative h-72 bg-[#1C2530] overflow-hidden">
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        width="800"
+        height="500"
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover opacity-60"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#1C2530] via-transparent to-transparent"></div>
+      <div class="absolute bottom-6 left-6">
+        <span
+          class={`inline-block font-montserrat text-xs font-bold tracking-[0.15em] uppercase px-3 py-1.5 text-white ${
+            badgeVariant === "blue" ? "bg-[#044A82]" : "bg-[#3B4C60]"
+          }`}
+        >
+          {badge}
+        </span>
+      </div>
+    </div>
+
+    <!-- Conteúdo do Card -->
+    <div class="p-8">
+      <h3 class="font-ruda font-black text-[#1C2530] text-2xl mb-1">{title}</h3>
+      <p class="font-editorial text-[#044A82] text-sm tracking-wide mb-4 font-semibold">{subtitle}</p>
+      <p class="font-montserrat text-[#575757] text-sm leading-relaxed mb-6">
+        {description}
+      </p>
+
+      <!-- Lista de Benefícios/Características -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+        {
+          features.map((item) => (
+            <div class="flex items-start gap-2">
+              <span class="text-[#044A82] mt-0.5 text-xs font-bold" aria-hidden="true">✦</span>
+              <span class="font-montserrat text-[#1C2530] text-xs leading-snug">{item}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé do Card com Liderança e CTA -->
+  <div class="p-8 pt-0">
+    <div class="border-t border-[#DEDEDE] pt-6 flex items-center justify-between gap-4">
+      <div>
+        <div class="font-montserrat text-[0.65rem] uppercase tracking-widest text-[#575757] font-semibold mb-0.5">
+          {leaderLabel}
+        </div>
+        <div class="font-ruda font-bold text-[#1C2530] text-sm">{leaderName}</div>
+      </div>
+      <Button href={ctaHref} variant="primary" class="text-xs px-5 py-2.5 shrink-0">
+        {ctaText}
+      </Button>
+    </div>
+  </div>
+</div>

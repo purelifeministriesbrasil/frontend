@@ -1,0 +1,107 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Container from "../components/ui/Container.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import Button from "../components/ui/Button.astro";
+
+const faqs = [
+  {
+    q: "Quem pode participar do Programa Residencial?",
+    a: "O Programa Residencial é direcionado a homens cristãos que enfrentam desafios comportamentais, vícios ou padrões de pecado recorrentes e desejam transformação genuína fundamentada nas Escrituras. A admissão é feita após avaliação prévia confidencial.",
+  },
+  {
+    q: "Qual é a duração do programa Online Vida Pura?",
+    a: "O programa Online Vida Pura tem duração variável conforme o plano escolhido, com sessões semanais ao vivo com conselheiros certificados. Há também acompanhamento pastoral específico para esposas.",
+  },
+  {
+    q: "A Pure Life Ministries Brasil é denominacional?",
+    a: "Não somos afiliados a uma denominação específica. Nossa base teológica é a tradição Reformada e nossas portas estão abertas a cristãos de diversas igrejas protestantes evangélicas fiéis à Palavra.",
+  },
+  {
+    q: "Como é feita a inscrição no Programa Residencial?",
+    a: "O processo inicia com o preenchimento do formulário de triagem confidencial. Após análise pela equipe pastoral, o candidato é contatado para uma entrevista de avaliação. A admissão ocorre após aprovação mútua.",
+  },
+  {
+    q: "A Pure Life oferece aconselhamento para mulheres?",
+    a: "Sim. O programa Online Vida Pura inclui acompanhamento dedicado para esposas, com conselheiras certificadas que compreendem as feridas e desafios específicos vividos por cônjuges.",
+  },
+  {
+    q: "Onde fica o Campus Residencial?",
+    a: "O campus residencial está localizado em Águas Lindas de Goiás – GO, a aproximadamente 50 km de Brasília, em ambiente calmo e reservado que favorece a oração, o estudo e a disciplina espiritual.",
+  },
+  {
+    q: "O que é a Viagem PLM aos EUA?",
+    a: "É uma viagem organizada pela PLM Brasil ao campus da Pure Life Ministries Internacional em Dry Ridge, Kentucky (EUA). Os participantes conhecem as instalações, assistem a ministrações, reúnem-se com a equipe americana e vivenciam o modelo fundacional do ministério.",
+  },
+  {
+    q: "Como posso apoiar financeiramente o ministério?",
+    a: "Doações podem ser feitas via chave Pix oficial instantânea ou transferência bancária. Cada contribuição sustenta diretamente o atendimento subsidiado ou integral de participantes sem recursos financeiros.",
+  },
+];
+
+// Schema FAQPage estruturado conforme §14.1
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.a,
+    },
+  })),
+};
+---
+
+<ContentLayout
+  title="Perguntas Frequentes (FAQ) | Pure Life Ministries Brasil"
+  description="Dúvidas comuns sobre o programa residencial, aconselhamento online, admissão, doutrina e apoio financeiro."
+  canonical="https://purelifebrasil.org/perguntas-frequentes/"
+  currentPath="/perguntas-frequentes/"
+  jsonLd={[faqJsonLd]}
+>
+  <section class="py-20 bg-[#1C2530] text-white">
+    <Container size="wide">
+      <SectionHeading
+        tag="Tire Suas Dúvidas"
+        title="Perguntas Frequentes sobre o Ministério"
+        description="Informações transparentes sobre admissão, doutrina bíblica reformada, acompanhamento e funcionamento geral."
+        invert={true}
+      />
+    </Container>
+  </section>
+
+  <section class="py-24 bg-white">
+    <Container size="narrow">
+      <div class="divide-y divide-[#DEDEDE] border-y border-[#DEDEDE] mb-12">
+        {
+          faqs.map((faq) => (
+            <details class="faq-item group">
+              <summary class="faq-trigger font-ruda font-bold text-base sm:text-lg text-[#1C2530] hover:text-[#044A82] transition-colors py-5 flex items-center justify-between cursor-pointer list-none">
+                <span>{faq.q}</span>
+              </summary>
+              <div class="faq-content font-montserrat text-sm sm:text-base text-[#575757] leading-relaxed pb-6 pt-1">
+                <p>{faq.a}</p>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+
+      <div class="bg-[#F5F2EC] p-8 sm:p-10 border border-[#DEDEDE] text-center">
+        <h3 class="font-ruda font-bold text-xl text-[#1C2530] mb-2">
+          Ainda possui alguma pergunta específica?
+        </h3>
+        <p class="font-montserrat text-sm text-[#575757] mb-6">
+          Nossa equipe está pronta para conversar pessoalmente e orientar o seu caso com total sigilo.
+        </p>
+        <Button href="/contato/" variant="primary">
+          Falar com um conselheiro
+        </Button>
+      </div>
+    </Container>
+  </section>
+</ContentLayout>

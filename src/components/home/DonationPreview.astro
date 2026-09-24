@@ -1,0 +1,59 @@
+---
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import Button from "../ui/Button.astro";
+---
+
+<section id="doacoes" class="py-24 bg-[#F5F2EC]">
+  <Container size="wide">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <SectionHeading
+          tag="Doações"
+          title="Seja parceiro da obra de restauração"
+          description="A Pure Life Ministries Brasil atende dezenas de homens e famílias anualmente, muitos sem condições financeiras de arcar com os custos do programa. Sua doação viabiliza bolsas e atendimentos emergenciais."
+        />
+
+        <p class="font-montserrat text-[#575757] text-sm leading-relaxed mb-8">
+          Como ministério sem fins lucrativos, dependemos do apoio gracioso de igrejas, famílias e indivíduos comprometidos com a recuperação bíblica. Cada contribuição é direcionada com integridade ao acolhimento e aconselhamento.
+        </p>
+
+        <div class="flex flex-col gap-3 mb-8">
+          {
+            [
+              { val: "R$ 50", desc: "Cobre materiais de estudo bíblico de um participante por semana" },
+              { val: "R$ 150", desc: "Sustenta uma sessão de aconselhamento pastoral completa" },
+              { val: "R$ 500", desc: "Banca o sustento de um participante sem recursos por um mês" },
+            ].map((d) => (
+              <a
+                href="/doar/"
+                class="flex items-center gap-4 p-4 border border-[#DEDEDE] bg-white hover:border-[#044A82] transition-colors"
+              >
+                <div class="font-ruda font-black text-[#044A82] text-xl w-24 shrink-0">{d.val}</div>
+                <div class="font-montserrat text-[#1C2530] text-xs sm:text-sm font-medium">{d.desc}</div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <aside class="bg-[#1C2530] text-white p-8 sm:p-10 border-t-4 border-[#044A82] shadow-lg">
+        <span class="font-montserrat text-[#C1BDA6] text-xs uppercase tracking-[0.16em] font-bold block mb-2">
+          Contribuição Transparente
+        </span>
+        <h3 class="font-ruda font-bold text-white text-2xl sm:text-3xl mb-4">
+          Deseja apoiar este ministério?
+        </h3>
+        <p class="font-montserrat text-[#DEDEDE] text-sm leading-relaxed mb-6">
+          Você pode gerar um Pix dinâmico seguro de forma instantânea ou obter nossas orientações oficiais para doação com emissão de recibo.
+        </p>
+        <Button href="/doar/" variant="primary" class="w-full text-center py-4 text-xs font-bold tracking-wider">
+          Contribuir com Pix ou Transferência
+        </Button>
+        <p class="font-montserrat text-[#C1BDA6] text-xs text-center leading-relaxed mt-4">
+          Transações diretas com segurança e prestação de contas integral.
+        </p>
+      </aside>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,43 @@
+---
+interface Props {
+  tag?: string;
+  title: string;
+  description?: string;
+  align?: "left" | "center";
+  invert?: boolean;
+}
+
+const { tag, title, description, align = "left", invert = false } = Astro.props;
+---
+
+<div class={`mb-12 ${align === "center" ? "text-center mx-auto max-w-3xl" : "max-w-2xl"}`}>
+  {
+    tag && (
+      <span
+        class={`font-montserrat text-xs font-bold tracking-[0.15em] uppercase block mb-3 ${
+          invert ? "text-[#C1BDA6]" : "text-[#044A82]"
+        }`}
+      >
+        {tag}
+      </span>
+    )
+  }
+  <h2
+    class={`font-ruda font-black text-balance text-3xl sm:text-4xl lg:text-5xl leading-tight ${
+      invert ? "text-white" : "text-[#1C2530]"
+    }`}
+  >
+    {title}
+  </h2>
+  {
+    description && (
+      <p
+        class={`font-montserrat text-base sm:text-lg leading-relaxed mt-4 ${
+          invert ? "text-[#DEDEDE]" : "text-[#575757]"
+        }`}
+      >
+        {description}
+      </p>
+    )
+  }
+</div>

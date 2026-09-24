@@ -1,0 +1,21 @@
+---
+import Container from "../ui/Container.astro";
+import NewsletterForm from "../forms/NewsletterForm.astro";
+---
+
+<section class="py-20 bg-[#3B4C60] text-white text-center">
+  <Container size="narrow">
+    <div class="w-12 h-0.5 bg-[#C1BDA6] mx-auto mb-6 opacity-60"></div>
+    <span class="font-editorial text-[#C1BDA6] tracking-[0.2em] text-sm block mb-3">
+      Mantenha-se Edificado
+    </span>
+    <h2 class="font-ruda font-black text-white text-2xl sm:text-3xl lg:text-4xl mb-4 text-balance">
+      Receba ensinamentos bíblicos e atualizações do ministério
+    </h2>
+    <p class="font-montserrat text-[#DEDEDE] text-sm sm:text-base mb-8 max-w-xl mx-auto leading-relaxed">
+      Sem spam. Apenas artigos teológicos, testemunhos e avisos relevantes para sua jornada de santidade cristã.
+    </p>
+
+    <NewsletterForm />
+  </Container>
+</section>

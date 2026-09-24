@@ -1,0 +1,32 @@
+:root {
+  --color-surface: #f5f2ec;
+  --color-surface-raised: #ffffff;
+  --color-surface-inverse: #1c2530;
+
+  --color-brand-primary: #044a82;
+  --color-brand-secondary: #3b4c60;
+  --color-brand-accent: #c1bda6;
+
+  --color-text: #1c2530;
+  --color-text-muted: #575757;        /* substitui #727272 */
+  --color-text-on-dark: #ffffff;
+  --color-text-on-dark-muted: #dedede;
+
+  --color-border: color-mix(in srgb, var(--color-text) 22%, transparent);
+  --color-focus: #d99b26;
+  --color-danger: #b42318;
+  --color-success: #1d6f42;
+
+  --font-display: "Ruda", Arial, sans-serif;
+  --font-body: "Montserrat", Arial, sans-serif;
+  --font-editorial: Georgia, "Times New Roman", serif;
+
+  --text-xs:   clamp(0.875rem, 0.85rem + 0.12vw, 0.9375rem);  /* piso 14px */
+  --text-sm:   clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.25rem, 1.12rem + 0.65vw, 1.75rem);
+  --text-xl:   clamp(2rem, 1.55rem + 2.25vw, 4rem);
+
+  --space-section: clamp(4rem, 8vw, 9rem);
+  --layout-max: 76rem;
+}

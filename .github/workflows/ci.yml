@@ -1,0 +1,45 @@
+name: CI — purelife-web
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    name: Verify Topology, HTML and Static Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout frontend
+        uses: actions/checkout@v4
+        with:
+          path: frontend
+
+      - name: Checkout contracts
+        uses: actions/checkout@v4
+        with:
+          repository: purelifeministriesbrasil/contracts
+          path: contracts
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 12
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build shared contracts
+        run: |
+          cd contracts
+          pnpm install --no-frozen-lockfile
+          pnpm build
+
+      - name: Build and verify frontend
+        run: |
+          cd frontend
+          pnpm install --no-frozen-lockfile
+          pnpm ci:verify

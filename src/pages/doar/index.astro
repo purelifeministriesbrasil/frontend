@@ -1,0 +1,20 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import DonationForm from "../../components/donations/DonationForm";
+---
+
+<ContentLayout
+  title="Apoie o Ministério com sua Doação | Pure Life Ministries Brasil"
+  description="Faça sua contribuição via Pix oficial e viabilize o acolhimento pastoral de famílias e homens em recuperação."
+  canonical="https://purelifebrasil.org/doar/"
+  currentPath="/doar/"
+>
+  <section class="py-16 sm:py-24 bg-[#F5F2EC]">
+    <Container size="default">
+      <DonationForm client:load />
+    </Container>
+  </section>
+</ContentLayout>

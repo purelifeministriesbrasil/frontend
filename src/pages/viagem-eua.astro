@@ -1,0 +1,28 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Container from "../components/ui/Container.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import UsaTripPreview from "../components/home/UsaTripPreview.astro";
+---
+
+<ContentLayout
+  title="Viagem PLM aos EUA | Pure Life Ministries Brasil"
+  description="Imersão pastoral na sede internacional da Pure Life Ministries em Dry Ridge, Kentucky."
+  canonical="https://purelifebrasil.org/viagem-eua/"
+  currentPath="/viagem-eua/"
+>
+  <section class="py-20 bg-[#1C2530] text-white">
+    <Container size="wide">
+      <SectionHeading
+        tag="Imersão Internacional"
+        title="Viagem de Formação Pastoral à Sede nos EUA"
+        description="Conheça de perto o berço do ministério que há mais de 40 anos lidera cristãos à vitória em Cristo."
+        invert={true}
+      />
+    </Container>
+  </section>
+
+  <UsaTripPreview />
+</ContentLayout>

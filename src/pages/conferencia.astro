@@ -1,0 +1,86 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Container from "../components/ui/Container.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<ContentLayout
+  title="Conferência Anual 2027 | Pure Life Ministries Brasil"
+  description="O maior encontro de aconselhamento bíblico reformado de Brasília. Dias intensos de ensino expositivo, comunhão e capacitação ministerial."
+  canonical="https://purelifebrasil.org/conferencia/"
+  currentPath="/conferencia/"
+>
+  <section class="py-20 bg-[#1C2530] text-white">
+    <Container size="wide">
+      <SectionHeading
+        tag="Conferência Anual"
+        title="2ª Conferência Pure Life Ministries Brasil — 2027"
+        description="Reunindo pastores, conselheiros e famílias em Brasília para dias de restauração e capacitação bíblica profunda."
+        invert={true}
+      />
+    </Container>
+  </section>
+
+  <section class="py-24 bg-[#F5F2EC]">
+    <Container size="wide">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h3 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-6">
+            Edificação e capacitação para a Igreja de Cristo
+          </h3>
+          <p class="font-montserrat text-[#1C2530] text-base leading-relaxed mb-6">
+            A Conferência Pure Life Brasil é um marco anual para líderes cristãos que desejam entender como tratar com profundidade bíblica e compaixão pastoral as lutas da alma humana.
+          </p>
+          <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-8">
+            Contando com preletores nacionais e da equipe sênior americana da Pure Life Internacional, os participantes têm acesso a palestras plenárias, oficinas práticas de aconselhamento para casais e material didático exclusivo.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="border border-[#DEDEDE] bg-white p-6">
+              <span class="font-montserrat text-xs uppercase text-[#575757] block mb-1">Localização</span>
+              <strong class="font-ruda font-bold text-[#1C2530] text-lg">Brasília - DF</strong>
+            </div>
+            <div class="border border-[#DEDEDE] bg-white p-6">
+              <span class="font-montserrat text-xs uppercase text-[#575757] block mb-1">Ano da 2ª Edição</span>
+              <strong class="font-ruda font-bold text-[#1C2530] text-lg">2027</strong>
+            </div>
+          </div>
+
+          <Button href="/contato/" variant="primary">
+            Quero receber informações em primeira mão
+          </Button>
+        </div>
+
+        <div class="bg-white border border-[#DEDEDE] p-8 sm:p-12 shadow-xs">
+          <h4 class="font-ruda font-bold text-xl text-[#044A82] mb-6">Público-Alvo</h4>
+          <ul class="space-y-4 font-montserrat text-sm text-[#575757]">
+            <li class="flex items-start gap-3">
+              <span class="text-[#044A82] font-bold">✦</span>
+              <div>
+                <strong class="text-[#1C2530] block">Pastores e Líderes Ministeriais:</strong>
+                Ferramentas práticas para o cuidado do rebanho e auxílio a membros em crise.
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-[#044A82] font-bold">✦</span>
+              <div>
+                <strong class="text-[#1C2530] block">Conselheiros e Terapeutas Cristãos:</strong>
+                Alinhamento teológico reformado sobre a suficiência das Escrituras.
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-[#044A82] font-bold">✦</span>
+              <div>
+                <strong class="text-[#1C2530] block">Casais e Famílias:</strong>
+                Restauração da intimidade conjugal, perdão e cura das feridas da infidelidade.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </section>
+</ContentLayout>

@@ -1,0 +1,83 @@
+---
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+---
+
+<section id="conferencia" class="py-24 bg-[#1C2530] text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-20 pointer-events-none">
+    <img
+      src="/images/conference.webp"
+      alt=""
+      width="1920"
+      height="800"
+      loading="lazy"
+      decoding="async"
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-[#1C2530] via-[#1C2530]/85 to-transparent"></div>
+  </div>
+
+  <Container size="wide" class="relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <span class="font-montserrat text-[#C1BDA6] text-xs font-bold tracking-[0.15em] uppercase block mb-4">
+          Conferência Anual Pure Life Ministries Brasil
+        </span>
+        <h2 class="font-ruda font-black text-white text-balance text-3xl sm:text-4xl lg:text-5xl mb-4 leading-tight">
+          O maior encontro de aconselhamento bíblico reformado de Brasília
+        </h2>
+
+        <div class="inline-flex items-center gap-2 border border-[#C1BDA6]/40 px-4 py-2 mb-6">
+          <span class="font-ruda font-black text-[#C1BDA6] text-lg">2ª Edição</span>
+          <span class="font-montserrat text-[#DEDEDE] text-xs uppercase tracking-widest">· 2027</span>
+        </div>
+
+        <p class="font-montserrat text-[#DEDEDE] text-sm sm:text-base leading-relaxed mb-6">
+          Reunimos pastores, conselheiros, líderes e famílias para dias intensos de ensino bíblico, adoração e comunhão. Palestrantes nacionais e internacionais compartilham conteúdo doutrinário e prático de alto nível, fundamentado na teologia reformada e no aconselhamento bíblico.
+        </p>
+
+        <p class="font-montserrat text-[#C1BDA6] text-xs leading-relaxed mb-8 italic">
+          A programação completa e a abertura de inscrições para 2027 serão anunciadas pelos canais oficiais do ministério.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          {
+            ["Pastores e líderes", "Famílias em restauração", "Conselheiros em formação", "Cônjuges e casais"].map(
+              (a) => (
+                <div class="flex items-center gap-2">
+                  <span class="text-[#C1BDA6] text-xs font-bold" aria-hidden="true">✦</span>
+                  <span class="font-montserrat text-[#DEDEDE] text-xs sm:text-sm">{a}</span>
+                </div>
+              )
+            )
+          }
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          <Button href="/conferencia/" variant="primary" class="text-xs px-6 py-3.5">
+            Página da Conferência
+          </Button>
+          <Button href="/contato/" variant="outline-light" class="text-xs px-6 py-3.5">
+            Avise-me sobre 2027
+          </Button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        {
+          [
+            { num: "2ª", label: "Próxima edição" },
+            { num: "2027", label: "Ano previsto" },
+            { num: "3", label: "Dias de ensino" },
+            { num: "Brasília", label: "Local" },
+          ].map((stat) => (
+            <div class="border border-[#3B4C60] bg-[#1C2530]/80 p-8 text-center backdrop-blur-xs">
+              <div class="font-ruda font-black text-[#C1BDA6] text-3xl sm:text-4xl mb-2">{stat.num}</div>
+              <div class="font-montserrat text-[#DEDEDE] text-xs uppercase tracking-widest">{stat.label}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</section>

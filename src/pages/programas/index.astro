@@ -1,0 +1,75 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import SectionHeading from "../../components/ui/SectionHeading.astro";
+import ProgramCard from "../../components/programs/ProgramCard.astro";
+import ProgramProcess from "../../components/programs/ProgramProcess.astro";
+---
+
+<ContentLayout
+  title="Programas de Aconselhamento | Pure Life Ministries Brasil"
+  description="Conheça nossas modalidades residencial e online de aconselhamento bíblico para restauração de homens e famílias."
+  canonical="https://purelifebrasil.org/programas/"
+  currentPath="/programas/"
+>
+  <section class="py-20 bg-[#1C2530] text-white">
+    <Container size="wide">
+      <SectionHeading
+        tag="Aconselhamento Bíblico"
+        title="Programas Estruturados para Restauração Genuína"
+        description="Modalidades pensadas para atender homens e famílias com acompanhamento pastoral dedicado fundamentado na suficiência das Escrituras."
+        invert={true}
+      />
+    </Container>
+  </section>
+
+  <section class="py-24 bg-[#F5F2EC]">
+    <Container size="wide">
+      <div class="grid lg:grid-cols-2 gap-8 mb-20">
+        <!-- Residencial -->
+        <ProgramCard
+          badge="Programa Pure Life"
+          badgeVariant="blue"
+          title="Programa Residencial"
+          subtitle="9 meses · Águas Lindas – GO"
+          description="Imersão integral de nove meses em ambiente estruturado para homens que buscam libertação de pecados de controle. Combina aconselhamento bíblico intensivo, estudo sistemático das Escrituras, oração, trabalho e responsabilidade mútua sob supervisão pastoral."
+          features={[
+            "Aconselhamento bíblico diário",
+            "Estudo aprofundado das Escrituras",
+            "Disciplina e responsabilidade",
+            "Integração à vida da igreja local",
+          ]}
+          imageSrc="/images/residential.webp"
+          imageAlt="Homem em oração e estudo bíblico no campus"
+          leaderName="Pr. Paulo Gouvêa"
+          ctaText="Ver detalhes do residencial"
+          ctaHref="/programas/residencial/"
+        />
+
+        <!-- Online Vida Pura -->
+        <ProgramCard
+          badge="Ao Vivo Online"
+          badgeVariant="dark"
+          title="Online Vida Pura"
+          subtitle="Sessões semanais · Todo o Brasil"
+          description="Programa de renovação da mente conduzido ao vivo por conselheiros certificados. Indicado para homens que buscam transformação mantendo rotina de trabalho e família. Inclui acompanhamento dedicado para esposas, com cuidado pastoral específico ao contexto conjugal e familiar."
+          features={[
+            "Sessões ao vivo semanais",
+            "Conselheiros certificados",
+            "Acompanhamento para esposas",
+            "Recursos digitais e áudios",
+          ]}
+          imageSrc="/images/online.webp"
+          imageAlt="Aconselhamento bíblico online com conselheiro"
+          leaderName="Pr. Filipe Bentle"
+          ctaText="Iniciar avaliação online"
+          ctaHref="/triagem/"
+        />
+      </div>
+
+      <ProgramProcess />
+    </Container>
+  </section>
+</ContentLayout>

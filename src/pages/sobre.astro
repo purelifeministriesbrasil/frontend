@@ -1,0 +1,79 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Container from "../components/ui/Container.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<ContentLayout
+  title="Sobre o Ministério | Pure Life Ministries Brasil"
+  description="Conheça a história de mais de 40 anos de liderança cristã na restauração de vidas pela sufficiência das Escrituras e graça de Cristo."
+  canonical="https://purelifebrasil.org/sobre/"
+  currentPath="/sobre/"
+>
+  <section class="py-20 bg-[#1C2530] text-white">
+    <Container size="wide">
+      <SectionHeading
+        tag="Nossa História"
+        title="Fundada em 1986 sobre a suficiência da Palavra"
+        description="A Pure Life Ministries Brasil é fruto de um chamado pastoral dedicado à restauração de vidas e casamentos feridos pelo pecado sexual."
+        invert={true}
+      />
+    </Container>
+  </section>
+
+  <section class="py-24 bg-[#F5F2EC]">
+    <Container size="wide">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h3 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-6">
+            Mais de 40 anos liderando cristãos à santidade bíblica
+          </h3>
+          <p class="font-montserrat text-[#1C2530] text-base leading-relaxed mb-6">
+            O ministério nasceu em 1986 nos Estados Unidos através de Steve Gallagher e sua esposa Kathy Gallagher, após uma profunda libertação e reconciliação matrimonial operada pelo Evangelho.
+          </p>
+          <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-6">
+            No Brasil, a instituição atua com fidelidade confessional às Escrituras na tradição Reformada, operando o campus residencial em Águas Lindas de Goiás e atendendo famílias de todo o território nacional.
+          </p>
+          <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-8">
+            Nossa convicção central é que a impureza sexual e os vícios de controle não são doenças inescapáveis, mas pecados da carne para os quais a cruz de Cristo oferece redenção total e vitória prática no dia a dia.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <Button href="/programas/" variant="primary">
+              Conheça nossos programas
+            </Button>
+            <Button href="/contato/" variant="outline">
+              Fale com nossa equipe
+            </Button>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white border border-[#DEDEDE] p-8 shadow-xs">
+            <h4 class="font-ruda font-bold text-xl text-[#044A82] mb-3">Nossa Missão</h4>
+            <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
+              Guiar homens cristãos à vitória duradoura sobre a escravidão sexual por meio do aconselhamento bíblico intensivo, restauração familiar e prestação mútua de contas.
+            </p>
+          </div>
+
+          <div class="bg-white border border-[#DEDEDE] p-8 shadow-xs">
+            <h4 class="font-ruda font-bold text-xl text-[#044A82] mb-3">Nossa Visão</h4>
+            <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
+              Ver a Igreja de Jesus Cristo fortalecida por lares restaurados, líderes irrepreensíveis e discípulos que amam a Deus de todo o coração.
+            </p>
+          </div>
+
+          <div class="bg-white border border-[#DEDEDE] p-8 shadow-xs">
+            <h4 class="font-ruda font-bold text-xl text-[#044A82] mb-3">Compromisso Pastoral</h4>
+            <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
+              Trabalhamos em conjunto e submissão à igreja local de cada participante, promovendo a reinserção na comunhão e serviço congregacional.
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+</ContentLayout>

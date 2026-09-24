@@ -1,0 +1,80 @@
+---
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import Button from "../ui/Button.astro";
+
+const books = [
+  {
+    title: "No Altar da Idolatria Sexual",
+    author: "Steve Gallagher",
+    desc: "O guia fundacional do ministério sobre santidade sexual segundo as Escrituras.",
+    bgColor: "bg-[#1C2530]",
+  },
+  {
+    title: "Cria em Mim um Coração Puro",
+    author: "Kathy Gallagher",
+    desc: "Um manual de esperança e fé para esposas que atravessam a dor da traição conjugal.",
+    bgColor: "bg-[#3B4C60]",
+  },
+  {
+    title: "O Impacto Pessoal e Social da Pornografia",
+    author: "Paulo Adriano Muniz Gouvêa",
+    desc: "Análise bíblica e pastoral das consequências do vício pornográfico na igreja e na sociedade.",
+    bgColor: "bg-[#044A82]",
+  },
+  {
+    title: "20 Verdades Contra o Vício em Pornografia",
+    author: "Steve Gallagher",
+    desc: "Testemunho e instrução bíblica prática para homens que buscam libertação genuína.",
+    bgColor: "bg-[#454A50]",
+  },
+];
+---
+
+<section id="editora" class="py-24 bg-[#F5F2EC]">
+  <Container size="wide">
+    <SectionHeading
+      tag="Editora e Livraria Pure Life"
+      title="Literatura que transforma pela verdade das Escrituras"
+      description="Publicamos e distribuímos obras fundamentais para o aconselhamento bíblico, a santidade cristã e a maturidade espiritual na tradição reformada."
+      align="center"
+    />
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      {
+        books.map((book) => (
+          <div class="bg-white border border-[#DEDEDE] overflow-hidden flex flex-col justify-between shadow-xs hover:border-[#044A82] transition-colors">
+            <div class={`h-48 p-6 flex flex-col justify-end text-white ${book.bgColor} relative`}>
+              <div class="w-8 h-1 bg-[#C1BDA6] mb-3"></div>
+              <h3 class="font-ruda font-bold text-lg leading-tight text-white">{book.title}</h3>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-1">
+              <div>
+                <span class="font-montserrat text-[#575757] text-xs font-semibold uppercase tracking-wider block mb-2">
+                  {book.author}
+                </span>
+                <p class="font-montserrat text-[#1C2530] text-xs leading-relaxed">
+                  {book.desc}
+                </p>
+              </div>
+              <div class="mt-6 pt-4 border-t border-[#DEDEDE]">
+                <a
+                  href="/editora/"
+                  class="font-montserrat text-xs font-bold uppercase tracking-widest text-[#044A82] hover:underline inline-flex items-center gap-1"
+                >
+                  Conhecer obra →
+                </a>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-center">
+      <Button href="/editora/" variant="dark">
+        Ver catálogo editorial completo
+      </Button>
+    </div>
+  </Container>
+</section>

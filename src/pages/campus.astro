@@ -1,0 +1,81 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Container from "../components/ui/Container.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import Button from "../components/ui/Button.astro";
+---
+
+<ContentLayout
+  title="Campus Residencial em Goiás | Pure Life Ministries Brasil"
+  description="Instalações dedicadas ao recolhimento, oração e aconselhamento bíblico intensivo em Águas Lindas de Goiás."
+  canonical="https://purelifebrasil.org/campus/"
+  currentPath="/campus/"
+>
+  <section class="py-20 bg-[#1C2530] text-white">
+    <Container size="wide">
+      <SectionHeading
+        tag="Instalações"
+        title="O Campus Residencial em Águas Lindas de Goiás"
+        description="Um refúgio de paz a 50 km de Brasília preparado para acolher homens em busca de santidade e cura bíblica."
+        invert={true}
+      />
+    </Container>
+  </section>
+
+  <section class="py-24 bg-[#F5F2EC]">
+    <Container size="wide">
+      <div class="grid lg:grid-cols-2 gap-16 items-center mb-16">
+        <div>
+          <h3 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-6">
+            Estrutura Completa para Discipulado e Imersão
+          </h3>
+          <p class="font-montserrat text-[#1C2530] text-base leading-relaxed mb-6">
+            Localizado em uma área cercada pela natureza e longe do ruído dos grandes centros urbanos, o campus da PLM Brasil oferece condições ideais para o recolhimento espiritual, a meditação bíblica e a disciplina diária.
+          </p>
+          <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-8">
+            Contamos com salas de aconselhamento privativas, dormitórios organizados, biblioteca com literatura reformada, refeitório comunitário e áreas externas de labor e reflexão.
+          </p>
+          <Button href="/contato/" variant="primary">
+            Agendar Visita Pastoral
+          </Button>
+        </div>
+
+        <div class="overflow-hidden border border-[#DEDEDE] shadow-md">
+          <img
+            src="/images/campus.webp"
+            alt="Ambiente externo e instalações do campus PLM Brasil"
+            width="700"
+            height="520"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-[400px] object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- Diferenciais do campus -->
+      <div class="grid sm:grid-cols-3 gap-6">
+        <div class="bg-white border border-[#DEDEDE] p-8">
+          <h4 class="font-ruda font-bold text-lg text-[#044A82] mb-2">Paz e Recolhimento</h4>
+          <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
+            Ambiente reservado favorável à oração, quebrantamento e reconciliação com o Senhor.
+          </p>
+        </div>
+        <div class="bg-white border border-[#DEDEDE] p-8">
+          <h4 class="font-ruda font-bold text-lg text-[#044A82] mb-2">Comunhão Fraternal</h4>
+          <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
+            Convivência diária transparente com conselheiros e companheiros de jornada.
+          </p>
+        </div>
+        <div class="bg-white border border-[#DEDEDE] p-8">
+          <h4 class="font-ruda font-bold text-lg text-[#044A82] mb-2">Acesso Facilitado</h4>
+          <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
+            Localizado a aproximadamente 50 km do Aeroporto Internacional de Brasília.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+</ContentLayout>

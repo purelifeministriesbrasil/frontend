@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Programa Residencial",
+    "slug": "residencial",
+    "headline": "Sete meses de imersão bíblica em ambiente seguro e focado na transformação pelo Espírito Santo.",
+    "summary": "Internato para homens que buscam vitória definitiva e duradoura sobre a pornografia, imoralidade sexual e suas raízes espirituais.",
+    "format": "residencial",
+    "duration": "7 meses no campus",
+    "targetAudience": "Homens a partir de 18 anos",
+    "featuredImage": {
+      "url": "/images/residential.webp",
+      "alt": "Instalações acolhedoras do campus residencial em meio à natureza"
+    },
+    "processSteps": [
+      {
+        "stepNumber": "01",
+        "title": "Desintoxicação e Consciência",
+        "description": "Afastamento total de gatilhos digitais, rotina diária de oração e confronto amoroso com as raízes do pecado."
+      },
+      {
+        "stepNumber": "02",
+        "title": "Aconselhamento Bíblico Intensivo",
+        "description": "Sessões individuais semanais e estudos bíblicos profundos focados no arrependimento bíblico e quebrantamento."
+      },
+      {
+        "stepNumber": "03",
+        "title": "Vida Comunitária e Serviço",
+        "description": "Trabalho manual, convívio fraterno com irmãos e aprendizado prático de prestação de contas diária."
+      },
+      {
+        "stepNumber": "04",
+        "title": "Plano de Transição e Pós-Tratamento",
+        "description": "Construção de salvaguardas para o retorno ao lar, reintegração familiar e vínculo com a igreja local."
+      }
+    ]
+  },
+  {
+    "name": "Aconselhamento Online",
+    "slug": "online",
+    "headline": "Acompanhamento pastoral individual e confidencial onde você estiver.",
+    "summary": "Para homens que necessitam de direcionamento bíblico estruturado mantendo suas responsabilidades familiares e de trabalho.",
+    "format": "online",
+    "duration": "12 a 24 semanas",
+    "targetAudience": "Homens em busca de mentoria bíblica",
+    "featuredImage": {
+      "url": "/images/online.webp",
+      "alt": "Homem estudando a Bíblia com caderno de anotações"
+    },
+    "processSteps": [
+      {
+        "stepNumber": "01",
+        "title": "Avaliação Inicial",
+        "description": "Entrevista de triagem confidencial e diagnóstico da gravidade do comportamento sexual compulsivo."
+      },
+      {
+        "stepNumber": "02",
+        "title": "Encontros Semanais",
+        "description": "Sessões individuais de aconselhamento com conselheiro treinado no método Pure Life."
+      },
+      {
+        "stepNumber": "03",
+        "title": "Tarefas Bíblicas Diárias",
+        "description": "Exercícios espirituais, leituras guiadas e tarefas práticas de prestação de contas."
+      }
+    ]
+  },
+  {
+    "name": "Apoio para Esposas",
+    "slug": "esposas",
+    "headline": "Cuidado bíblico, consolo e restauração para mulheres feridas pela traição sexual.",
+    "summary": "Grupos de apoio e aconselhamento dedicado para esposas enfrentarem o trauma da quebra de confiança à luz das Escrituras.",
+    "format": "esposas",
+    "duration": "Semestral",
+    "targetAudience": "Esposas de homens em luta contra imoralidade",
+    "featuredImage": {
+      "url": "/images/about.webp",
+      "alt": "Mulher orando com serenidade e esperança bíblica"
+    },
+    "processSteps": [
+      {
+        "stepNumber": "01",
+        "title": "Acolhimento e Alívio da Culpa",
+        "description": "Compreensão de que o pecado do cônjuge não é responsabilidade da esposa."
+      },
+      {
+        "stepNumber": "02",
+        "title": "Cura Emocional e Bíblica",
+        "description": "Processamento da dor da traição através do consolo soberano de Deus."
+      },
+      {
+        "stepNumber": "03",
+        "title": "Limites Saudáveis",
+        "description": "Estabelecimento de limites bíblicos claros para a proteção do coração e da família."
+      }
+    ]
+  }
+]

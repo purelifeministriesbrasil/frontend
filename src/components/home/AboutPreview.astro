@@ -1,0 +1,82 @@
+---
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+---
+
+<section id="sobre" class="py-24 bg-[#F5F2EC]">
+  <Container size="wide">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Imagem Institucional e Moldura -->
+      <div class="relative">
+        <div class="relative z-10 overflow-hidden shadow-lg border border-[#DEDEDE]">
+          <img
+            src="/images/about.webp"
+            alt="Ambiente de estudo bíblico e reflexão"
+            width="700"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-[400px] sm:h-[480px] lg:h-[520px] object-cover"
+          />
+        </div>
+        <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-[#3B4C60]/10 border border-[#3B4C60]/20 z-0 hidden sm:block"></div>
+        <div class="absolute -top-6 -left-6 w-24 h-24 bg-[#044A82]/10 border border-[#044A82]/20 z-0 hidden sm:block"></div>
+        <div class="absolute bottom-8 -right-2 sm:-right-4 bg-[#1C2530] text-white px-6 py-4 z-20 shadow-md">
+          <div class="font-ruda font-black text-3xl text-[#C1BDA6]">1986</div>
+          <div class="font-montserrat text-xs uppercase tracking-[0.15em] text-[#DEDEDE]">Fundada em</div>
+        </div>
+      </div>
+
+      <!-- Texto Institucional -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-0.5 bg-[#044A82]"></div>
+          <span class="font-montserrat text-[#044A82] text-xs font-bold tracking-[0.15em] uppercase">
+            Quem Somos
+          </span>
+        </div>
+
+        <h2 class="font-ruda font-black text-[#1C2530] leading-tight mb-6 text-balance text-3xl sm:text-4xl lg:text-5xl">
+          Uma instituição construída sobre a Palavra
+        </h2>
+
+        <p class="font-montserrat text-[#1C2530] leading-relaxed mb-5 text-base">
+          A <strong class="font-semibold text-[#044A82]">Pure Life Ministries Brasil</strong> é uma escola de aconselhamento bíblico cristão reformado dedicada à restauração de homens e mulheres que enfrentam pecados de controle e vícios comportamentais.
+        </p>
+
+        <p class="font-montserrat text-[#575757] leading-relaxed mb-5 text-sm sm:text-base">
+          Fundada sobre a convicção de que a Bíblia é suficiente para cada desafio da alma humana, nossa metodologia combina exposição sistemática das Escrituras, aconselhamento individual, responsabilidade comunitária e disciplina espiritual intensiva.
+        </p>
+
+        <p class="font-montserrat text-[#575757] leading-relaxed mb-8 text-sm sm:text-base">
+          Somos afiliados à Pure Life Ministries Internacional (EUA) e adaptamos com fidelidade o modelo comprovado por mais de quatro décadas de transformação ao contexto cultural e eclesial brasileiro.
+        </p>
+
+        <!-- Métricas Responsivas (Piso WCAG e grid flexível) -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8 py-6 border-t border-b border-[#DEDEDE]">
+          <div>
+            <div class="font-ruda font-black text-[#044A82] text-3xl">+40</div>
+            <div class="font-montserrat text-[#575757] text-xs leading-snug mt-1 font-medium">Anos de ministério</div>
+          </div>
+          <div>
+            <div class="font-ruda font-black text-[#044A82] text-3xl">+2.000</div>
+            <div class="font-montserrat text-[#575757] text-xs leading-snug mt-1 font-medium">Vidas restauradas</div>
+          </div>
+          <div>
+            <div class="font-ruda font-black text-[#044A82] text-3xl">6</div>
+            <div class="font-montserrat text-[#575757] text-xs leading-snug mt-1 font-medium">Conselheiros certificados</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          <Button href="/sobre/" variant="dark">
+            Conheça nossa história
+          </Button>
+          <Button href="/programas/" variant="outline">
+            Ver programas
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

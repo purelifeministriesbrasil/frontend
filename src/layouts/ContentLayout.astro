@@ -1,0 +1,38 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  robots?: string;
+  ogImage?: string;
+  currentPath?: string;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  robots = "index, follow",
+  ogImage,
+  currentPath = "",
+  jsonLd = [],
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  robots={robots}
+  ogImage={ogImage}
+  jsonLd={jsonLd}
+>
+  <Header slot="header" currentPath={currentPath} />
+  <slot />
+  <Footer slot="footer" />
+</BaseLayout>

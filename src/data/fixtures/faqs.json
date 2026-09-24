@@ -1,0 +1,32 @@
+[
+  {
+    "question": "Como funciona o sigilo e a privacidade das informações?",
+    "answer": "O sigilo pastoral é absoluto. Suas informações de triagem são protegidas por criptografia de ponta a ponta com chaves dedicadas e nunca são compartilhadas com terceiros nem expostas em logs públicos.",
+    "category": "geral",
+    "order": 1
+  },
+  {
+    "question": "Quanto tempo dura o Programa Residencial?",
+    "answer": "O programa tem duração de 7 meses no campus em Águas Lindas de Goiás, tempo necessário para uma desintoxicação profunda, confronto das raízes do coração e reconstrução de hábitos espirituais sólidos.",
+    "category": "residencial",
+    "order": 2
+  },
+  {
+    "question": "O ministério atende homens de qualquer lugar do Brasil?",
+    "answer": "Sim. Nosso campus residencial recebe homens de todos os estados do país e do exterior. Além disso, o programa de Aconselhamento Online atende pessoas em qualquer localização com conexão à internet.",
+    "category": "geral",
+    "order": 3
+  },
+  {
+    "question": "Existe apoio específico para as esposas?",
+    "answer": "Sim, temos um ministério dedicado exclusivamente a esposas feridas pela traição e infidelidade conjugal, com conselheiras capacitadas para trazer consolo, sabedoria e direcionamento prático.",
+    "category": "familia",
+    "order": 4
+  },
+  {
+    "question": "Como são financiados os atendimentos e bolsas?",
+    "answer": "A Pure Life Ministries Brasil é uma organização sem fins lucrativos sustentada por doações voluntárias de igrejas e indivíduos comprometidos com a restauração de famílias. Oferecemos programas de bolsas mediante análise prévia.",
+    "category": "financeiro",
+    "order": 5
+  }
+]

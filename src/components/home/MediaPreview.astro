@@ -1,0 +1,76 @@
+---
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+const episodes = [
+  { title: "Ensino bíblico para uma vida de pureza", time: "52min", type: "Conferência" },
+  { title: "Sexo: Criação de Deus ou do homem? — Pr. Paulo Gouvêa", time: "1h", type: "Participação" },
+  { title: "Quando o Pecado do Marido Despedaça o Coração — Railca Gouvêa", time: "1h 35min", type: "Participação" },
+  { title: "Há uma Saída — 20 Verdades Contra o Vício Pornográfico", time: "10min", type: "Participação" },
+];
+---
+
+<section id="midias" class="py-24 bg-[#F5F2EC]">
+  <Container size="wide">
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+      <div>
+        <SectionHeading
+          tag="Mídias e Recursos"
+          title="Ensinamentos, vídeos e pregações disponíveis gratuitamente"
+          description="Acesse nossa biblioteca de conteúdos bíblicos em áudio, vídeo e texto para edificação pessoal, familiar e ministerial."
+        />
+
+        <div class="mb-8">
+          <h3 class="font-ruda font-bold text-[#1C2530] text-lg mb-2">Podcasts e Participações Especiais</h3>
+          <p class="font-montserrat text-[#575757] text-sm leading-relaxed mb-6">
+            Episódios e palestras em que diretores e conselheiros da PLM Brasil compartilham fundamentos bíblicos para a santidade e restauração familiar.
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          {
+            [
+              { name: "Canal Oficial no YouTube", link: "https://www.youtube.com/@purelifeministriesbrasil" },
+              { name: "Biblioteca de Artigos Bíblicos", link: "/sobre/" },
+              { name: "Palestras das Conferências", link: "/conferencia/" },
+              { name: "Episódios em Áudio e Podcasts", link: "/contato/" },
+            ].map((m) => (
+              <a
+                href={m.link}
+                class="flex items-center justify-between p-4 border border-[#DEDEDE] bg-white hover:border-[#044A82] hover:bg-white/80 transition-all group"
+              >
+                <span class="font-montserrat font-semibold text-sm text-[#1C2530] group-hover:text-[#044A82] transition-colors">
+                  {m.name}
+                </span>
+                <span class="text-[#044A82] text-lg font-bold group-hover:translate-x-1 transition-transform" aria-hidden="true">
+                  →
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {
+          episodes.map((ep) => (
+            <div class="bg-[#1C2530] text-white p-6 border border-[#3B4C60] flex flex-col justify-between h-48 hover:border-[#C1BDA6] transition-colors">
+              <div>
+                <span class="font-montserrat text-[#C1BDA6] text-[0.65rem] uppercase tracking-widest font-bold block mb-2">
+                  {ep.type}
+                </span>
+                <h4 class="font-ruda font-bold text-white text-sm sm:text-base leading-snug">
+                  {ep.title}
+                </h4>
+              </div>
+              <div class="flex items-center justify-between border-t border-[#3B4C60]/60 pt-3 mt-4">
+                <span class="font-montserrat text-[#DEDEDE] text-xs font-medium">{ep.time}</span>
+                <span class="text-[#C1BDA6] text-xs uppercase tracking-wider font-semibold">Ouvir</span>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</section>

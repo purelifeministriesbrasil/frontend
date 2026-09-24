@@ -1,0 +1,21 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import TriageForm from "../../components/forms/TriageForm";
+---
+
+<ContentLayout
+  title="Triagem Confidencial | Pure Life Ministries Brasil"
+  description="Formulário restrito e confidencial para avaliação pastoral e orientação de homens e famílias."
+  canonical="https://purelifebrasil.org/triagem/"
+  robots="noindex, nofollow"
+  currentPath="/triagem/"
+>
+  <section class="py-16 sm:py-24 bg-[#F5F2EC]">
+    <Container size="default">
+      <TriageForm client:load />
+    </Container>
+  </section>
+</ContentLayout>

@@ -1,0 +1,18 @@
+---
+interface Props {
+  class?: string;
+  size?: "default" | "narrow" | "wide";
+}
+
+const { class: className = "", size = "default" } = Astro.props;
+
+const sizeClasses = {
+  narrow: "max-w-4xl",
+  default: "max-w-7xl",
+  wide: "max-w-[90rem]",
+};
+---
+
+<div class={`mx-auto px-6 lg:px-16 w-full ${sizeClasses[size]} ${className}`}>
+  <slot />
+</div>
