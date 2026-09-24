@@ -1,0 +1,39 @@
+name: 'Relato de Erro / Bug Visual ou Funcional'
+description: Relate falhas de renderização, quebra de layout, problemas em mobile ou erros de script.
+title: '[FRONTEND BUG]: '
+labels: ['bug', 'frontend']
+body:
+  - type: markdown
+    attributes:
+      value: Obrigado por relatar o problema no frontend do portal.
+  - type: input
+    id: page
+    attributes:
+      label: Página ou Rota Afetada
+      placeholder: ex: / ou /contato ou /sobre
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Navegador e Dispositivo
+      placeholder: ex: Chrome 128 (Windows 11) ou Safari iOS 17
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição do Erro
+      description: O que aconteceu e qual era o comportamento esperado?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para Reproduzir
+      placeholder: |
+        1. Acessar '/contato'
+        2. Clicar no botão 'Enviar Mensagem' sem preencher o telefone
+        3. Observar...
+    validations:
+      required: true

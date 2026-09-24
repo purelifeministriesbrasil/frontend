@@ -1,0 +1,28 @@
+name: 'Proposta de Nova Funcionalidade / Melhoria Visual'
+description: Sugira novas seções estáticas, melhorias de UI/UX, animações ou componentes interativos.
+title: '[FRONTEND FEATURE]: '
+labels: ['enhancement', 'frontend']
+body:
+  - type: markdown
+    attributes:
+      value: Descreva a funcionalidade ou melhoria de UI proposta.
+  - type: input
+    id: feature_name
+    attributes:
+      label: Título da Funcionalidade
+      placeholder: ex: Filtro dinâmico de episódios no podcast
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Detalhamento da Experiência do Usuário (UX)
+      description: Como o usuário deve interagir com este novo componente?
+    validations:
+      required: true
+  - type: textarea
+    id: justification
+    attributes:
+      label: Benefício Pastoral e Impacto no Ministério
+    validations:
+      required: true
