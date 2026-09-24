@@ -1,6 +1,6 @@
 # Política de Segurança — purelife-web
 
-## 🔒 Relato de Vulnerabilidades
+## Segurança: Relato de Vulnerabilidades
 
 Caso identifique vulnerabilidades no frontend (como riscos de Cross-Site Scripting - XSS, injeção de HTML, quebra de Content Security Policy ou vazamento acidental de tokens em bundles públicos), **NÃO abra uma issue pública**.
 
@@ -10,7 +10,9 @@ Envie o relatório imediatamente para:
 
 ---
 
-## 🛡️ Diretrizes de Segurança Frontend
+## Governança e Contribuição
+
+Diretrizes de Segurança Frontend
 
 1. **Content Security Policy (CSP)**:
    - Todo script deve ser originado de fontes confiáveis (`'self'`).

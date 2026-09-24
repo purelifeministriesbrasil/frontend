@@ -15,6 +15,7 @@
     "@astrojs/cloudflare": "^12.2.0",
     "@astrojs/react": "^4.2.1",
     "@tailwindcss/vite": "^4.0.9",
+    "lucide-react": "^1.47.0",
     "purelife-contracts": "link:../contracts",
     "qrcode": "^1.5.4",
     "react": "^19.0.0",

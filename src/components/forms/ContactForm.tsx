@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Check, Send } from "lucide-react";
 import { contactSubmissionSchema, type ContactSubmission } from "purelife-contracts";
 
 export default function ContactForm() {
@@ -64,8 +65,8 @@ export default function ContactForm() {
   if (submitted) {
     return (
       <div className="bg-white border border-[#044A82]/30 p-10 text-center shadow-xs">
-        <div className="w-14 h-14 bg-[#1D6F42] text-white rounded-full flex items-center justify-center font-bold text-2xl mx-auto mb-4">
-          ✓
+        <div className="w-14 h-14 bg-[#1D6F42] text-white rounded-full flex items-center justify-center mx-auto mb-4">
+          <Check className="w-7 h-7 text-white stroke-[2.5]" />
         </div>
         <h3 className="font-ruda font-bold text-2xl text-[#1C2530] mb-3">Mensagem Enviada</h3>
         <p className="font-montserrat text-[#575757] text-sm leading-relaxed mb-6">

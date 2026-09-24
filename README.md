@@ -11,7 +11,7 @@ Frontend estático de alta performance e acessibilidade do ministério **Pure Li
 
 ---
 
-## 🏛️ Arquitetura e Decisões Fundamentais
+## Arquitetura: Arquitetura e Decisões Fundamentais
 
 Conforme a **ADR-001**, o frontend rejeita o modelo de Single Page Application (SPA) para páginas institucionais:
 1. **SSG Puro (`prerender = true`)**: As 16 seções da Home e todas as páginas institucionais são pré-renderizadas estaticamente em tempo de compilação.
@@ -24,7 +24,7 @@ Conforme a **ADR-001**, o frontend rejeita o modelo de Single Page Application (
 
 ---
 
-## 📁 Estrutura de Diretórios
+## Estrutura: Estrutura de Diretórios
 
 ```
 frontend/
@@ -47,7 +47,9 @@ frontend/
 
 ---
 
-## 🚀 Instalação e Desenvolvimento
+## Instalação e Execução
+
+Instalação e Desenvolvimento
 
 ```bash
 # Instalar dependências
@@ -65,7 +67,9 @@ pnpm run ci:verify
 
 ---
 
-## 🛡️ Governança e Contribuição
+## Governança e Contribuição
+
+Governança e Contribuição
 
 - [Código de Conduta](CODE_OF_CONDUCT.md)
 - [Guia de Contribuição](CONTRIBUTING.md)

@@ -4,7 +4,9 @@ O repositório `purelife-web` é responsável pela experiência visual, acessibi
 
 ---
 
-## 📋 Regras de Arquitetura e Frontend
+## Diretrizes e Checklist
+
+Regras de Arquitetura e Frontend
 
 1. **Astro SSG por Padrão**:
    - Todo novo conteúdo institucional deve ser criado como página ou componente Astro estático (`.astro`).
@@ -24,7 +26,9 @@ O repositório `purelife-web` é responsável pela experiência visual, acessibi
 
 ---
 
-## 🛠️ Validação Local Obrigatória
+## Validação Local
+
+Validação Local Obrigatória
 
 Antes de enviar qualquer Pull Request:
 ```bash
@@ -34,7 +38,9 @@ pnpm run ci:verify
 
 ---
 
-## 🔀 Fluxo de Branches e Commits
+## Fluxo de Trabalho Git
+
+Fluxo de Branches e Commits
 
 - Crie uma branch com prefixo claro: `feat/nova-secao-podcast` ou `fix/modal-doacao-pix`.
 - Adote o padrão Conventional Commits:

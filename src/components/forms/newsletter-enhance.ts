@@ -42,8 +42,11 @@ export function initNewsletterEnhancement() {
         if (res.ok) {
           form.classList.add("hidden");
           feedbackContainer.innerHTML = `
-            <div class="border border-[#C1BDA6]/40 bg-[#1C2530]/60 p-4 text-[#C1BDA6] font-montserrat text-sm">
-              ✓ Se o endereço informado puder receber mensagens, você receberá uma confirmação em breve.
+            <div class="border border-[#C1BDA6]/40 bg-[#1C2530]/60 p-4 text-[#C1BDA6] font-montserrat text-sm flex items-center gap-2">
+              <svg class="w-4 h-4 text-[#C1BDA6] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Se o endereço informado puder receber mensagens, você receberá uma confirmação em breve.</span>
             </div>
           `;
         } else {

@@ -1,11 +1,17 @@
-## 📝 Descrição da Alteração
+## Descrição da Alteração
+
+Descrição da Alteração
 
 Descreva sucintamente as alterações visuais, funcionais ou estruturais realizadas no frontend.
 
-## 🔗 Relação com Issues
+## Relações e Referências
+
+Relação com Issues
 - Issue: #
 
-## 📋 Checklist de Qualidade, Performance e AppSec
+## Diretrizes e Checklist
+
+Checklist de Qualidade, Performance e AppSec
 - [ ] `pnpm run ci:verify` executou com sucesso (build SSG + verificação de topologia + verificação de estilos inline).
 - [ ] Zero inline styles (`style="..."`) introduzidos.
 - [ ] O componente segue o design system do Tailwind CSS v4.

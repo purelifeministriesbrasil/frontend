@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Check, Copy, ArrowLeft } from "lucide-react";
 import { createPixSchema } from "purelife-contracts";
 
 export default function DonationForm() {
@@ -112,18 +113,29 @@ export default function DonationForm() {
           <button
             type="button"
             onClick={handleCopy}
-            className="btn-primary w-full text-center py-3 text-xs font-bold tracking-wider"
+            className="btn-primary w-full text-center py-3 text-xs font-bold tracking-wider inline-flex items-center justify-center gap-2"
           >
-            {copied ? "✓ Código Copiado!" : "Copiar Chave Pix Copia e Cola"}
+            {copied ? (
+              <>
+                <Check className="w-4 h-4 stroke-[2.5]" />
+                Código Copiado!
+              </>
+            ) : (
+              <>
+                <Copy className="w-4 h-4" />
+                Copiar Chave Pix Copia e Cola
+              </>
+            )}
           </button>
         </div>
 
         <button
           type="button"
           onClick={() => setPixPayload(null)}
-          className="font-montserrat text-xs text-[#575757] hover:text-[#044A82] underline"
+          className="font-montserrat text-xs text-[#575757] hover:text-[#044A82] underline inline-flex items-center gap-1.5"
         >
-          ← Gerar outra doação
+          <ArrowLeft className="w-3.5 h-3.5" />
+          Gerar outra doação
         </button>
       </div>
     );

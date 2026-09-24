@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Check, Info } from "lucide-react";
 import { triageSubmissionSchema, type TriageSubmission } from "purelife-contracts";
 
 export default function TriageForm() {
@@ -19,8 +20,8 @@ export default function TriageForm() {
   if (isAdult === false) {
     return (
       <div className="bg-white border border-[#DEDEDE] p-8 max-w-xl mx-auto text-center shadow-xs">
-        <div className="w-12 h-12 bg-[#044A82] text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">
-          ℹ
+        <div className="w-12 h-12 bg-[#044A82] text-white rounded-full flex items-center justify-center mx-auto mb-4">
+          <Info className="w-6 h-6 text-white stroke-[2.5]" />
         </div>
         <h3 className="font-ruda font-bold text-2xl text-[#1C2530] mb-3">Atendimento a Menores</h3>
         <p className="font-montserrat text-[#575757] text-sm leading-relaxed mb-6">
@@ -75,8 +76,8 @@ export default function TriageForm() {
   if (submittedCode) {
     return (
       <div className="bg-white border border-[#044A82]/30 p-8 sm:p-12 max-w-xl mx-auto text-center shadow-md">
-        <div className="w-16 h-16 bg-[#1D6F42] text-white rounded-full flex items-center justify-center font-bold text-3xl mx-auto mb-4">
-          ✓
+        <div className="w-16 h-16 bg-[#1D6F42] text-white rounded-full flex items-center justify-center mx-auto mb-4">
+          <Check className="w-8 h-8 text-white stroke-[2.5]" />
         </div>
         <h3 className="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-3">
           Solicitação Registrada com Sigilo

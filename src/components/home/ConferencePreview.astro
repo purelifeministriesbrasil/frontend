@@ -45,7 +45,9 @@ import Button from "../ui/Button.astro";
             ["Pastores e líderes", "Famílias em restauração", "Conselheiros em formação", "Cônjuges e casais"].map(
               (a) => (
                 <div class="flex items-center gap-2">
-                  <span class="text-[#C1BDA6] text-xs font-bold" aria-hidden="true">✦</span>
+                  <svg class="w-3.5 h-3.5 text-[#C1BDA6] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
                   <span class="font-montserrat text-[#DEDEDE] text-xs sm:text-sm">{a}</span>
                 </div>
               )
