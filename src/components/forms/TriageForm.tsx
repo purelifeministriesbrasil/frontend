@@ -142,8 +142,7 @@ export default function TriageForm() {
         setErrors({ form: errData.message || "Erro ao enviar solicitação. Tente novamente." });
       }
     } catch {
-      // Mock fallback se o endpoint de API ainda não estiver acoplado
-      setSubmittedCode("PLM-TRIAGEM-" + Math.floor(100000 + Math.random() * 900000));
+      setErrors({ form: "Erro de rede. Verifique sua conexão e tente novamente." });
     } finally {
       setIsSubmitting(false);
     }

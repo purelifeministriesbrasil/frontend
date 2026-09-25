@@ -55,8 +55,7 @@ export default function ContactForm() {
         setErrors({ form: errData.message || "Erro ao enviar mensagem. Tente novamente." });
       }
     } catch {
-      // Fallback local se o backend não estiver rodando no mesmo host
-      setSubmitted(true);
+      setErrors({ form: "Erro de rede. Verifique sua conexão e tente novamente." });
     } finally {
       setIsSubmitting(false);
     }

@@ -6,7 +6,7 @@ import Button from "../ui/Button.astro";
 <section class="bg-[#044A82] text-white py-8 border-y border-[#3B4C60]">
   <Container size="wide">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-      <div class="max-w-2xl">
+      <div class="max-w-2xl" data-reveal="from-left">
         <span class="font-montserrat text-xs uppercase tracking-widest text-[#C1BDA6] font-bold block mb-1">
           Atendimento Confidencial
         </span>
@@ -17,7 +17,7 @@ import Button from "../ui/Button.astro";
           Nossa equipe realiza avaliações confidenciais e gratuitas com total discrição e acolhimento bíblico.
         </p>
       </div>
-      <div class="shrink-0 flex flex-wrap items-center justify-center gap-4">
+      <div class="shrink-0 flex flex-wrap items-center justify-center gap-4" data-reveal="from-right">
         <Button href="/triagem/" variant="dark" class="text-xs px-6 py-3 border border-white/20">
           Iniciar Triagem Confidencial
         </Button>

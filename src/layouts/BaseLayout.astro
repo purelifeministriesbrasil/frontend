@@ -71,5 +71,9 @@ const schemas = [buildOrganizationJsonLd(), ...jsonLd];
       <slot />
     </main>
     <slot name="footer" />
+    <script>
+      import { initReveal } from "@/lib/reveal";
+      initReveal();
+    </script>
   </body>
 </html>

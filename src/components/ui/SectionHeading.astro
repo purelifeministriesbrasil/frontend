@@ -14,6 +14,7 @@ const { tag, title, description, align = "left", invert = false } = Astro.props;
   {
     tag && (
       <span
+        data-reveal="from-left"
         class={`font-montserrat text-xs font-bold tracking-[0.15em] uppercase block mb-3 ${
           invert ? "text-[#C1BDA6]" : "text-[#044A82]"
         }`}
@@ -23,6 +24,7 @@ const { tag, title, description, align = "left", invert = false } = Astro.props;
     )
   }
   <h2
+    data-reveal
     class={`font-ruda font-black text-balance text-3xl sm:text-4xl lg:text-5xl leading-tight ${
       invert ? "text-white" : "text-[#1C2530]"
     }`}
@@ -32,6 +34,7 @@ const { tag, title, description, align = "left", invert = false } = Astro.props;
   {
     description && (
       <p
+        data-reveal
         class={`font-montserrat text-base sm:text-lg leading-relaxed mt-4 ${
           invert ? "text-[#DEDEDE]" : "text-[#575757]"
         }`}
