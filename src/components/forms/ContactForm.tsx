@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Check, Send } from "lucide-react";
+import { Check } from "lucide-react";
 import { contactSubmissionSchema, type ContactSubmission } from "@/schemas";
 
 export default function ContactForm() {
