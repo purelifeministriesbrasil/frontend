@@ -9,15 +9,11 @@ interface Props {
 const { currentPath = "" } = Astro.props;
 ---
 
-<header id="main-header" class="sticky top-0 z-50 bg-[#1C2530] border-b border-[#3B4C60]/40 text-white transition-all duration-300">
-  <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
-    <!-- Brand Logo Oficial -->
-    <a href="/" class="flex items-center gap-3 shrink-0 focus-visible:ring-2 focus-visible:ring-[#D99B26] p-1 group opacity-95 hover:opacity-100 transition-opacity" aria-label="Pure Life Ministries Brasil - Página inicial">
-      <img src="/images/PLM_Logo.png" alt="PLM símbolo" class="h-10 sm:h-12 w-auto object-contain" />
-      <div class="flex flex-col">
-        <span class="font-ruda font-black text-base sm:text-lg tracking-wider text-white uppercase leading-none">Pure Life</span>
-        <span class="font-montserrat text-[0.6rem] sm:text-[0.65rem] tracking-[0.2em] text-[#C1BDA6] uppercase mt-0.5">Ministries Brasil</span>
-      </div>
+<header id="main-header" class="sticky top-0 z-50 bg-[#1C2530]/95 backdrop-blur-md border-b border-[#3B4C60]/40 text-white transition-all duration-300 will-change-transform shadow-sm">
+  <div id="header-container" class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4 transition-all duration-300">
+    <!-- Brand Logo Oficial (Símbolo limpo sem letras, com proporção áurea) -->
+    <a href="/" class="flex items-center shrink-0 focus-visible:ring-2 focus-visible:ring-[#D99B26] p-1 group transition-all duration-300 hover:scale-105 active:scale-95" aria-label="Pure Life Ministries Brasil - Página inicial">
+      <img src="/images/PLM_Logo.png" alt="Pure Life Ministries Brasil" class="h-9 sm:h-11 w-auto object-contain transition-all duration-300 group-hover:drop-shadow-[0_0_12px_rgba(217,155,38,0.35)]" />
     </a>
 
     <!-- Desktop Navigation -->
@@ -29,11 +25,11 @@ const { currentPath = "" } = Astro.props;
     <div class="hidden sm:flex items-center gap-3 shrink-0">
       <a
         href="/doar/"
-        class="font-montserrat text-xs uppercase tracking-wider font-bold text-[#C1BDA6] hover:text-white px-3 py-2 transition-colors"
+        class="font-montserrat text-xs uppercase tracking-wider font-bold text-[#C1BDA6] hover:text-white px-3 py-2 transition-colors duration-200"
       >
         Doar
       </a>
-      <Button href="/triagem/" variant="primary" class="text-xs px-5 py-2.5">
+      <Button href="/triagem/" variant="primary" class="text-xs px-5 py-2.5 shadow-md hover:shadow-lg transition-all duration-200">
         Inscreva-se
       </Button>
     </div>
@@ -42,7 +38,7 @@ const { currentPath = "" } = Astro.props;
     <button
       id="mobile-menu-trigger"
       type="button"
-      class="xl:hidden p-2 text-white hover:text-[#C1BDA6] focus-visible:outline-2 focus-visible:outline-[#D99B26] rounded"
+      class="xl:hidden p-2 text-white hover:text-[#C1BDA6] focus-visible:outline-2 focus-visible:outline-[#D99B26] rounded transition-colors duration-200"
       aria-label="Abrir menu de navegação"
       aria-haspopup="dialog"
       aria-expanded="false"
@@ -57,23 +53,19 @@ const { currentPath = "" } = Astro.props;
   <!-- Native HTML5 Dialog for Mobile Navigation -->
   <dialog
     id="mobile-menu-dialog"
-    class="xl:hidden fixed inset-0 m-0 w-full h-full max-w-none max-h-none bg-[#1C2530] text-white p-6 border-0 backdrop:bg-black/70 backdrop:backdrop-blur-sm"
+    class="xl:hidden fixed inset-0 m-0 w-full h-full max-w-none max-h-none bg-[#1C2530] text-white p-6 border-0 backdrop:bg-black/80 backdrop:backdrop-blur-md"
     aria-label="Menu de navegação móvel"
   >
     <div class="flex flex-col h-full justify-between max-w-md mx-auto">
       <div>
         <div class="flex items-center justify-between pb-6 border-b border-[#3B4C60]/40">
-          <div class="flex items-center gap-3">
-            <img src="/images/PLM_Logo.png" alt="Pure Life Ministries" class="h-10 w-auto object-contain" />
-            <div class="flex flex-col">
-              <span class="font-ruda font-black text-base tracking-wider text-white uppercase leading-none">Pure Life</span>
-              <span class="font-montserrat text-[0.6rem] tracking-[0.2em] text-[#C1BDA6] uppercase mt-0.5">Ministries Brasil</span>
-            </div>
+          <div class="flex items-center">
+            <img src="/images/PLM_Logo.png" alt="Pure Life Ministries Brasil" class="h-10 w-auto object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
           </div>
           <button
             id="mobile-menu-close"
             type="button"
-            class="p-2 text-white hover:text-[#C1BDA6] focus-visible:outline-2 focus-visible:outline-[#D99B26] rounded"
+            class="p-2 text-white hover:text-[#C1BDA6] focus-visible:outline-2 focus-visible:outline-[#D99B26] rounded transition-colors duration-200"
             aria-label="Fechar menu de navegação"
           >
             <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -88,7 +80,7 @@ const { currentPath = "" } = Astro.props;
       </div>
 
       <div class="flex flex-col gap-4 pt-6 border-t border-[#3B4C60]/40 pb-8">
-        <Button href="/triagem/" variant="primary" class="w-full text-center py-3">
+        <Button href="/triagem/" variant="primary" class="w-full text-center py-3 shadow-md">
           Obter Ajuda Confidencial
         </Button>
         <Button href="/doar/" variant="outline-light" class="w-full text-center py-3">
@@ -103,12 +95,21 @@ const { currentPath = "" } = Astro.props;
   import "./mobile-nav.ts";
 
   const header = document.getElementById("main-header");
+  const headerContainer = document.getElementById("header-container");
   if (header) {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 20) {
         header.classList.add("nav-scrolled");
+        if (headerContainer) {
+          headerContainer.classList.remove("h-16", "sm:h-20");
+          headerContainer.classList.add("h-14", "sm:h-16");
+        }
       } else {
         header.classList.remove("nav-scrolled");
+        if (headerContainer) {
+          headerContainer.classList.add("h-16", "sm:h-20");
+          headerContainer.classList.remove("h-14", "sm:h-16");
+        }
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
