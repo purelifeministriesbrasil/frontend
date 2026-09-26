@@ -67,7 +67,7 @@ const schemas = [buildOrganizationJsonLd(), ...jsonLd];
       ))
     }
   </head>
-  <body class="min-h-screen flex flex-col bg-[#F5F2EC] text-[#1C2530] font-montserrat antialiased selection:bg-[#044A82] selection:text-white overflow-x-hidden">
+  <body class="min-h-screen flex flex-col bg-[#F5F2EC] text-[#1C2530] font-montserrat antialiased selection:bg-[#044A82] selection:text-white overflow-x-clip pt-16 sm:pt-20">
     <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
     <slot name="header" />
     <main id="conteudo" class="flex-1">

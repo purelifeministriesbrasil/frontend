@@ -64,33 +64,61 @@ ALTER TABLE public.contatos ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.newsletter ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.doacoes_intencoes ENABLE ROW LEVEL SECURITY;
 
--- Permissão para o público enviar novas triagens pelo site (apenas INSERT)
+-- Permissão para o público enviar novas triagens pelo site (apenas INSERT com validação de campos)
+DROP POLICY IF EXISTS "Permitir submissão pública de triagem" ON public.triagens;
 CREATE POLICY "Permitir submissão pública de triagem"
     ON public.triagens
     FOR INSERT
     TO anon, authenticated
-    WITH CHECK (true);
+    WITH CHECK (
+        full_name IS NOT NULL AND length(trim(full_name)) >= 2 AND
+        email IS NOT NULL AND length(trim(email)) >= 5
+    );
 
--- Permissão para o público enviar mensagens de contato (apenas INSERT)
+-- Permissão para o público enviar mensagens de contato (apenas INSERT com validação)
+DROP POLICY IF EXISTS "Permitir submissão pública de contato" ON public.contatos;
 CREATE POLICY "Permitir submissão pública de contato"
     ON public.contatos
     FOR INSERT
     TO anon, authenticated
-    WITH CHECK (true);
+    WITH CHECK (
+        nome IS NOT NULL AND length(trim(nome)) >= 2 AND
+        email IS NOT NULL AND length(trim(email)) >= 5 AND
+        mensagem IS NOT NULL AND length(trim(mensagem)) >= 5
+    );
 
--- Permissão para inscrição pública na newsletter (apenas INSERT)
+-- Permissão para inscrição pública na newsletter (apenas INSERT com validação de email)
+DROP POLICY IF EXISTS "Permitir inscrição pública na newsletter" ON public.newsletter;
 CREATE POLICY "Permitir inscrição pública na newsletter"
     ON public.newsletter
     FOR INSERT
     TO anon, authenticated
-    WITH CHECK (true);
+    WITH CHECK (
+        email IS NOT NULL AND length(trim(email)) >= 5
+    );
 
--- Permissão para registro de intenções de doação (apenas INSERT)
+-- Permissão para registro de intenções de doação (apenas INSERT com validação de valor)
+DROP POLICY IF EXISTS "Permitir registro público de doação" ON public.doacoes_intencoes;
 CREATE POLICY "Permitir registro público de doação"
     ON public.doacoes_intencoes
     FOR INSERT
     TO anon, authenticated
-    WITH CHECK (true);
+    WITH CHECK (
+        valor_cents > 0
+    );
+
+-- Correção de segurança para funções SECURITY DEFINER (revoga execução de papéis públicos)
+DO $$
+BEGIN
+    IF EXISTS (
+        SELECT 1 FROM pg_proc p
+        JOIN pg_namespace n ON p.pronamespace = n.oid
+        WHERE n.nspname = 'public' AND p.proname = 'rls_auto_enable'
+    ) THEN
+        REVOKE EXECUTE ON FUNCTION public.rls_auto_enable() FROM anon, authenticated, PUBLIC;
+        EXECUTE 'ALTER FUNCTION public.rls_auto_enable() SECURITY INVOKER';
+    END IF;
+END $$;
 
 -- Índices de consulta rápida no painel
 CREATE INDEX IF NOT EXISTS idx_triagens_status_data ON public.triagens(status, created_at DESC);
