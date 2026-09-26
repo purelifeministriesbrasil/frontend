@@ -11,16 +11,8 @@ jobs:
     name: Verify Topology, HTML and Static Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout frontend
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          path: frontend
-
-      - name: Checkout contracts
-        uses: actions/checkout@v4
-        with:
-          repository: purelifeministriesbrasil/contracts
-          path: contracts
 
       - name: Install pnpm
         uses: pnpm/action-setup@v3
@@ -31,15 +23,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: "pnpm"
 
-      - name: Build shared contracts
-        run: |
-          cd contracts
-          pnpm install --no-frozen-lockfile
-          pnpm build
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build and verify frontend
-        run: |
-          cd frontend
-          pnpm install --no-frozen-lockfile
-          pnpm ci:verify
+        run: pnpm ci:verify
