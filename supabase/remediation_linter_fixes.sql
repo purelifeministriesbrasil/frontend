@@ -48,15 +48,7 @@ CREATE POLICY "Permitir registro público de doação"
     );
 
 -- 5 & 6. CORREÇÃO SECURITY DEFINER: rls_auto_enable
--- Revoga privilégio de execução pública para anon e authenticated e altera para SECURITY INVOKER
-DO $$
-BEGIN
-    IF EXISTS (
-        SELECT 1 FROM pg_proc p
-        JOIN pg_namespace n ON p.pronamespace = n.oid
-        WHERE n.nspname = 'public' AND p.proname = 'rls_auto_enable'
-    ) THEN
-        REVOKE EXECUTE ON FUNCTION public.rls_auto_enable() FROM anon, authenticated, PUBLIC;
-        EXECUTE 'ALTER FUNCTION public.rls_auto_enable() SECURITY INVOKER';
-    END IF;
-END $$;
+-- Remove o event trigger e a função redundante do schema public (evita exposição como RPC PostgREST)
+DROP EVENT TRIGGER IF EXISTS rls_auto_enable;
+DROP EVENT TRIGGER IF EXISTS rls_auto_enable_trigger;
+DROP FUNCTION IF EXISTS public.rls_auto_enable() CASCADE;

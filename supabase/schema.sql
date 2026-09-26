@@ -107,18 +107,10 @@ CREATE POLICY "Permitir registro público de doação"
         valor_cents > 0
     );
 
--- Correção de segurança para funções SECURITY DEFINER (revoga execução de papéis públicos)
-DO $$
-BEGIN
-    IF EXISTS (
-        SELECT 1 FROM pg_proc p
-        JOIN pg_namespace n ON p.pronamespace = n.oid
-        WHERE n.nspname = 'public' AND p.proname = 'rls_auto_enable'
-    ) THEN
-        REVOKE EXECUTE ON FUNCTION public.rls_auto_enable() FROM anon, authenticated, PUBLIC;
-        EXECUTE 'ALTER FUNCTION public.rls_auto_enable() SECURITY INVOKER';
-    END IF;
-END $$;
+-- Correção de segurança para funções SECURITY DEFINER (remove função redundante exposta via RPC)
+DROP EVENT TRIGGER IF EXISTS rls_auto_enable;
+DROP EVENT TRIGGER IF EXISTS rls_auto_enable_trigger;
+DROP FUNCTION IF EXISTS public.rls_auto_enable() CASCADE;
 
 -- Índices de consulta rápida no painel
 CREATE INDEX IF NOT EXISTS idx_triagens_status_data ON public.triagens(status, created_at DESC);
