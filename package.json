@@ -12,7 +12,6 @@
     "ci:verify": "pnpm build && pnpm verify:topology && pnpm verify:no-inline-style"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.2.0",
     "@astrojs/react": "^4.2.1",
     "@supabase/supabase-js": "^2.117.1",
     "@tailwindcss/vite": "^4.0.9",
@@ -34,8 +33,7 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
-      "sharp",
-      "workerd"
+      "sharp"
     ]
   }
 }
