@@ -28,11 +28,9 @@ const navItems = [
           <li>
             <a
               href={item.href}
-              class={`font-montserrat text-[0.72rem] 2xl:text-xs uppercase tracking-wider whitespace-nowrap transition-colors duration-150 py-1 ${
-                isActive
-                  ? "text-[#C1BDA6] font-bold border-b-2 border-[#C1BDA6]"
-                  : "text-[#DEDEDE] hover:text-white"
-              }`}
+              class={isMobile
+                ? `font-montserrat text-sm uppercase tracking-wider block py-2 ${isActive ? "text-[#C1BDA6] font-bold" : "text-[#DEDEDE] hover:text-white"}`
+                : `nav-link ${isActive ? "text-[#C1BDA6] font-bold" : ""}`}
               aria-current={isActive ? "page" : undefined}
             >
               {item.label}

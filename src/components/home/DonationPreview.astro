@@ -18,7 +18,7 @@ import Button from "../ui/Button.astro";
           Como ministério sem fins lucrativos, dependemos do apoio gracioso de igrejas, famílias e indivíduos comprometidos com a recuperação bíblica. Cada contribuição é direcionada com integridade ao acolhimento e aconselhamento.
         </p>
 
-        <div class="flex flex-col gap-3 mb-8">
+        <div class="flex flex-col gap-3 mb-8" data-reveal-group>
           {
             [
               { val: "R$ 50", desc: "Cobre materiais de estudo bíblico de um participante por semana" },
@@ -27,7 +27,8 @@ import Button from "../ui/Button.astro";
             ].map((d) => (
               <a
                 href="/doar/"
-                class="flex items-center gap-4 p-4 border border-[#DEDEDE] bg-white hover:border-[#044A82] transition-colors"
+                data-reveal
+                class="flex items-center gap-4 p-4 border border-[#DEDEDE] bg-white hover:border-[#044A82] transition-colors card-lift"
               >
                 <div class="font-ruda font-black text-[#044A82] text-xl w-24 shrink-0">{d.val}</div>
                 <div class="font-montserrat text-[#1C2530] text-xs sm:text-sm font-medium">{d.desc}</div>
@@ -37,7 +38,7 @@ import Button from "../ui/Button.astro";
         </div>
       </div>
 
-      <aside class="bg-[#1C2530] text-white p-8 sm:p-10 border-t-4 border-[#044A82] shadow-lg">
+      <aside data-reveal="from-right" class="bg-[#1C2530] text-white p-8 sm:p-10 border-t-2 border-[#C1BDA6] shadow-lg">
         <span class="font-montserrat text-[#C1BDA6] text-xs uppercase tracking-[0.16em] font-bold block mb-2">
           Contribuição Transparente
         </span>

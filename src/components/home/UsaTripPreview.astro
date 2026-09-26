@@ -6,7 +6,7 @@ import Button from "../ui/Button.astro";
 
 <section id="viagem" class="py-24 bg-[#1C2530] text-white relative overflow-hidden">
   <Container size="wide">
-    <div class="text-center mb-16 max-w-3xl mx-auto">
+    <div class="text-center mb-16 max-w-3xl mx-auto" data-reveal>
       <span class="font-montserrat text-[#C1BDA6] text-xs font-bold tracking-[0.15em] uppercase block mb-4">
         Viagem PLM aos EUA
       </span>
@@ -19,7 +19,7 @@ import Button from "../ui/Button.astro";
     </div>
 
     <div class="grid lg:grid-cols-2 gap-16 items-start">
-      <div>
+      <div data-reveal="from-left">
         <h3 class="font-ruda font-bold text-white text-2xl mb-4">Sobre a Viagem</h3>
         <p class="font-montserrat text-[#DEDEDE] text-sm sm:text-base leading-relaxed mb-5">
           A <strong class="text-white font-semibold">Viagem PLM aos EUA</strong> é organizada pela Pure Life Ministries Brasil para pastores, líderes, conselheiros e cristãos interessados em conhecer pessoalmente o campus e o modelo comprovado por quatro décadas de ministério.
@@ -57,8 +57,8 @@ import Button from "../ui/Button.astro";
         </div>
       </div>
 
-      <div class="space-y-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="space-y-6" data-reveal="from-right">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-reveal-group>
           {
             [
               { label: "Destino", val: "Dry Ridge, Kentucky – EUA" },

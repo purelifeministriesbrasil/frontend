@@ -28,18 +28,36 @@ export function initNewsletterEnhancement() {
         policyVersion: policyVersionInput?.value || "2026-09-19",
       };
 
-      const res = await fetch(form.action || "/api/forms/newsletter", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      let success = false;
+      try {
+        const { supabase } = await import("@/lib/supabase");
+        if (supabase) {
+          if (!websiteInput?.value) {
+            const { error } = await supabase.from("newsletter").insert({
+              email: emailInput.value,
+            });
+            success = !error || (error as any).code === "23505";
+          } else {
+            success = true; // honeypot
+          }
+        } else {
+          const res = await fetch(form.action || "/api/forms/newsletter", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+          success = res.ok;
+        }
+      } catch {
+        success = false;
+      }
 
       if (feedbackContainer) {
         feedbackContainer.classList.remove("hidden");
-        if (res.ok) {
+        if (success) {
           form.classList.add("hidden");
           feedbackContainer.innerHTML = `
             <div class="border border-[#C1BDA6]/40 bg-[#1C2530]/60 p-4 text-[#C1BDA6] font-montserrat text-sm flex items-center gap-2">

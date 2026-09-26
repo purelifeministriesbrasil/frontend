@@ -14,7 +14,7 @@ import Button from "../ui/Button.astro";
       fetchpriority="high"
       class="hero-img w-full h-full object-cover opacity-45 scale-105"
     />
-    <div class="absolute inset-0 bg-gradient-to-t from-[#1C2530] via-[#1C2530]/70 to-[#1C2530]/30" />
+    <div class="hero-overlay absolute inset-0"></div>
   </div>
 
   <!-- Distintivo Lateral Desktop -->
@@ -71,4 +71,12 @@ import Button from "../ui/Button.astro";
       </p>
     </div>
   </Container>
+
+  <!-- Indicador de Rolagem Animado -->
+  <div class="absolute bottom-8 right-8 hidden md:flex flex-col items-center gap-2 opacity-60 z-10" aria-hidden="true">
+    <span class="font-montserrat text-[#DEDEDE] text-[0.6rem] tracking-[0.2em] uppercase">Role</span>
+    <div class="w-px h-12 bg-[#C1BDA6]/50 relative overflow-hidden">
+      <div class="absolute inset-0 bg-[#C1BDA6] animate-bounce origin-top scroll-indicator-bar"></div>
+    </div>
+  </div>
 </section>

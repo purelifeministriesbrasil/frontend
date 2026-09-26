@@ -40,29 +40,37 @@ const books = [
       align="center"
     />
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12" data-reveal-group>
       {
         books.map((book) => (
-          <div class="bg-white border border-[#DEDEDE] overflow-hidden flex flex-col justify-between shadow-xs hover:border-[#044A82] transition-colors">
-            <div class={`h-48 p-6 flex flex-col justify-end text-white ${book.bgColor} relative`}>
-              <div class="w-8 h-1 bg-[#C1BDA6] mb-3"></div>
-              <h3 class="font-ruda font-bold text-lg leading-tight text-white">{book.title}</h3>
+          <div class="book-card group flex flex-col justify-between" data-reveal>
+            <div class={`relative h-52 flex items-end p-5 ${book.bgColor} overflow-hidden`}>
+              <img
+                src="https://images.unsplash.com/photo-1535905496755-26ae35d0ae54?w=400&h=300&fit=crop&auto=format"
+                alt=""
+                class="absolute inset-0 w-full h-full object-cover opacity-15 mix-blend-overlay"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="relative z-10">
+                <div class="font-ruda font-black text-white text-lg leading-tight">{book.title}</div>
+              </div>
             </div>
-            <div class="p-6 flex flex-col justify-between flex-1">
+            <div class="p-5 flex flex-col justify-between flex-1">
               <div>
-                <span class="font-montserrat text-[#575757] text-xs font-semibold uppercase tracking-wider block mb-2">
+                <span class="font-montserrat text-[#575757] text-[0.7rem] uppercase tracking-widest block mb-2 font-semibold">
                   {book.author}
                 </span>
-                <p class="font-montserrat text-[#1C2530] text-xs leading-relaxed">
+                <p class="font-montserrat text-[#454A50] text-xs leading-relaxed">
                   {book.desc}
                 </p>
               </div>
               <div class="mt-6 pt-4 border-t border-[#DEDEDE]">
                 <a
                   href="/editora/"
-                  class="font-montserrat text-xs font-bold uppercase tracking-widest text-[#044A82] hover:underline inline-flex items-center gap-1"
+                  class="font-montserrat text-[0.7rem] font-bold uppercase tracking-widest text-[#044A82] hover:text-[#1C2530] transition-colors inline-flex items-center gap-1"
                 >
-                  Conhecer obra →
+                  Solicitar →
                 </a>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Check, Info } from "lucide-react";
-import { triageSubmissionSchema, type TriageSubmission } from "purelife-contracts";
+import { triageSubmissionSchema, type TriageSubmission } from "@/schemas";
 
 export default function TriageForm() {
   const [step, setStep] = useState<number>(0);
@@ -128,18 +128,39 @@ export default function TriageForm() {
 
     setIsSubmitting(true);
     try {
-      const res = await fetch("/api/forms/triagem", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(result.data),
-      });
-
-      if (res.ok) {
-        const data = await res.json().catch(() => ({ referenceCode: "PLM-CONFIDENCIAL" }));
-        setSubmittedCode(data.referenceCode || "PLM-CONFIDENCIAL");
+      const { supabase } = await import("@/lib/supabase");
+      if (supabase) {
+        const refCode = `PLM-${Date.now().toString(36).toUpperCase()}`;
+        const { error } = await supabase.from("triagens").insert({
+          reference_code: refCode,
+          program_interest: result.data.programInterest,
+          profile: result.data.profile,
+          is_adult: result.data.isAdult,
+          full_name: result.data.fullName,
+          email: result.data.email,
+          phone: result.data.phone || null,
+          city: result.data.city || null,
+          state: result.data.state || null,
+          contact_channel: result.data.contactChannel,
+          report: result.data.report || null,
+          status: "recebido",
+        });
+        if (error) throw error;
+        setSubmittedCode(refCode);
       } else {
-        const errData = await res.json().catch(() => ({}));
-        setErrors({ form: errData.message || "Erro ao enviar solicitação. Tente novamente." });
+        const res = await fetch("/api/forms/triagem", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(result.data),
+        });
+
+        if (res.ok) {
+          const data = await res.json().catch(() => ({ referenceCode: "PLM-CONFIDENCIAL" }));
+          setSubmittedCode(data.referenceCode || "PLM-CONFIDENCIAL");
+        } else {
+          const errData = await res.json().catch(() => ({}));
+          setErrors({ form: errData.message || "Erro ao enviar solicitação. Tente novamente." });
+        }
       }
     } catch {
       setErrors({ form: "Erro de rede. Verifique sua conexão e tente novamente." });

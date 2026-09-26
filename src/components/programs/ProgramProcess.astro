@@ -24,12 +24,13 @@ const steps = [
     </p>
   </div>
 
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12" data-reveal-group>
     {
       steps.map((step) => (
-        <div class="border-t-2 border-[#044A82] pt-4">
-          <div class="font-ruda font-black text-3xl text-[#044A82] mb-2">{step.num}</div>
-          <h4 class="font-ruda font-bold text-[#1C2530] text-lg mb-2">{step.title}</h4>
+        <div class="relative" data-reveal>
+          <div class="step-number mb-2">{step.num}</div>
+          <div class="section-divider-left mb-4" />
+          <h4 class="font-ruda font-bold text-[#1C2530] text-base mb-2">{step.title}</h4>
           <p class="font-montserrat text-[#575757] text-sm leading-relaxed">{step.desc}</p>
         </div>
       ))

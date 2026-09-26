@@ -51,21 +51,28 @@ const episodes = [
         </div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" data-reveal-group>
         {
-          episodes.map((ep) => (
-            <div class="bg-[#1C2530] text-white p-6 border border-[#3B4C60] flex flex-col justify-between h-48 hover:border-[#C1BDA6] transition-colors">
-              <div>
-                <span class="font-montserrat text-[#C1BDA6] text-[0.65rem] uppercase tracking-widest font-bold block mb-2">
-                  {ep.type}
-                </span>
-                <h4 class="font-ruda font-bold text-white text-sm sm:text-base leading-snug">
-                  {ep.title}
-                </h4>
+          episodes.map((ep, i) => (
+            <div class="media-card group aspect-video relative overflow-hidden" data-reveal>
+              <img
+                src={i % 2 === 0
+                  ? "https://images.unsplash.com/photo-1477281765962-ef34e8bb0967?w=400&h=280&fit=crop&auto=format"
+                  : "https://images.unsplash.com/photo-1472173148041-00294f0814a2?w=400&h=280&fit=crop&auto=format"}
+                alt={ep.title}
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover opacity-60 transition-transform duration-300 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 flex flex-col justify-end p-3.5 z-10 pointer-events-none">
+                <div class="font-montserrat text-[#C1BDA6] text-[0.65rem] uppercase tracking-widest mb-1 font-bold">{ep.type}</div>
+                <div class="font-ruda font-bold text-white text-xs leading-tight mb-1">{ep.title}</div>
+                <div class="font-montserrat text-[#C1BDA6]/70 text-[0.65rem]">{ep.time}</div>
               </div>
-              <div class="flex items-center justify-between border-t border-[#3B4C60]/60 pt-3 mt-4">
-                <span class="font-montserrat text-[#DEDEDE] text-xs font-medium">{ep.time}</span>
-                <span class="text-[#C1BDA6] text-xs uppercase tracking-wider font-semibold">Ouvir</span>
+              <div class="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div class="w-10 h-10 border-2 border-white rounded-full flex items-center justify-center bg-black/30 backdrop-blur-xs">
+                  <div class="w-0 h-0 border-l-[10px] border-l-white border-y-[6px] border-y-transparent ml-1"></div>
+                </div>
               </div>
             </div>
           ))

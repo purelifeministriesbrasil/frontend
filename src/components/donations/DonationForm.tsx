@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Check, Copy, ArrowLeft } from "lucide-react";
-import { createPixSchema } from "purelife-contracts";
+import { createPixSchema } from "@/schemas";
 
 export default function DonationForm() {
   const [amountCents, setAmountCents] = useState<number>(5000); // R$ 50,00 padrão

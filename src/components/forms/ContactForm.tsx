@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Check, Send } from "lucide-react";
-import { contactSubmissionSchema, type ContactSubmission } from "purelife-contracts";
+import { contactSubmissionSchema, type ContactSubmission } from "@/schemas";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<Partial<ContactSubmission>>({
@@ -42,17 +42,30 @@ export default function ContactForm() {
 
     setIsSubmitting(true);
     try {
-      const res = await fetch("/api/forms/contato", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(result.data),
-      });
-
-      if (res.ok) {
+      const { supabase } = await import("@/lib/supabase");
+      if (supabase) {
+        const { error } = await supabase.from("contatos").insert({
+          nome: result.data.fullName,
+          email: result.data.email,
+          telefone: result.data.phone || null,
+          assunto: result.data.subject,
+          mensagem: result.data.message,
+        });
+        if (error) throw error;
         setSubmitted(true);
       } else {
-        const errData = await res.json().catch(() => ({}));
-        setErrors({ form: errData.message || "Erro ao enviar mensagem. Tente novamente." });
+        const res = await fetch("/api/forms/contato", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(result.data),
+        });
+
+        if (res.ok) {
+          setSubmitted(true);
+        } else {
+          const errData = await res.json().catch(() => ({}));
+          setErrors({ form: errData.message || "Erro ao enviar mensagem. Tente novamente." });
+        }
       }
     } catch {
       setErrors({ form: "Erro de rede. Verifique sua conexão e tente novamente." });

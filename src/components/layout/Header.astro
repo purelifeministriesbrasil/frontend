@@ -9,18 +9,14 @@ interface Props {
 const { currentPath = "" } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 bg-[#1C2530] border-b border-[#3B4C60]/40 text-white">
-  <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-    <!-- Brand Logo -->
-    <a href="/" class="flex items-center gap-3 shrink-0 focus-visible:ring-2 focus-visible:ring-[#D99B26] p-1" aria-label="Pure Life Ministries Brasil - Página inicial">
-      <div class="w-10 h-10 rounded-full bg-[#044A82] flex items-center justify-center text-white border border-[#C1BDA6]/40 shadow-inner">
-        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M10 2h4v6h5v4h-5v10h-4V12H5V8h5V2z"></path>
-        </svg>
-      </div>
+<header id="main-header" class="sticky top-0 z-50 bg-[#1C2530] border-b border-[#3B4C60]/40 text-white transition-all duration-300">
+  <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+    <!-- Brand Logo Oficial -->
+    <a href="/" class="flex items-center gap-3 shrink-0 focus-visible:ring-2 focus-visible:ring-[#D99B26] p-1 group opacity-95 hover:opacity-100 transition-opacity" aria-label="Pure Life Ministries Brasil - Página inicial">
+      <img src="/images/PLM_Logo.png" alt="PLM símbolo" class="h-10 sm:h-12 w-auto object-contain" />
       <div class="flex flex-col">
-        <span class="font-ruda font-black text-lg tracking-wider text-white uppercase leading-none">Pure Life</span>
-        <span class="font-montserrat text-[0.65rem] tracking-[0.2em] text-[#C1BDA6] uppercase mt-0.5">Ministries Brasil</span>
+        <span class="font-ruda font-black text-base sm:text-lg tracking-wider text-white uppercase leading-none">Pure Life</span>
+        <span class="font-montserrat text-[0.6rem] sm:text-[0.65rem] tracking-[0.2em] text-[#C1BDA6] uppercase mt-0.5">Ministries Brasil</span>
       </div>
     </a>
 
@@ -38,7 +34,7 @@ const { currentPath = "" } = Astro.props;
         Doar
       </a>
       <Button href="/triagem/" variant="primary" class="text-xs px-5 py-2.5">
-        Obter Ajuda
+        Inscreva-se
       </Button>
     </div>
 
@@ -109,4 +105,17 @@ const { currentPath = "" } = Astro.props;
 
 <script>
   import "./mobile-nav.ts";
+
+  const header = document.getElementById("main-header");
+  if (header) {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        header.classList.add("nav-scrolled");
+      } else {
+        header.classList.remove("nav-scrolled");
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+  }
 </script>
