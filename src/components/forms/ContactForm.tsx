@@ -42,33 +42,20 @@ export default function ContactForm() {
 
     setIsSubmitting(true);
     try {
-      const { supabase } = await import("@/lib/supabase");
-      if (supabase) {
-        const { error } = await supabase.from("contatos").insert({
-          nome: result.data.fullName,
-          email: result.data.email,
-          telefone: result.data.phone || null,
-          assunto: result.data.subject,
-          mensagem: result.data.message,
-        });
-        if (error) throw error;
+      const res = await fetch("/api/forms/contato", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(result.data),
+      });
+
+      if (res.ok) {
         setSubmitted(true);
       } else {
-        const res = await fetch("/api/forms/contato", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(result.data),
-        });
-
-        if (res.ok) {
-          setSubmitted(true);
-        } else {
-          const errData = await res.json().catch(() => ({}));
-          setErrors({ form: errData.message || "Erro ao enviar mensagem. Tente novamente." });
-        }
+        const errData = await res.json().catch(() => ({}));
+        setErrors({ form: errData.message || "Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato pelo e-mail institucional." });
       }
     } catch {
-      setErrors({ form: "Erro de rede. Verifique sua conexão e tente novamente." });
+      setErrors({ form: "Erro de conexão ao enviar. Verifique sua rede e tente novamente." });
     } finally {
       setIsSubmitting(false);
     }
@@ -112,7 +99,7 @@ export default function ContactForm() {
       </div>
 
       {errors.form && (
-        <div className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs font-montserrat">
+        <div role="alert" aria-live="assertive" className="p-3 bg-red-50 border border-red-200 text-red-700 text-xs font-montserrat">
           {errors.form}
         </div>
       )}
@@ -127,13 +114,19 @@ export default function ContactForm() {
           autoComplete="name"
           type="text"
           required
+          aria-required="true"
           value={formData.fullName || ""}
           onChange={handleChange}
           placeholder="Seu nome completo"
           className="form-input"
           aria-invalid={!!errors.fullName}
+          aria-describedby={errors.fullName ? "contact-error-fullname" : undefined}
         />
-        {errors.fullName && <div className="field-error">{errors.fullName}</div>}
+        {errors.fullName && (
+          <div id="contact-error-fullname" role="alert" className="field-error">
+            {errors.fullName}
+          </div>
+        )}
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">
@@ -147,13 +140,19 @@ export default function ContactForm() {
             autoComplete="email"
             type="email"
             required
+            aria-required="true"
             value={formData.email || ""}
             onChange={handleChange}
             placeholder="seu@email.com"
             className="form-input"
             aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "contact-error-email" : undefined}
           />
-          {errors.email && <div className="field-error">{errors.email}</div>}
+          {errors.email && (
+            <div id="contact-error-email" role="alert" className="field-error">
+              {errors.email}
+            </div>
+          )}
         </div>
 
         <div>
@@ -171,8 +170,13 @@ export default function ContactForm() {
             placeholder="(61) 90000-0000"
             className="form-input"
             aria-invalid={!!errors.phone}
+            aria-describedby={errors.phone ? "contact-error-phone" : undefined}
           />
-          {errors.phone && <div className="field-error">{errors.phone}</div>}
+          {errors.phone && (
+            <div id="contact-error-phone" role="alert" className="field-error">
+              {errors.phone}
+            </div>
+          )}
         </div>
       </div>
 
@@ -186,6 +190,7 @@ export default function ContactForm() {
           value={formData.subject}
           onChange={handleChange}
           className="form-input"
+          aria-describedby={errors.subject ? "contact-error-subject" : undefined}
         >
           <option value="Geral">Informações Gerais</option>
           <option value="Programa Residencial">Dúvidas sobre o Programa Residencial</option>
@@ -195,7 +200,11 @@ export default function ContactForm() {
           <option value="Visita ao Campus">Agendamento de Visita ao Campus</option>
           <option value="Viagem EUA">Viagem PLM aos EUA</option>
         </select>
-        {errors.subject && <div className="field-error">{errors.subject}</div>}
+        {errors.subject && (
+          <div id="contact-error-subject" role="alert" className="field-error">
+            {errors.subject}
+          </div>
+        )}
       </div>
 
       <div>
@@ -206,14 +215,20 @@ export default function ContactForm() {
           id="contact-message"
           name="message"
           required
+          aria-required="true"
           rows={4}
           value={formData.message || ""}
           onChange={handleChange}
           placeholder="Como podemos auxiliá-lo?"
           className="form-input resize-none"
           aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? "contact-error-message" : undefined}
         />
-        {errors.message && <div className="field-error">{errors.message}</div>}
+        {errors.message && (
+          <div id="contact-error-message" role="alert" className="field-error">
+            {errors.message}
+          </div>
+        )}
       </div>
 
       <div>
@@ -224,6 +239,7 @@ export default function ContactForm() {
             checked={formData.consent === true}
             onChange={handleChange}
             className="mt-1 h-4 w-4 rounded border-gray-300 text-[#044A82] focus:ring-[#D99B26]"
+            aria-describedby={errors.consent ? "contact-error-consent" : undefined}
           />
           <span className="font-montserrat text-xs text-[#575757] leading-relaxed">
             Concordo com a utilização dos meus dados para retorno do contato conforme a{" "}
@@ -232,7 +248,11 @@ export default function ContactForm() {
             </a>.
           </span>
         </label>
-        {errors.consent && <div className="field-error">{errors.consent}</div>}
+        {errors.consent && (
+          <div id="contact-error-consent" role="alert" className="field-error">
+            {errors.consent}
+          </div>
+        )}
       </div>
 
       <button

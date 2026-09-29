@@ -6,28 +6,53 @@ import Container from "../../components/ui/Container.astro";
 import SectionHeading from "../../components/ui/SectionHeading.astro";
 import ProgramProcess from "../../components/programs/ProgramProcess.astro";
 import Button from "../../components/ui/Button.astro";
+
+const campusPhotos = [
+  {
+    src: "/images/purelife/campus-1.webp",
+    alt: "Instalações externas e área verde do Campus Residencial Pure Life",
+    caption: "Área verde e ambiente reservado em Águas Lindas de Goiás",
+  },
+  {
+    src: "/images/purelife/campus-2.webp",
+    alt: "Ambiente comunitário e convivência fraternal",
+    caption: "Convivência diária pautada na graça e prestação de contas",
+  },
+  {
+    src: "/images/purelife/campus-3.webp",
+    alt: "Salas de estudo bíblico e aconselhamento pastoral",
+    caption: "Salas reservadas para aconselhamento individual e devocionais",
+  },
+  {
+    src: "/images/purelife/campus-4.webp",
+    alt: "Área de recolhimento, meditação e oração",
+    caption: "Espaço propício para a oração e o quebrantamento diante de Deus",
+  },
+];
 ---
 
 <ContentLayout
   title="Programa Residencial | Pure Life Ministries Brasil"
-  description="Imersão de 9 meses em Águas Lindas de Goiás para restauração completa de homens através de aconselhamento bíblico intensivo."
+  description="Imersão intensiva de 9 meses em Águas Lindas de Goiás para restauração completa de homens através do aconselhamento bíblico."
   canonical="https://purelifebrasil.org/programas/residencial/"
   currentPath="/programas/residencial/"
 >
+  <!-- Hero Section -->
   <section class="py-20 bg-[#1C2530] text-white">
     <Container size="wide">
       <SectionHeading
-        tag="Imersão Presencial"
+        tag="Imersão Presencial de 9 Meses"
         title="Programa Residencial Pure Life"
-        description="Nove meses de dedicação exclusiva à renovação da mente, oração e discipulado bíblico intensivo em nosso campus em Goiás."
+        description="Nove meses de dedicação exclusiva à renovação da mente, oração e discipulado bíblico intensivo em nosso campus em Águas Lindas de Goiás."
         invert={true}
       />
     </Container>
   </section>
 
-  <section class="py-24 bg-[#F5F2EC]">
+  <!-- Metodologia e Rotina -->
+  <section class="py-20 bg-[#F5F2EC]">
     <Container size="wide">
-      <div class="grid lg:grid-cols-2 gap-16 items-center mb-24">
+      <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
         <div>
           <span class="font-montserrat text-xs uppercase tracking-widest text-[#044A82] font-bold block mb-2">
             Metodologia Fundamentada na Graça
@@ -39,20 +64,20 @@ import Button from "../../components/ui/Button.astro";
             O Programa Residencial é projetado para homens que reconhecem a necessidade de afastar-se temporariamente das pressões, gatilhos e distrações do cotidiano para tratar as causas raízes do pecado no coração.
           </p>
           <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-6">
-            Durante os 9 meses no campus, o residente vivencia uma rotina centrada na Palavra de Deus: devocionais matinais diárias, aconselhamento bíblico individual semanal, aulas de teologia aplicada e convívio fraternal honesto com outros irmãos em processo de restauração.
+            Durante os <strong>9 meses no campus</strong>, o residente vivencia uma rotina centrada na Palavra de Deus: devocionais matinais diárias, aconselhamento bíblico individual semanal, aulas de teologia aplicada e convívio fraternal honesto com outros irmãos em processo de restauração.
           </p>
           <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-8">
             Não utilizamos abordagens psicológicas seculares nem modelos de passos impessoais. Cremos que a exposição fiel das Escrituras pelo Espírito Santo é o único poder capaz de quebrar a idolatria do coração e renovar os afetos em Cristo.
           </p>
 
           <Button href="/triagem/" variant="primary" class="text-xs px-8 py-4">
-            Solicitar Vaga Confidencial
+            Iniciar Triagem Confidencial
           </Button>
         </div>
 
         <div class="space-y-6">
           <div class="bg-white border border-[#DEDEDE] p-8 shadow-xs">
-            <h4 class="font-ruda font-bold text-xl text-[#044A82] mb-3">Rotina do Campus</h4>
+            <h4 class="font-ruda font-bold text-xl text-[#044A82] mb-3">Rotina Semanal no Campus</h4>
             <ul class="space-y-3 font-montserrat text-sm text-[#575757]">
               <li class="flex items-start gap-2">
                 <svg class="w-4 h-4 text-[#044A82] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
@@ -93,6 +118,121 @@ import Button from "../../components/ui/Button.astro";
         </div>
       </div>
 
+      <!-- Investimento e Condições de Admissão -->
+      <div class="bg-white border-2 border-[#044A82] p-8 sm:p-12 mb-20 shadow-md">
+        <div class="max-w-3xl mb-8">
+          <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
+            Transparência & Condições de Participação
+          </span>
+          <h3 class="font-ruda font-black text-2xl sm:text-3xl text-[#1C2530] mb-4">
+            Investimento no Programa Residencial
+          </h3>
+          <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
+            A Pure Life Ministries Brasil é uma instituição confessional sem fins lucrativos. Os valores cobrados destinam-se exclusivamente à manutenção das instalações do campus, alimentação diária balanceada, materiais didáticos e supervisão pastoral dedicada ao longo dos 9 meses.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-6 mb-8">
+          <!-- Card Duração -->
+          <div class="bg-[#F5F2EC] p-6 border border-[#DEDEDE] flex flex-col justify-between">
+            <div>
+              <span class="font-montserrat text-xs uppercase font-bold text-[#727272] block mb-1">Duração Oficial</span>
+              <div class="font-ruda font-black text-3xl text-[#1C2530] mb-2">09 Meses</div>
+              <p class="font-montserrat text-xs text-[#575757] leading-relaxed">
+                Período integral de imersão presencial no campus para transformação profunda e duradoura.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#DEDEDE] text-xs font-semibold text-[#044A82]">
+              Tempo integral no campus
+            </div>
+          </div>
+
+          <!-- Card Inscrição -->
+          <div class="bg-[#F5F2EC] p-6 border border-[#DEDEDE] flex flex-col justify-between">
+            <div>
+              <span class="font-montserrat text-xs uppercase font-bold text-[#727272] block mb-1">Taxa de Inscrição</span>
+              <div class="font-ruda font-black text-3xl text-[#044A82] mb-2">R$ 500,00</div>
+              <p class="font-montserrat text-xs text-[#575757] leading-relaxed">
+                Taxa única referente ao processo de avaliação pastoral inicial, análise médica e triagem preliminar.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#DEDEDE] text-xs font-semibold text-[#044A82]">
+              Taxa única de admissão
+            </div>
+          </div>
+
+          <!-- Card Mensalidade -->
+          <div class="bg-[#F5F2EC] p-6 border border-[#DEDEDE] flex flex-col justify-between">
+            <div>
+              <span class="font-montserrat text-xs uppercase font-bold text-[#727272] block mb-1">Mensalidade</span>
+              <div class="font-ruda font-black text-3xl text-[#044A82] mb-2">R$ 1.200,00</div>
+              <p class="font-montserrat text-xs text-[#575757] leading-relaxed">
+                Inclui hospedagem no campus, alimentação completa (café, almoço e jantar), livros didáticos e sessões pastorais.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#DEDEDE] text-xs font-semibold text-[#044A82]">
+              Hospedagem e alimentação inclusas
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[#1C2530] text-white p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <h4 class="font-ruda font-bold text-lg text-white mb-1">
+              Pronto para dar o primeiro passo em direção à liberdade?
+            </h4>
+            <p class="font-montserrat text-xs text-[#DEDEDE]">
+              O primeiro contato é 100% confidencial e protegido por sigilo pastoral e criptografia de ponta a ponta.
+            </p>
+          </div>
+          <Button href="/triagem/" variant="primary" class="shrink-0 text-xs px-6 py-3">
+            Preencher Triagem Confidencial
+          </Button>
+        </div>
+      </div>
+
+      <!-- Galeria de Fotos do Campus -->
+      <div class="mb-20">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
+            Instalações & Estrutura
+          </span>
+          <h3 class="font-ruda font-black text-2xl sm:text-3xl text-[#1C2530] mb-3">
+            O Campus Residencial em Águas Lindas de Goiás
+          </h3>
+          <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
+            Localizado a aproximadamente 50 km de Brasília, o campus oferece o refúgio ideal para desligar-se das distrações e focar inteiramente na reconstrução da vida espiritual.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {
+            campusPhotos.map((photo) => (
+              <div class="group bg-white border border-[#DEDEDE] overflow-hidden hover:border-[#044A82] hover:shadow-lg transition-all duration-300 flex flex-col">
+                <div class="relative h-56 overflow-hidden">
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    width="600"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="p-4 flex-1 flex items-center">
+                  <p class="font-montserrat text-xs text-[#454A50] font-medium leading-relaxed">
+                    {photo.caption}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Jornada e Processo de Admissão -->
       <ProgramProcess />
     </Container>
   </section>

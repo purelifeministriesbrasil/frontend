@@ -5,14 +5,50 @@ import ContentLayout from "../layouts/ContentLayout.astro";
 import Container from "../components/ui/Container.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import Button from "../components/ui/Button.astro";
+
+const ministryVideos = [
+  {
+    title: "Testemunho: Paulo Gouvêa e Railca (IECBR - REAVIVA)",
+    speaker: "Pr. Paulo e Railca Gouvêa",
+    youtubeId: "102MIhzXgWg",
+    url: "https://youtu.be/102MIhzXgWg?is=8FcyBIz2FSRCzx-J",
+    tag: "Testemunho Real",
+    desc: "A emocionante história de quebrantamento, confissão e redenção que deu início ao ministério Pure Life no Brasil.",
+  },
+  {
+    title: "Paulo e Railca: Sexo sem Cativeiro — Intimidade Conjugal",
+    speaker: "Pr. Paulo e Railca Gouvêa",
+    youtubeId: "GvKiqvLYbjk",
+    url: "https://www.youtube.com/watch?v=GvKiqvLYbjk",
+    tag: "Vida Conjugal",
+    desc: "Como reconstruir a intimidade emocional e física do casal após anos de cativeiro pornográfico e segredos.",
+  },
+  {
+    title: "No Topo da Pureza Sexual — Parte 1",
+    speaker: "Pr. Paulo Adriano Gouvêa",
+    youtubeId: "1Hw9toeuy50",
+    url: "https://www.youtube.com/watch?v=1Hw9toeuy50",
+    tag: "Série Pureza",
+    desc: "Fundamentos bíblicos para homens que desejam vencer o padrão de pecado e andar em santidade irrepreensível.",
+  },
+  {
+    title: "Sexo: Criação de Deus ou do Homem?",
+    speaker: "Pr. Paulo Adriano Gouvêa",
+    youtubeId: "ZdT0pbwsNyM",
+    url: "https://www.youtube.com/watch?v=ZdT0pbwsNyM",
+    tag: "Estudo Bíblico",
+    desc: "A beleza do propósito original divino para a sexualidade humana e as mentiras do mundo secular contemporâneo.",
+  },
+];
 ---
 
 <ContentLayout
   title="Sobre o Ministério | Pure Life Ministries Brasil"
-  description="Conheça a história de mais de 40 anos de liderança cristã na restauração de vidas pela sufficiência das Escrituras e graça de Cristo."
+  description="Conheça a história de mais de 40 anos de liderança cristã na restauração de vidas pela suficiência das Escrituras e graça de Cristo."
   canonical="https://purelifebrasil.org/sobre/"
   currentPath="/sobre/"
 >
+  <!-- Hero Section -->
   <section class="py-20 bg-[#1C2530] text-white">
     <Container size="wide">
       <SectionHeading
@@ -24,10 +60,14 @@ import Button from "../components/ui/Button.astro";
     </Container>
   </section>
 
-  <section class="py-24 bg-[#F5F2EC]">
+  <!-- História e Pilares -->
+  <section class="py-20 bg-[#F5F2EC]">
     <Container size="wide">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
         <div>
+          <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
+            Raízes Históricas & Teológicas
+          </span>
           <h3 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-6">
             Mais de 40 anos liderando cristãos à santidade bíblica
           </h3>
@@ -72,6 +112,75 @@ import Button from "../components/ui/Button.astro";
               Trabalhamos em conjunto e submissão à igreja local de cada participante, promovendo a reinserção na comunhão e serviço congregacional.
             </p>
           </div>
+        </div>
+      </div>
+
+      <!-- Seção de Testemunhos em Vídeo -->
+      <div class="border-t border-[#DEDEDE] pt-16">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
+            Vidas Transformadas pela Graça
+          </span>
+          <h3 class="font-ruda font-black text-2xl sm:text-3xl text-[#1C2530] mb-3">
+            Testemunhos & Ensinamentos em Vídeo
+          </h3>
+          <p class="font-montserrat text-sm text-[#575757]">
+            Histórias reais de pastores e famílias que experimentaram o poder restaurador de Deus.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {
+            ministryVideos.map((video) => (
+              <a
+                href={video.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group bg-white border border-[#DEDEDE] hover:border-[#044A82] hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
+              >
+                <!-- Thumbnail -->
+                <div class="relative aspect-video overflow-hidden bg-black">
+                  <img
+                    src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`}
+                    alt={video.title}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                  />
+                  <!-- Play icon -->
+                  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div class="w-10 h-10 rounded-full bg-[#044A82]/85 text-white flex items-center justify-center group-hover:bg-[#FF0000] group-hover:scale-110 transition-all duration-300 shadow-md">
+                      <svg class="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24" aria-hidden="true">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="absolute top-2 left-2 z-10">
+                    <span class="px-2 py-0.5 rounded-xs text-[0.65rem] font-montserrat uppercase font-bold tracking-wider bg-black/75 text-white">
+                      {video.tag}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h4 class="font-ruda font-bold text-sm text-[#1C2530] group-hover:text-[#044A82] line-clamp-2 leading-snug mb-2 transition-colors">
+                      {video.title}
+                    </h4>
+                    <p class="font-montserrat text-xs text-[#575757] leading-relaxed line-clamp-3 mb-4">
+                      {video.desc}
+                    </p>
+                  </div>
+
+                  <div class="pt-3 border-t border-[#DEDEDE] flex items-center justify-between text-xs text-[#044A82] font-semibold">
+                    <span>Assistir no YouTube</span>
+                    <span class="group-hover:translate-x-1 transition-transform">↗</span>
+                  </div>
+                </div>
+              </a>
+            ))
+          }
         </div>
       </div>
     </Container>

@@ -128,42 +128,21 @@ export default function TriageForm() {
 
     setIsSubmitting(true);
     try {
-      const { supabase } = await import("@/lib/supabase");
-      if (supabase) {
-        const refCode = `PLM-${Date.now().toString(36).toUpperCase()}`;
-        const { error } = await supabase.from("triagens").insert({
-          reference_code: refCode,
-          program_interest: result.data.programInterest,
-          profile: result.data.profile,
-          is_adult: result.data.isAdult,
-          full_name: result.data.fullName,
-          email: result.data.email,
-          phone: result.data.phone || null,
-          city: result.data.city || null,
-          state: result.data.state || null,
-          contact_channel: result.data.contactChannel,
-          report: result.data.report || null,
-          status: "recebido",
-        });
-        if (error) throw error;
-        setSubmittedCode(refCode);
-      } else {
-        const res = await fetch("/api/forms/triagem", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(result.data),
-        });
+      const res = await fetch("/api/forms/triagem", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(result.data),
+      });
 
-        if (res.ok) {
-          const data = await res.json().catch(() => ({ referenceCode: "PLM-CONFIDENCIAL" }));
-          setSubmittedCode(data.referenceCode || "PLM-CONFIDENCIAL");
-        } else {
-          const errData = await res.json().catch(() => ({}));
-          setErrors({ form: errData.message || "Erro ao enviar solicitação. Tente novamente." });
-        }
+      if (res.ok) {
+        const data = await res.json().catch(() => ({ referenceCode: "PLM-CONFIDENCIAL" }));
+        setSubmittedCode(data.referenceCode || "PLM-CONFIDENCIAL");
+      } else {
+        const errData = await res.json().catch(() => ({}));
+        setErrors({ form: errData.message || "Erro ao processar sua solicitação. Por favor, tente novamente ou entre em contato pelo e-mail pastoral." });
       }
     } catch {
-      setErrors({ form: "Erro de rede. Verifique sua conexão e tente novamente." });
+      setErrors({ form: "Erro de conexão ao enviar. Verifique sua rede e tente novamente." });
     } finally {
       setIsSubmitting(false);
     }
@@ -184,7 +163,7 @@ export default function TriageForm() {
       </div>
 
       {errors.form && (
-        <div className="p-4 mb-6 bg-red-50 border border-red-200 text-red-700 text-sm font-montserrat">
+        <div role="alert" aria-live="assertive" className="p-4 mb-6 bg-red-50 border border-red-200 text-red-700 text-sm font-montserrat">
           {errors.form}
         </div>
       )}
@@ -201,13 +180,18 @@ export default function TriageForm() {
             value={formData.programInterest}
             onChange={handleChange}
             className="form-input"
+            aria-describedby={errors.programInterest ? "triage-error-programInterest" : undefined}
           >
             <option value="residencial">Programa Residencial (Presencial em Goiás)</option>
             <option value="online">Online Vida Pura (Homens)</option>
             <option value="esposas">Online Vida Pura (Esposas)</option>
             <option value="indefinido">Ainda não sei / Preciso de orientação</option>
           </select>
-          {errors.programInterest && <div className="field-error">{errors.programInterest}</div>}
+          {errors.programInterest && (
+            <div id="triage-error-programInterest" role="alert" className="field-error">
+              {errors.programInterest}
+            </div>
+          )}
         </div>
 
         {/* Perfil do Solicitante */}
@@ -221,13 +205,18 @@ export default function TriageForm() {
             value={formData.profile}
             onChange={handleChange}
             className="form-input"
+            aria-describedby={errors.profile ? "triage-error-profile" : undefined}
           >
             <option value="para_mim">Para mim mesmo</option>
             <option value="para_meu_conjuge">Para meu esposo / cônjuge</option>
             <option value="para_um_familiar">Para um familiar (filho, irmão, parente)</option>
             <option value="sou_lider">Sou pastor / líder buscando orientar um membro</option>
           </select>
-          {errors.profile && <div className="field-error">{errors.profile}</div>}
+          {errors.profile && (
+            <div id="triage-error-profile" role="alert" className="field-error">
+              {errors.profile}
+            </div>
+          )}
         </div>
 
         {/* Nome Completo */}
@@ -240,14 +229,20 @@ export default function TriageForm() {
             name="fullName"
             type="text"
             required
+            aria-required="true"
             autoComplete="name"
             value={formData.fullName || ""}
             onChange={handleChange}
             placeholder="Seu nome"
             className="form-input"
             aria-invalid={!!errors.fullName}
+            aria-describedby={errors.fullName ? "triage-error-fullName" : undefined}
           />
-          {errors.fullName && <div className="field-error">{errors.fullName}</div>}
+          {errors.fullName && (
+            <div id="triage-error-fullName" role="alert" className="field-error">
+              {errors.fullName}
+            </div>
+          )}
         </div>
 
         {/* E-mail e Telefone */}
@@ -261,14 +256,20 @@ export default function TriageForm() {
               name="email"
               type="email"
               required
+              aria-required="true"
               autoComplete="email"
               value={formData.email || ""}
               onChange={handleChange}
               placeholder="seu@email.com"
               className="form-input"
               aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "triage-error-email" : undefined}
             />
-            {errors.email && <div className="field-error">{errors.email}</div>}
+            {errors.email && (
+              <div id="triage-error-email" role="alert" className="field-error">
+                {errors.email}
+              </div>
+            )}
           </div>
 
           <div>
@@ -285,8 +286,13 @@ export default function TriageForm() {
               placeholder="61900000000"
               className="form-input"
               aria-invalid={!!errors.phone}
+              aria-describedby={errors.phone ? "triage-error-phone" : undefined}
             />
-            {errors.phone && <div className="field-error">{errors.phone}</div>}
+            {errors.phone && (
+              <div id="triage-error-phone" role="alert" className="field-error">
+                {errors.phone}
+              </div>
+            )}
           </div>
         </div>
 
@@ -301,12 +307,17 @@ export default function TriageForm() {
             value={formData.contactChannel}
             onChange={handleChange}
             className="form-input"
+            aria-describedby={errors.contactChannel ? "triage-error-contactChannel" : undefined}
           >
             <option value="whatsapp">WhatsApp (Mais rápido e discreto)</option>
             <option value="email">E-mail</option>
             <option value="telefone">Ligação Telefônica</option>
           </select>
-          {errors.contactChannel && <div className="field-error">{errors.contactChannel}</div>}
+          {errors.contactChannel && (
+            <div id="triage-error-contactChannel" role="alert" className="field-error">
+              {errors.contactChannel}
+            </div>
+          )}
         </div>
 
         {/* Relato Opcional */}
@@ -328,8 +339,13 @@ export default function TriageForm() {
             placeholder="Se desejar, compartilhe brevemente a sua busca ou momento de vida. Você não é obrigado a relatar nada para solicitar ajuda."
             className="form-input resize-none"
             aria-invalid={!!errors.report}
+            aria-describedby={errors.report ? "triage-error-report" : undefined}
           />
-          {errors.report && <div className="field-error">{errors.report}</div>}
+          {errors.report && (
+            <div id="triage-error-report" role="alert" className="field-error">
+              {errors.report}
+            </div>
+          )}
         </div>
 
         {/* Termo de Consentimento Explícito */}
@@ -341,12 +357,17 @@ export default function TriageForm() {
               checked={formData.consent === true}
               onChange={handleChange}
               className="mt-1 h-4 w-4 rounded border-gray-300 text-[#044A82] focus:ring-[#D99B26]"
+              aria-describedby={errors.consent ? "triage-error-consent" : undefined}
             />
             <span className="font-montserrat text-xs text-[#575757] leading-relaxed">
               Concordo expressamente com a <a href="/politica-de-privacidade/" className="text-[#044A82] underline font-bold" target="_blank" rel="noreferrer">Política de Privacidade</a> (versão 2026-09-19) e autorizo o contato confidencial da equipe pastoral.
             </span>
           </label>
-          {errors.consent && <div className="field-error">{errors.consent}</div>}
+          {errors.consent && (
+            <div id="triage-error-consent" role="alert" className="field-error">
+              {errors.consent}
+            </div>
+          )}
         </div>
 
         <button

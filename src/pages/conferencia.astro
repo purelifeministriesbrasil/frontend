@@ -5,6 +5,41 @@ import ContentLayout from "../layouts/ContentLayout.astro";
 import Container from "../components/ui/Container.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import Button from "../components/ui/Button.astro";
+
+const conferenceVideos = [
+  {
+    title: "Conferência Reconstruir — MEVAM Curitiba",
+    speaker: "Pr. Paulo Adriano Gouvêa",
+    youtubeId: "AvyjLxzWLnA",
+    url: "https://www.youtube.com/watch?v=AvyjLxzWLnA",
+    tag: "MEVAM Curitiba",
+    desc: "Ministração impactante sobre a reconstrução dos muros espirituais da família e a santidade bíblica no ministério.",
+  },
+  {
+    title: "1# Conferência da Família: Sexualidade e Identidade",
+    speaker: "Pr. Paulo Adriano Gouvêa · Igreja de Cristo Dókimos",
+    youtubeId: "CLVe9MjGDeE",
+    url: "https://www.youtube.com/watch?v=CLVe9MjGDeE",
+    tag: "Igreja Dókimos",
+    desc: "Abordagem bíblica sobre a identidade criada por Deus, a proteção do lar contra a corrupção moral e a pureza no casamento.",
+  },
+  {
+    title: "H.N.T Conferência: Autoridade e Sacerdócio (Parte 2/3)",
+    speaker: "Pr. Paulo Adriano Gouvêa",
+    youtubeId: "TVjdAK4-Jms",
+    url: "https://www.youtube.com/watch?v=TVjdAK4-Jms",
+    tag: "Conferência HNT",
+    desc: "Exposição poderosa sobre o papel sacerdotal do homem no lar, autoridade bíblica e quebra de cadeias de iniquidade.",
+  },
+  {
+    title: "No Topo da Pureza Sexual (2# Edição)",
+    speaker: "Pr. Paulo Adriano Gouvêa · Pure Life Ministries",
+    youtubeId: "NOdXZVflniI",
+    url: "https://www.youtube.com/live/NOdXZVflniI",
+    tag: "HNT Live",
+    desc: "Conferência ao vivo tratando a guerra diária pela santidade da mente e as disciplinas espirituais para a vitória prática.",
+  },
+];
 ---
 
 <ContentLayout
@@ -13,6 +48,7 @@ import Button from "../components/ui/Button.astro";
   canonical="https://purelifebrasil.org/conferencia/"
   currentPath="/conferencia/"
 >
+  <!-- Hero Section -->
   <section class="py-20 bg-[#1C2530] text-white">
     <Container size="wide">
       <SectionHeading
@@ -24,12 +60,16 @@ import Button from "../components/ui/Button.astro";
     </Container>
   </section>
 
-  <section class="py-24 bg-[#F5F2EC]">
+  <!-- Informações Gerais da Conferência -->
+  <section class="py-20 bg-[#F5F2EC]">
     <Container size="wide">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
         <div>
+          <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
+            Edificação e Capacitação
+          </span>
           <h3 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-6">
-            Edificação e capacitação para a Igreja de Cristo
+            Equipando a Igreja de Cristo para o Aconselhamento Bíblico
           </h3>
           <p class="font-montserrat text-[#1C2530] text-base leading-relaxed mb-6">
             A Conferência Pure Life Brasil é um marco anual para líderes cristãos que desejam entender como tratar com profundidade bíblica e compaixão pastoral as lutas da alma humana.
@@ -49,42 +89,111 @@ import Button from "../components/ui/Button.astro";
             </div>
           </div>
 
-          <Button href="/contato/" variant="primary">
+          <Button href="/contato/?assunto=Conferencia" variant="primary">
             Quero receber informações em primeira mão
           </Button>
         </div>
 
         <div class="bg-white border border-[#DEDEDE] p-8 sm:p-12 shadow-xs">
           <h4 class="font-ruda font-bold text-xl text-[#044A82] mb-6">Público-Alvo</h4>
-          <ul class="space-y-4 font-montserrat text-sm text-[#575757]">
+          <ul class="space-y-5 font-montserrat text-sm text-[#575757]">
             <li class="flex items-start gap-3">
-              <svg class="w-4 h-4 text-[#044A82] shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <svg class="w-5 h-5 text-[#044A82] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
               <div>
-                <strong class="text-[#1C2530] block">Pastores e Líderes Ministeriais:</strong>
-                Ferramentas práticas para o cuidado do rebanho e auxílio a membros em crise.
+                <strong class="text-[#1C2530] block font-bold">Pastores e Líderes Ministeriais:</strong>
+                Ferramentas práticas para o cuidado do rebanho, acolhimento pastoral e orientação de membros em crise moral ou conjugal.
               </div>
             </li>
             <li class="flex items-start gap-3">
-              <svg class="w-4 h-4 text-[#044A82] shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <svg class="w-5 h-5 text-[#044A82] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
               <div>
-                <strong class="text-[#1C2530] block">Conselheiros e Terapeutas Cristãos:</strong>
-                Alinhamento teológico reformado sobre a suficiência das Escrituras.
+                <strong class="text-[#1C2530] block font-bold">Conselheiros e Terapeutas Cristãos:</strong>
+                Alinhamento teológico reformado e distinção clara entre psicologia secular e o poder regenerador das Escrituras.
               </div>
             </li>
             <li class="flex items-start gap-3">
-              <svg class="w-4 h-4 text-[#044A82] shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <svg class="w-5 h-5 text-[#044A82] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
               <div>
-                <strong class="text-[#1C2530] block">Casais e Famílias:</strong>
-                Restauração da intimidade conjugal, perdão e cura das feridas da infidelidade.
+                <strong class="text-[#1C2530] block font-bold">Casais e Famílias:</strong>
+                Restauração da intimidade conjugal, quebra de segredos, perdão genuíno e cura das feridas provocadas pela traição.
               </div>
             </li>
           </ul>
+        </div>
+      </div>
+
+      <!-- Seção de Mensagens em Conferências Gravadas -->
+      <div class="border-t border-[#DEDEDE] pt-16">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
+            Pregações & Ministrações Gravadas
+          </span>
+          <h3 class="font-ruda font-black text-2xl sm:text-3xl text-[#1C2530] mb-3">
+            Mensagens em Conferências Anteriores
+          </h3>
+          <p class="font-montserrat text-sm text-[#575757]">
+            Assista a ministrações do Pr. Paulo Adriano Gouvêa em conferências e igrejas parceiras pelo Brasil.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {
+            conferenceVideos.map((video) => (
+              <a
+                href={video.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group bg-white border border-[#DEDEDE] hover:border-[#044A82] hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
+              >
+                <!-- Thumbnail -->
+                <div class="relative aspect-video overflow-hidden bg-black">
+                  <img
+                    src={`https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`}
+                    alt={video.title}
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+                  />
+                  <!-- Play icon -->
+                  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div class="w-10 h-10 rounded-full bg-[#044A82]/85 text-white flex items-center justify-center group-hover:bg-[#FF0000] group-hover:scale-110 transition-all duration-300 shadow-md">
+                      <svg class="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24" aria-hidden="true">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="absolute top-2 left-2 z-10">
+                    <span class="px-2 py-0.5 rounded-xs text-[0.65rem] font-montserrat uppercase font-bold tracking-wider bg-black/75 text-white">
+                      {video.tag}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Content -->
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h4 class="font-ruda font-bold text-sm text-[#1C2530] group-hover:text-[#044A82] line-clamp-2 leading-snug mb-2 transition-colors">
+                      {video.title}
+                    </h4>
+                    <p class="font-montserrat text-xs text-[#575757] leading-relaxed line-clamp-3 mb-4">
+                      {video.desc}
+                    </p>
+                  </div>
+
+                  <div class="pt-3 border-t border-[#DEDEDE] flex items-center justify-between text-xs text-[#044A82] font-semibold">
+                    <span>Assistir no YouTube</span>
+                    <span class="group-hover:translate-x-1 transition-transform">↗</span>
+                  </div>
+                </div>
+              </a>
+            ))
+          }
         </div>
       </div>
     </Container>

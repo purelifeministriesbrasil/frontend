@@ -48,35 +48,31 @@ export default function DonationForm() {
         body: JSON.stringify(parsed.data),
       });
 
-      let pixCopyPaste = "";
-      let expiresAt = "";
-
       if (res.ok) {
         const data = await res.json();
-        pixCopyPaste = data.pixCopyPaste;
-        expiresAt = data.expiresAt;
+        const pixCopyPaste = data.pixCopyPaste;
+        const expiresAt = data.expiresAt;
+
+        // Geração dinâmica de QR Code local sem imagem base64 do servidor (§7.1)
+        const qr = await import("qrcode");
+        const svg = await qr.toString(pixCopyPaste, {
+          type: "svg",
+          errorCorrectionLevel: "M",
+          margin: 1,
+          width: 260,
+        });
+
+        setPixPayload({
+          pixCopyPaste,
+          expiresAt,
+          svgString: svg,
+        });
       } else {
-        // Fallback para teste/protótipo de interface
-        pixCopyPaste = `00020101021226880014br.gov.bcb.pix2566pix.purelifebrasil.org/qr/v2/cob_${Date.now()}520400005303986540${(amountCents / 100).toFixed(2)}5802BR5925PURE LIFE MINISTRIES BR6009BRASILIA62070503***6304`;
-        expiresAt = new Date(Date.now() + 30 * 60 * 1000).toISOString();
+        const errData = await res.json().catch(() => ({}));
+        setErrorMessage(errData.message || "Não foi possível gerar a chave PIX no momento. Por favor, tente novamente mais tarde.");
       }
-
-      // Geração dinâmica de QR Code local sem imagem base64 do servidor (§7.1)
-      const qr = await import("qrcode");
-      const svg = await qr.toString(pixCopyPaste, {
-        type: "svg",
-        errorCorrectionLevel: "M",
-        margin: 1,
-        width: 260,
-      });
-
-      setPixPayload({
-        pixCopyPaste,
-        expiresAt,
-        svgString: svg,
-      });
     } catch {
-      setErrorMessage("Erro ao comunicar com o servidor de cobrança. Tente novamente.");
+      setErrorMessage("Erro de conexão ao comunicar com o servidor de cobrança. Verifique sua rede e tente novamente.");
     } finally {
       setIsSubmitting(false);
     }
@@ -156,7 +152,7 @@ export default function DonationForm() {
       </div>
 
       {errorMessage && (
-        <div className="p-3 mb-6 bg-red-50 border border-red-200 text-red-700 text-xs font-montserrat">
+        <div role="alert" aria-live="assertive" className="p-3 mb-6 bg-red-50 border border-red-200 text-red-700 text-xs font-montserrat">
           {errorMessage}
         </div>
       )}

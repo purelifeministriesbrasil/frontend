@@ -30,33 +30,23 @@ export function initNewsletterEnhancement() {
 
       let success = false;
       try {
-        const { supabase } = await import("@/lib/supabase");
-        if (supabase) {
-          if (!websiteInput?.value) {
-            const { error } = await supabase.from("newsletter").insert({
-              email: emailInput.value,
-            });
-            success = !error || (error as any).code === "23505";
-          } else {
-            success = true; // honeypot
-          }
-        } else {
-          const res = await fetch(form.action || "/api/forms/newsletter", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify(payload),
-          });
-          success = res.ok;
-        }
+        const res = await fetch(form.action || "/api/forms/newsletter", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+        success = res.ok;
       } catch {
         success = false;
       }
 
       if (feedbackContainer) {
         feedbackContainer.classList.remove("hidden");
+        feedbackContainer.setAttribute("role", "alert");
+        feedbackContainer.setAttribute("aria-live", "polite");
         if (success) {
           form.classList.add("hidden");
           feedbackContainer.innerHTML = `

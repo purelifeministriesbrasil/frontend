@@ -436,7 +436,6 @@ details[open] > .faq-content {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  will-change: transform, box-shadow;
   transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -718,7 +717,6 @@ html {
 /* Interactive Card & Element Lift */
 .card-hover {
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
-  will-change: transform;
 }
 
 .card-hover:hover {

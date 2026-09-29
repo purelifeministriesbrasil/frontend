@@ -4,40 +4,352 @@ export const prerender = true;
 import ContentLayout from "../layouts/ContentLayout.astro";
 import Container from "../components/ui/Container.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
-import BooksPreview from "../components/home/BooksPreview.astro";
 import Button from "../components/ui/Button.astro";
+import { getWhatsAppOrderUrl } from "../lib/site-config.js";
+
+const books = [
+  {
+    id: "no-altar",
+    title: "No Altar da Idolatria Sexual",
+    author: "Steve Gallagher",
+    price: "R$ 65,00",
+    audience: "Trata pecado sexual de homens",
+    category: "homens",
+    categoryLabel: "Homens",
+    desc: "A obra clássica que expõe a raiz idolátrica do vício e do pecado sexual, apresentando o caminho bíblico do arrependimento genuíno e a crucificação da carne pelo poder do Evangelho.",
+    bgColor: "bg-[#1C2530]",
+  },
+  {
+    id: "cria-em-mim",
+    title: "Cria em Mim um Coração Puro",
+    author: "Kathy Gallagher",
+    price: "R$ 55,00",
+    audience: "Trata pecado sexual de mulheres",
+    category: "mulheres",
+    categoryLabel: "Mulheres",
+    desc: "Um estudo bíblico pioneiro e acolhedor dedicado a mulheres que enfrentam lutas secretas com pornografia, fantasias e impureza, conduzindo à liberdade espiritual e integridade.",
+    bgColor: "bg-[#3B4C60]",
+  },
+  {
+    id: "impacto-pornografia",
+    title: "O Impacto Pessoal e Social da Pornografia",
+    author: "Pr. Paulo Adriano Muniz Gouvêa",
+    price: "R$ 45,00",
+    audience: "Serve para todos os públicos",
+    category: "geral",
+    categoryLabel: "Público Geral",
+    desc: "Uma análise contundente, bíblica e pastoral sobre os estragos espirituais, neurológicos, familiares e sociais causados pela indústria pornográfica na sociedade moderna e na Igreja.",
+    bgColor: "bg-[#044A82]",
+  },
+  {
+    id: "20-verdades",
+    title: "As 20 Verdades que me Ajudaram contra o Vício em Pornografia",
+    author: "Steve Gallagher",
+    price: "R$ 75,00",
+    audience: "Devocional para homens, mulheres e jovens",
+    category: "devocional",
+    categoryLabel: "Devocional",
+    desc: "Manual devocional prático para fortalecimento diário da fé. Vinte princípios bíblicos imutáveis para quem deseja construir defesas espirituais sólidas e vencer as tentações cotidianas.",
+    bgColor: "bg-[#454A50]",
+  },
+  {
+    id: "curando-traicao",
+    title: "Curando a Dor da Traição no Casamento",
+    author: "Kathy Gallagher",
+    price: "R$ 55,00",
+    audience: "Para esposas traídas",
+    category: "mulheres",
+    categoryLabel: "Mulheres & Esposas",
+    desc: "Balsamo pastoral e bíblico para esposas cujo casamento foi abalado pelo adultério ou infidelidade virtual. Conduz a leitora pelo vale da dor até a esperança soberana de Cristo.",
+    bgColor: "bg-[#3B4C60]",
+  },
+  {
+    id: "trauma-redimido",
+    title: "Trauma Redimido",
+    author: "Pure Life Ministries",
+    price: "R$ 85,00",
+    audience: "Para pessoas que sofreram com trauma",
+    category: "restauracao",
+    categoryLabel: "Restauração",
+    desc: "Abordagem teocêntrica para a cura de feridas emocionais profundas causadas por abusos passados, rejeição e traumas da infância, apontando para a suficiência redentora de Jesus.",
+    bgColor: "bg-[#1C2530]",
+  },
+  {
+    id: "pilha-mascaras",
+    title: "Pilha de Máscaras",
+    author: "Steve Gallagher",
+    price: "R$ 50,00",
+    audience: "Lida contra a hipocrisia na igreja de quem vive o pecado sexual",
+    category: "igreja",
+    categoryLabel: "Igreja & Liderança",
+    desc: "Um chamado vigoroso à transparência e santidade real. Desmascara o farisaísmo contemporâneo e o autoengano de quem mantém vida dupla dentro das comunidades de fé.",
+    bgColor: "bg-[#044A82]",
+  },
+  {
+    id: "contaminados-babilonia",
+    title: "Contaminados com a Babilônia",
+    author: "Steve Gallagher",
+    price: "R$ 45,00",
+    audience: "Como a igreja começou a ser contaminada com o mundo",
+    category: "igreja",
+    categoryLabel: "Igreja & Cultura",
+    desc: "Alerta profético e pastoral sobre a sutil infiltração dos valores mundanos, entretenimento corruptor e concessões morais que entorpecem a sensibilidade espiritual da Igreja.",
+    bgColor: "bg-[#454A50]",
+  },
+  {
+    id: "raiz-exposta",
+    title: "Eu, a Raiz Exposta do Pecado",
+    author: "Steve Gallagher",
+    price: "R$ 50,00",
+    audience: "Lida com o orgulho e o egoísmo como raízes do pecado sexual",
+    category: "homens",
+    categoryLabel: "Vida Cristã",
+    desc: "Vai além dos sintomas superficiais para dissecar o egoísmo idolátrico e o orgulho humano que alimentam a compulsão sexual, ensinando o caminho bíblico do morrer para si mesmo.",
+    bgColor: "bg-[#1C2530]",
+  },
+];
 ---
 
 <ContentLayout
   title="Editora e Livraria Pure Life | Obras de Santidade Bíblica"
-  description="Publicações e literatura cristã para aconselhamento bíblico, vitória sobre a impureza e fortalecimento de casais."
+  description="Catálogo oficial de literatura reformada da Pure Life Ministries Brasil: livros sobre pureza sexual, restauração do casamento e superação de traumas."
   canonical="https://purelifebrasil.org/editora/"
   currentPath="/editora/"
 >
+  <!-- Hero Section -->
   <section class="py-20 bg-[#1C2530] text-white">
     <Container size="wide">
       <SectionHeading
         tag="Literatura Reformada"
         title="Editora Pure Life Ministries Brasil"
-        description="Textos fundamentais para a renovação da mente e santificação à luz da Palavra de Deus."
+        description="Obras fundamentadas na suficiência das Escrituras para a renovação da mente, santificação e restauração de vidas e lares cristãos."
         invert={true}
       />
     </Container>
   </section>
 
-  <BooksPreview />
+  <!-- Catalog Section -->
+  <section class="py-20 bg-[#F5F2EC]">
+    <Container size="wide">
+      <!-- Category Filter Pills -->
+      <div class="mb-12">
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3" id="book-filters" role="tablist" aria-label="Filtrar livros por público">
+          <button
+            type="button"
+            class="filter-pill active px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all bg-[#044A82] text-white shadow-xs cursor-pointer"
+            data-filter="all"
+            role="tab"
+            aria-selected="true"
+          >
+            Todos os Livros (9)
+          </button>
+          <button
+            type="button"
+            class="filter-pill px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all bg-white text-[#454A50] border border-[#DEDEDE] hover:border-[#044A82] cursor-pointer"
+            data-filter="homens"
+            role="tab"
+            aria-selected="false"
+          >
+            Homens
+          </button>
+          <button
+            type="button"
+            class="filter-pill px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all bg-white text-[#454A50] border border-[#DEDEDE] hover:border-[#044A82] cursor-pointer"
+            data-filter="mulheres"
+            role="tab"
+            aria-selected="false"
+          >
+            Mulheres & Esposas
+          </button>
+          <button
+            type="button"
+            class="filter-pill px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all bg-white text-[#454A50] border border-[#DEDEDE] hover:border-[#044A82] cursor-pointer"
+            data-filter="devocional"
+            role="tab"
+            aria-selected="false"
+          >
+            Devocionais & Família
+          </button>
+          <button
+            type="button"
+            class="filter-pill px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all bg-white text-[#454A50] border border-[#DEDEDE] hover:border-[#044A82] cursor-pointer"
+            data-filter="igreja"
+            role="tab"
+            aria-selected="false"
+          >
+            Igreja & Liderança
+          </button>
+        </div>
+      </div>
 
-  <section class="py-20 bg-white border-t border-[#DEDEDE]">
-    <Container size="narrow" class="text-center">
-      <h3 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-4">
-        Deseja distribuir nossos livros em sua igreja ou livraria?
-      </h3>
-      <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-8">
-        Oferecemos condições especiais e pacotes pastorais com descontos para ministérios locais e escolas teológicas.
-      </p>
-      <Button href="/contato/" variant="primary">
-        Falar com o setor editorial
-      </Button>
+      <!-- Books Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="books-grid">
+        {
+          books.map((book) => (
+            <article
+              class="book-item bg-white border border-[#DEDEDE] flex flex-col justify-between hover:shadow-xl hover:border-[#044A82] transition-all duration-300"
+              data-category={book.category}
+            >
+              <!-- Card Header / Cover Mockup -->
+              <div class={`relative h-56 p-6 ${book.bgColor} flex flex-col justify-between overflow-hidden text-white`}>
+                <div class="flex items-start justify-between z-10">
+                  <span class="inline-block px-2.5 py-1 text-[0.7rem] uppercase font-bold tracking-wider rounded-xs bg-white/20 backdrop-blur-xs">
+                    {book.categoryLabel}
+                  </span>
+                  <span class="font-ruda font-black text-lg text-white bg-black/20 px-2.5 py-0.5 rounded-xs border border-white/10">
+                    {book.price}
+                  </span>
+                </div>
+
+                <div class="relative z-10">
+                  <h3 class="font-ruda font-black text-xl leading-snug text-white mb-1">
+                    {book.title}
+                  </h3>
+                  <span class="font-montserrat text-xs text-[#C1BDA6] font-medium block">
+                    {book.author}
+                  </span>
+                </div>
+
+                <!-- Decorative spine indicator -->
+                <div class="absolute left-0 top-0 bottom-0 w-2 bg-white/15"></div>
+                <div class="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-white/5 pointer-events-none"></div>
+              </div>
+
+              <!-- Card Body -->
+              <div class="p-6 flex flex-col justify-between flex-1">
+                <div>
+                  <!-- Focus badge -->
+                  <div class="mb-3">
+                    <span class="inline-flex items-center text-[0.72rem] font-bold text-[#044A82] bg-[#044A82]/10 px-2.5 py-1 rounded-xs">
+                      🎯 {book.audience}
+                    </span>
+                  </div>
+
+                  <p class="font-montserrat text-[#454A50] text-sm leading-relaxed mb-6">
+                    {book.desc}
+                  </p>
+                </div>
+
+                <!-- Card Footer / Order CTA -->
+                <div class="pt-4 border-t border-[#DEDEDE] flex items-center justify-between gap-3">
+                  <div>
+                    <span class="text-[0.68rem] uppercase font-bold text-[#727272] block">Valor</span>
+                    <strong class="font-ruda text-xl text-[#1C2530] font-black">{book.price}</strong>
+                  </div>
+
+                  <a
+                    href={getWhatsAppOrderUrl(book.title)}
+                    class="btn-primary text-xs px-4 py-2.5"
+                    aria-label={`Solicitar o livro ${book.title}`}
+                  >
+                    Solicitar Livro
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
     </Container>
   </section>
+
+  <!-- Church & Bulk Order Info Section -->
+  <section class="py-20 bg-white border-t border-[#DEDEDE]">
+    <Container size="wide">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
+            Distribuição para Comunidades
+          </span>
+          <h3 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-6">
+            Deseja distribuir nossos livros em sua igreja, escola teológica ou livraria?
+          </h3>
+          <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-6">
+            A Editora Pure Life Ministries Brasil atende diretamente conselhos pastorais, ministérios de casais, lideranças de homens e livrarias cristãs em todo o país com condições diferenciadas e lotes com desconto.
+          </p>
+          <ul class="space-y-3 font-montserrat text-sm text-[#454A50] mb-8">
+            <li class="flex items-center gap-2">
+              <span class="text-[#044A82] font-bold">✓</span>
+              <span>Descontos progressivos a partir de 10 exemplares</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-[#044A82] font-bold">✓</span>
+              <span>Kits completos para grupos de apoio e aconselhamento na igreja local</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-[#044A82] font-bold">✓</span>
+              <span>Envio rápido via correios ou transportadora para todo o Brasil</span>
+            </li>
+          </ul>
+          <Button href="/contato/?assunto=Editora" variant="primary">
+            Falar com o Setor Editorial
+          </Button>
+        </div>
+
+        <div class="bg-[#F5F2EC] border border-[#DEDEDE] p-8 sm:p-10">
+          <h4 class="font-ruda font-bold text-xl text-[#1C2530] mb-4">
+            Como funciona a solicitação de livros?
+          </h4>
+          <ol class="space-y-4 font-montserrat text-sm text-[#575757]">
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-[#044A82] text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>
+              <div>
+                <strong class="text-[#1C2530] block">Escolha as obras desejadas:</strong>
+                Selecione os títulos do catálogo acima e clique em "Solicitar Livro" para informar a quantidade.
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-[#044A82] text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</span>
+              <div>
+                <strong class="text-[#1C2530] block">Confirmação de frete e pagamento:</strong>
+                Nossa equipe informará o cálculo exato do frete e a chave PIX institucional para pagamento.
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="w-6 h-6 rounded-full bg-[#044A82] text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</span>
+              <div>
+                <strong class="text-[#1C2530] block">Despacho seguro com rastreamento:</strong>
+                Após a confirmação, seu pedido é cuidadosamente embalado e despachado com código de rastreamento.
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Interactive Filter Script (Zero External Dependencies) -->
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const filterButtons = document.querySelectorAll("#book-filters .filter-pill");
+      const bookCards = document.querySelectorAll("#books-grid .book-item");
+
+      filterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const filter = btn.getAttribute("data-filter");
+
+          // Update active button state
+          filterButtons.forEach((b) => {
+            b.classList.remove("bg-[#044A82]", "text-white", "shadow-xs");
+            b.classList.add("bg-white", "text-[#454A50]", "border", "border-[#DEDEDE]");
+            b.setAttribute("aria-selected", "false");
+          });
+
+          btn.classList.remove("bg-white", "text-[#454A50]", "border", "border-[#DEDEDE]");
+          btn.classList.add("bg-[#044A82]", "text-white", "shadow-xs");
+          btn.setAttribute("aria-selected", "true");
+
+          // Filter cards
+          bookCards.forEach((card) => {
+            const category = card.getAttribute("data-category");
+            if (filter === "all" || category === filter || (filter === "mulheres" && category === "restauracao")) {
+              card.style.display = "flex";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+    });
+  </script>
 </ContentLayout>

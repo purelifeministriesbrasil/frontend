@@ -29,6 +29,19 @@ function countUp(el: HTMLElement): void {
   const prefix = el.dataset["countPrefix"] ?? "";
   const suffix = el.dataset["countSuffix"] ?? "";
   const isInteger = Number.isInteger(target);
+
+  // If user prefers reduced motion, set the target value immediately without animation
+  if (
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    el.textContent =
+      prefix +
+      (isInteger ? target.toLocaleString("pt-BR") : target.toFixed(1)) +
+      suffix;
+    return;
+  }
+
   const start = performance.now();
 
   const tick = (now: number) => {
@@ -83,8 +96,11 @@ export function initReveal(): void {
     document.querySelectorAll<HTMLElement>("[data-count-up]")
   );
 
-  if (!("IntersectionObserver" in window)) {
-    // Fallback: reveal everything immediately
+  if (
+    !("IntersectionObserver" in window) ||
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    // Fallback or reduced-motion preference: reveal everything immediately
     for (const el of allTargets) el.classList.add("revealed");
     for (const el of countTargets) countUp(el);
     return;

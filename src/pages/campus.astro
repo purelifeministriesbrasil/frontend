@@ -5,46 +5,83 @@ import ContentLayout from "../layouts/ContentLayout.astro";
 import Container from "../components/ui/Container.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import Button from "../components/ui/Button.astro";
+
+const campusPhotos = [
+  {
+    src: "/images/purelife/campus-1.webp",
+    alt: "Vista externa e natureza ao redor do campus",
+    title: "Refúgio em Meio à Natureza",
+    desc: "Ambiente silencioso, sereno e propício para o recolhimento e a oração a 50 km de Brasília.",
+  },
+  {
+    src: "/images/purelife/campus-2.webp",
+    alt: "Instalações comunitárias do campus",
+    title: "Convivência Fraternal Sadia",
+    desc: "Espaços projetados para a partilha transparente e o crescimento espiritual mútuo.",
+  },
+  {
+    src: "/images/purelife/campus-3.webp",
+    alt: "Salas de estudo bíblico e aconselhamento pastoral",
+    title: "Aconselhamento e Estudo Bíblico",
+    desc: "Salas privativas dedicadas ao discipulado individual e teologia bíblica aplicada.",
+  },
+  {
+    src: "/images/purelife/campus-4.webp",
+    alt: "Áreas de trabalho comunitário e lazer",
+    title: "Labor e Disciplina Espiritual",
+    desc: "Rotina balanceada de trabalho manual, descanso, comunhão e busca ao Senhor.",
+  },
+];
 ---
 
 <ContentLayout
   title="Campus Residencial em Goiás | Pure Life Ministries Brasil"
-  description="Instalações dedicadas ao recolhimento, oração e aconselhamento bíblico intensivo em Águas Lindas de Goiás."
+  description="Instalações dedicadas ao recolhimento, oração e aconselhamento bíblico intensivo de 9 meses em Águas Lindas de Goiás."
   canonical="https://purelifebrasil.org/campus/"
   currentPath="/campus/"
 >
+  <!-- Hero Section -->
   <section class="py-20 bg-[#1C2530] text-white">
     <Container size="wide">
       <SectionHeading
-        tag="Instalações"
+        tag="Instalações & Estrutura"
         title="O Campus Residencial em Águas Lindas de Goiás"
-        description="Um refúgio de paz a 50 km de Brasília preparado para acolher homens em busca de santidade e cura bíblica."
+        description="Um refúgio de paz a 50 km de Brasília preparado para acolher homens em busca de santidade, libertação e restauração bíblica."
         invert={true}
       />
     </Container>
   </section>
 
-  <section class="py-24 bg-[#F5F2EC]">
+  <section class="py-20 bg-[#F5F2EC]">
     <Container size="wide">
-      <div class="grid lg:grid-cols-2 gap-16 items-center mb-16">
+      <!-- Visão Geral -->
+      <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
         <div>
+          <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
+            Ambiente Separado para Deus
+          </span>
           <h3 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-6">
-            Estrutura Completa para Discipulado e Imersão
+            Estrutura Completa para Discipulado e Imersão de 9 Meses
           </h3>
           <p class="font-montserrat text-[#1C2530] text-base leading-relaxed mb-6">
             Localizado em uma área cercada pela natureza e longe do ruído dos grandes centros urbanos, o campus da PLM Brasil oferece condições ideais para o recolhimento espiritual, a meditação bíblica e a disciplina diária.
           </p>
           <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-8">
-            Contamos com salas de aconselhamento privativas, dormitórios organizados, biblioteca com literatura reformada, refeitório comunitário e áreas externas de labor e reflexão.
+            Contamos com salas de aconselhamento privativas, dormitórios organizados, biblioteca com literatura reformada, refeitório comunitário com alimentação completa e áreas externas de labor e reflexão.
           </p>
-          <Button href="/contato/" variant="primary">
-            Agendar Visita Pastoral
-          </Button>
+          <div class="flex flex-wrap gap-4">
+            <Button href="/programas/residencial/" variant="primary">
+              Detalhes do Programa Residencial
+            </Button>
+            <Button href="/contato/?assunto=Campus" variant="outline">
+              Agendar Visita Pastoral
+            </Button>
+          </div>
         </div>
 
-        <div class="overflow-hidden border border-[#DEDEDE] shadow-md">
+        <div class="overflow-hidden border border-[#DEDEDE] shadow-md bg-white p-2">
           <img
-            src="/images/campus.webp"
+            src="/images/purelife/campus-1.webp"
             alt="Ambiente externo e instalações do campus PLM Brasil"
             width="700"
             height="520"
@@ -55,24 +92,101 @@ import Button from "../components/ui/Button.astro";
         </div>
       </div>
 
+      <!-- Resumo do Programa Residencial no Campus -->
+      <div class="bg-white border-2 border-[#044A82] p-8 sm:p-10 mb-20 shadow-sm">
+        <div class="grid lg:grid-cols-4 gap-6 items-center">
+          <div class="lg:col-span-3">
+            <span class="font-montserrat text-xs uppercase font-bold tracking-wider text-[#044A82] block mb-1">
+              Informações do Programa Residencial
+            </span>
+            <h4 class="font-ruda font-black text-2xl text-[#1C2530] mb-2">
+              Duração de 09 Meses com Acompanhamento Integral
+            </h4>
+            <p class="font-montserrat text-sm text-[#575757] leading-relaxed mb-4">
+              O programa presencial inclui hospedagem completa, alimentação balanceada diária, material didático e discipulado semanal individual.
+            </p>
+            <div class="flex flex-wrap gap-6 text-sm font-montserrat">
+              <div>
+                <span class="text-xs text-[#727272] uppercase font-bold block">Taxa de Inscrição</span>
+                <strong class="font-ruda text-xl text-[#044A82]">R$ 500,00</strong>
+              </div>
+              <div>
+                <span class="text-xs text-[#727272] uppercase font-bold block">Mensalidade</span>
+                <strong class="font-ruda text-xl text-[#044A82]">R$ 1.200,00</strong>
+              </div>
+              <div>
+                <span class="text-xs text-[#727272] uppercase font-bold block">Duração</span>
+                <strong class="font-ruda text-xl text-[#1C2530]">09 Meses</strong>
+              </div>
+            </div>
+          </div>
+          <div class="text-center lg:text-right">
+            <Button href="/triagem/" variant="primary" class="w-full sm:w-auto text-xs px-6 py-3">
+              Iniciar Triagem
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Galeria de Fotos do Campus -->
+      <div class="mb-20">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
+            Galeria do Campus
+          </span>
+          <h3 class="font-ruda font-black text-2xl sm:text-3xl text-[#1C2530] mb-3">
+            Conheça Nossos Espaços
+          </h3>
+          <p class="font-montserrat text-sm text-[#575757]">
+            Imagens reais do nosso refúgio de santidade e discipulado em Águas Lindas de Goiás.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {
+            campusPhotos.map((photo) => (
+              <div class="bg-white border border-[#DEDEDE] overflow-hidden hover:border-[#044A82] hover:shadow-lg transition-all duration-300 flex flex-col group">
+                <div class="h-52 overflow-hidden relative">
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    width="600"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h4 class="font-ruda font-bold text-base text-[#1C2530] mb-2">{photo.title}</h4>
+                    <p class="font-montserrat text-xs text-[#575757] leading-relaxed">{photo.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
       <!-- Diferenciais do campus -->
       <div class="grid sm:grid-cols-3 gap-6">
         <div class="bg-white border border-[#DEDEDE] p-8">
           <h4 class="font-ruda font-bold text-lg text-[#044A82] mb-2">Paz e Recolhimento</h4>
           <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
-            Ambiente reservado favorável à oração, quebrantamento e reconciliação com o Senhor.
+            Ambiente reservado favorável à oração contínua, meditação profunda na Palavra e reconciliação genuína com o Senhor.
           </p>
         </div>
         <div class="bg-white border border-[#DEDEDE] p-8">
           <h4 class="font-ruda font-bold text-lg text-[#044A82] mb-2">Comunhão Fraternal</h4>
           <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
-            Convivência diária transparente com conselheiros e companheiros de jornada.
+            Convivência diária transparente com conselheiros bíblicos experientes e irmãos unidos no mesmo propósito de restauração.
           </p>
         </div>
         <div class="bg-white border border-[#DEDEDE] p-8">
           <h4 class="font-ruda font-bold text-lg text-[#044A82] mb-2">Acesso Facilitado</h4>
           <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
-            Localizado a aproximadamente 50 km do Aeroporto Internacional de Brasília.
+            Localizado a aproximadamente 50 km do Aeroporto Internacional de Brasília, facilitando a vinda de participantes de todo o Brasil.
           </p>
         </div>
       </div>
