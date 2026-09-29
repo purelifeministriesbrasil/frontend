@@ -78,7 +78,7 @@ const mediaVideos = [
             href="https://www.youtube.com/@purelifeministriesbrasil"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center justify-between p-4 border border-[#044A82] bg-white hover:bg-[#044A82] text-[#044A82] hover:text-white transition-all duration-200 group shadow-xs"
+            class="flex items-center justify-between p-4 border border-[#044A82] bg-white hover:bg-[#044A82] text-[#044A82] hover:text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md group"
           >
             <div class="flex items-center gap-3">
               <svg class="w-6 h-6 text-[#FF0000] group-hover:text-white shrink-0 transition-colors" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -88,31 +88,31 @@ const mediaVideos = [
                 Inscrever-se no Canal do YouTube
               </span>
             </div>
-            <span class="text-base font-bold group-hover:translate-x-1 transition-transform" aria-hidden="true">
+            <span class="text-base font-bold group-hover:translate-x-1.5 transition-transform duration-300" aria-hidden="true">
               →
             </span>
           </a>
 
           <a
             href="/conferencia/"
-            class="flex items-center justify-between p-4 border border-[#DEDEDE] bg-white hover:border-[#044A82] hover:bg-white/80 transition-all group"
+            class="flex items-center justify-between p-4 border border-[#DEDEDE] bg-white hover:border-[#044A82] hover:bg-white hover:-translate-y-0.5 hover:shadow-xs transition-all duration-300 group"
           >
             <span class="font-montserrat font-semibold text-sm text-[#1C2530] group-hover:text-[#044A82] transition-colors">
               Mensagens da Conferência Anual
             </span>
-            <span class="text-[#044A82] text-lg font-bold group-hover:translate-x-1 transition-transform" aria-hidden="true">
+            <span class="text-[#044A82] text-lg font-bold group-hover:translate-x-1.5 transition-transform duration-300" aria-hidden="true">
               →
             </span>
           </a>
 
           <a
             href="/editora/"
-            class="flex items-center justify-between p-4 border border-[#DEDEDE] bg-white hover:border-[#044A82] hover:bg-white/80 transition-all group"
+            class="flex items-center justify-between p-4 border border-[#DEDEDE] bg-white hover:border-[#044A82] hover:bg-white hover:-translate-y-0.5 hover:shadow-xs transition-all duration-300 group"
           >
             <span class="font-montserrat font-semibold text-sm text-[#1C2530] group-hover:text-[#044A82] transition-colors">
               Livros e Literatura Pastoral
             </span>
-            <span class="text-[#044A82] text-lg font-bold group-hover:translate-x-1 transition-transform" aria-hidden="true">
+            <span class="text-[#044A82] text-lg font-bold group-hover:translate-x-1.5 transition-transform duration-300" aria-hidden="true">
               →
             </span>
           </a>
@@ -127,7 +127,7 @@ const mediaVideos = [
               href={video.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="media-card group relative overflow-hidden bg-[#1C2530] border border-[#DEDEDE] hover:border-[#044A82] flex flex-col justify-between transition-all duration-300 shadow-xs hover:shadow-lg"
+              class="media-card group relative overflow-hidden bg-[#1C2530] flex flex-col justify-between"
               data-reveal
               aria-label={`Assistir no YouTube: ${video.title}`}
             >
@@ -140,12 +140,12 @@ const mediaVideos = [
                   decoding="async"
                   width="480"
                   height="360"
-                  class="w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                  class="w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-108 transition-all duration-700 ease-out"
                 />
 
                 <!-- Play Button Badge -->
                 <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div class="w-12 h-12 rounded-full bg-[#044A82]/85 text-white flex items-center justify-center backdrop-blur-xs group-hover:scale-115 group-hover:bg-[#FF0000] transition-all duration-300 shadow-md">
+                  <div class="w-12 h-12 rounded-full bg-[#044A82]/90 text-white flex items-center justify-center backdrop-blur-xs group-hover:scale-120 group-hover:bg-[#FF0000] group-hover:shadow-[0_0_25px_rgba(255,0,0,0.55)] transition-all duration-300 shadow-md">
                     <svg class="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24" aria-hidden="true">
                       <polygon points="5 3 19 12 5 21 5 3"></polygon>
                     </svg>
@@ -154,7 +154,7 @@ const mediaVideos = [
 
                 <!-- Video Tag Badge -->
                 <div class="absolute top-2.5 left-2.5 z-10 pointer-events-none">
-                  <span class="px-2 py-0.5 rounded-xs text-[0.65rem] font-montserrat uppercase font-bold tracking-wider bg-black/70 text-white backdrop-blur-xs">
+                  <span class="px-2 py-0.5 rounded-xs text-[0.65rem] font-montserrat uppercase font-bold tracking-wider bg-black/70 text-white backdrop-blur-xs group-hover:bg-[#044A82] transition-colors duration-300">
                     {video.tag}
                   </span>
                 </div>
@@ -163,7 +163,7 @@ const mediaVideos = [
               <!-- Metadata -->
               <div class="p-4 bg-white flex flex-col justify-between flex-1">
                 <div>
-                  <h4 class="font-ruda font-bold text-sm text-[#1C2530] group-hover:text-[#044A82] line-clamp-2 leading-snug mb-1 transition-colors">
+                  <h4 class="font-ruda font-bold text-sm text-[#1C2530] group-hover:text-[#044A82] line-clamp-2 leading-snug mb-1 transition-colors duration-200">
                     {video.title}
                   </h4>
                   <span class="font-montserrat text-xs text-[#575757] block">
@@ -173,7 +173,7 @@ const mediaVideos = [
 
                 <div class="mt-3 pt-2.5 border-t border-[#DEDEDE] flex items-center justify-between text-xs text-[#044A82] font-semibold">
                   <span>Assistir no YouTube</span>
-                  <span class="group-hover:translate-x-1 transition-transform">↗</span>
+                  <span class="inline-block transform group-hover:translate-x-1.5 transition-transform duration-300 font-bold">↗</span>
                 </div>
               </div>
             </a>

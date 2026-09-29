@@ -59,25 +59,37 @@ const featuredBooks = [
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12" data-reveal-group>
       {
         featuredBooks.map((book) => (
-          <div class="book-card group flex flex-col justify-between bg-white border border-[#DEDEDE] hover:border-[#044A82] hover:shadow-lg transition-all duration-300" data-reveal>
-            <div class={`relative h-48 flex flex-col justify-between p-5 ${book.bgColor} overflow-hidden`}>
+          <div class="book-card group flex flex-col justify-between" data-reveal>
+            <!-- Hardcover Book Mockup with 3D Spine and Shimmer -->
+            <div class={`book-cover relative h-52 flex flex-col justify-between p-5 ${book.bgColor}`}>
+              <div class="book-spine-crease"></div>
+              <div class="book-cover-shimmer"></div>
+              <div class="absolute right-0 top-0 bottom-0 w-1.5 bg-gradient-to-l from-white/20 to-transparent pointer-events-none"></div>
+
               <div class="flex justify-between items-start z-10">
-                <span class="font-montserrat text-[0.68rem] uppercase font-bold tracking-wider px-2 py-0.5 rounded-xs bg-white/20 text-white backdrop-blur-xs">
+                <span class="font-montserrat text-[0.68rem] uppercase font-bold tracking-wider px-2 py-0.5 rounded-xs bg-white/20 text-white backdrop-blur-xs group-hover:scale-105 group-hover:bg-white/30 transition-all duration-300">
                   {book.audience}
                 </span>
-                <span class="font-ruda font-bold text-white text-base bg-white/10 px-2 py-0.5 rounded-xs">
+                <span class="font-ruda font-bold text-white text-base bg-black/25 px-2.5 py-0.5 rounded-xs border border-white/15 group-hover:border-white/40 group-hover:scale-105 transition-all duration-300 shadow-xs">
                   {book.price}
                 </span>
               </div>
+
               <div class="relative z-10">
-                <h4 class="font-ruda font-black text-white text-lg leading-snug">{book.title}</h4>
+                <h4 class="font-ruda font-black text-white text-lg leading-snug group-hover:translate-x-1.5 transition-transform duration-300 drop-shadow-xs">
+                  {book.title}
+                </h4>
               </div>
-              <div class="absolute -right-6 -bottom-6 w-28 h-28 rounded-full bg-white/5 pointer-events-none group-hover:scale-125 transition-transform duration-500"></div>
+
+              <!-- Decorative dynamic geometric shapes on hover -->
+              <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-white/5 pointer-events-none group-hover:scale-150 group-hover:rotate-45 transition-transform duration-700 ease-out"></div>
+              <div class="absolute -left-4 -top-4 w-20 h-20 rounded-full bg-black/10 pointer-events-none group-hover:scale-125 transition-transform duration-700 ease-out"></div>
             </div>
 
-            <div class="p-5 flex flex-col justify-between flex-1">
+            <!-- Book Details Body -->
+            <div class="p-5 flex flex-col justify-between flex-1 bg-white">
               <div>
-                <span class="font-montserrat text-[#575757] text-[0.7rem] uppercase tracking-widest block mb-2 font-semibold">
+                <span class="font-montserrat text-[#044A82] text-[0.7rem] uppercase tracking-widest block mb-2 font-bold group-hover:text-[#033863] transition-colors">
                   {book.author}
                 </span>
                 <p class="font-montserrat text-[#454A50] text-xs leading-relaxed">
@@ -86,14 +98,15 @@ const featuredBooks = [
               </div>
 
               <div class="mt-6 pt-4 border-t border-[#DEDEDE] flex items-center justify-between">
-                <span class="font-ruda font-bold text-[#044A82] text-sm">
+                <span class="font-ruda font-black text-[#1C2530] text-base group-hover:text-[#044A82] transition-colors">
                   {book.price}
                 </span>
                 <a
                   href="/editora/"
-                  class="font-montserrat text-[0.72rem] font-bold uppercase tracking-wider text-[#044A82] hover:text-[#1C2530] transition-colors inline-flex items-center gap-1 group-hover:translate-x-0.5 duration-200"
+                  class="font-montserrat text-[0.72rem] font-bold uppercase tracking-wider text-[#044A82] group-hover:text-[#1C2530] transition-colors inline-flex items-center gap-1.5"
                 >
-                  Ver no Catálogo →
+                  <span>Ver no Catálogo</span>
+                  <span class="inline-block transform group-hover:translate-x-1.5 transition-transform duration-300 font-black">→</span>
                 </a>
               </div>
             </div>

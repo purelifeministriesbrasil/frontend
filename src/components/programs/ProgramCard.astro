@@ -32,7 +32,7 @@ const {
 } = Astro.props;
 ---
 
-<div class="card-lift bg-white border border-[#DEDEDE] overflow-hidden flex flex-col justify-between shadow-xs" data-reveal="scale">
+<div class="card-lift group bg-white border border-[#DEDEDE] hover:border-[#044A82] overflow-hidden flex flex-col justify-between shadow-xs" data-reveal="scale">
   <div>
     <!-- Imagem de Destaque -->
     <div class="relative h-72 bg-[#1C2530] overflow-hidden">
@@ -43,12 +43,12 @@ const {
         height="500"
         loading="lazy"
         decoding="async"
-        class="w-full h-full object-cover opacity-60"
+        class="w-full h-full object-cover opacity-65 group-hover:opacity-90 group-hover:scale-108 transition-all duration-700 ease-out"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-[#1C2530] via-transparent to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#1C2530] via-[#1C2530]/30 to-transparent"></div>
       <div class="absolute bottom-6 left-6">
         <span
-          class={`inline-block font-montserrat text-xs font-bold tracking-[0.15em] uppercase px-3 py-1.5 text-white ${
+          class={`inline-block font-montserrat text-xs font-bold tracking-[0.15em] uppercase px-3 py-1.5 text-white transition-transform duration-300 group-hover:scale-105 shadow-xs ${
             badgeVariant === "blue" ? "bg-[#044A82]" : "bg-[#3B4C60]"
           }`}
         >
@@ -59,7 +59,7 @@ const {
 
     <!-- Conteúdo do Card -->
     <div class="p-8">
-      <h3 class="font-ruda font-black text-[#1C2530] text-2xl mb-1">{title}</h3>
+      <h3 class="font-ruda font-black text-[#1C2530] group-hover:text-[#044A82] text-2xl mb-1 transition-colors duration-200">{title}</h3>
       <p class="font-editorial text-[#044A82] text-sm tracking-wide mb-4 font-semibold">{subtitle}</p>
       <p class="font-montserrat text-[#575757] text-sm leading-relaxed mb-6">
         {description}

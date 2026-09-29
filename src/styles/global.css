@@ -118,15 +118,70 @@
   box-shadow: 0 8px 30px rgba(4, 74, 130, 0.08);
 }
 
+/* ── Enhanced Book Card with 3D physical book illusion & sheen ── */
 .book-card {
+  position: relative;
   background: #FFFFFF;
   border: 1px solid #DEDEDE;
   overflow: hidden;
-  transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: 
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.3s ease;
+  will-change: transform, box-shadow;
 }
 .book-card:hover {
-  box-shadow: 0 8px 32px rgba(59, 76, 96, 0.14);
-  transform: translateY(-3px);
+  transform: translateY(-8px) scale(1.015);
+  border-color: #044A82;
+  box-shadow: 
+    0 22px 45px -12px rgba(4, 74, 130, 0.22),
+    0 12px 22px -8px rgba(28, 37, 48, 0.10),
+    0 0 0 1px rgba(4, 74, 130, 0.25);
+}
+
+/* Realistic Book Spine Texture & Crease */
+.book-cover {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    inset 6px 0 14px -3px rgba(0, 0, 0, 0.45),
+    inset -2px 0 6px rgba(255, 255, 255, 0.08);
+}
+.book-spine-crease {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Silky Sheen Sweep across Book Cover on Hover */
+.book-cover-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.38) 50%,
+    rgba(255, 255, 255, 0.03) 75%,
+    transparent 100%
+  );
+  transform: translateX(-160%) skewX(-20deg);
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 6;
+}
+.book-card:hover .book-cover-shimmer {
+  transform: translateX(180%) skewX(-20deg);
 }
 
 .media-card {
@@ -134,14 +189,27 @@
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  transition: 
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.3s ease;
+  will-change: transform, box-shadow;
+}
+.media-card:hover {
+  transform: translateY(-5px);
+  border-color: #044A82;
+  box-shadow: 
+    0 18px 36px -8px rgba(4, 74, 130, 0.20),
+    0 8px 16px -4px rgba(28, 37, 48, 0.10);
 }
 .media-card::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(4, 74, 130, 0.4);
+  background: rgba(4, 74, 130, 0.35);
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 .media-card:hover::after { opacity: 1; }
 
@@ -309,24 +377,31 @@ section[id] {
 
 /* ── Card hover lift ── */
 .card-lift {
-  transition: translate 0.2s ease, box-shadow 0.2s ease;
+  transition: 
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.3s ease;
+  will-change: transform, box-shadow;
 }
 .card-lift:hover {
-  translate: 0 -4px;
-  box-shadow: 0 16px 36px -8px rgb(0 0 0 / 0.14);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -10px rgba(59, 76, 96, 0.18);
 }
 
 /* ── Pillar card hover (dark bg section) ── */
 .pillar-card {
   transition:
-    background-color 0.25s ease,
-    border-color 0.25s ease,
-    translate 0.25s ease;
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform, box-shadow;
 }
 .pillar-card:hover {
   background-color: color-mix(in srgb, #1C2530 88%, #ffffff);
   border-color: color-mix(in srgb, #3B4C60 70%, #C1BDA6);
-  translate: 0 -4px;
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.35);
 }
 
 /* ── Interactive transitions consolidated in Buttons section ── */
@@ -343,13 +418,29 @@ section[id] {
   background-size: 0% 2px;
   background-position: bottom left;
   background-repeat: no-repeat;
-  transition: background-size 0.3s ease;
+  transition: background-size 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .link-slide:hover { background-size: 100% 2px; }
 
 /* ── FAQ accordion smooth reveal ── */
-details[open] > .faq-content {
-  animation: fade-up 0.28s ease both;
+details.faq-item {
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+details.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+details.faq-item[open] > .faq-content {
+  animation: faq-expand 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes faq-expand {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 

@@ -136,7 +136,7 @@ const books = [
         <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3" id="book-filters" role="tablist" aria-label="Filtrar livros por público">
           <button
             type="button"
-            class="filter-pill active px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all bg-[#044A82] text-white shadow-xs cursor-pointer"
+            class="filter-pill active px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 bg-[#044A82] text-white shadow-xs cursor-pointer"
             data-filter="all"
             role="tab"
             aria-selected="true"
@@ -145,7 +145,7 @@ const books = [
           </button>
           <button
             type="button"
-            class="filter-pill px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all bg-white text-[#454A50] border border-[#DEDEDE] hover:border-[#044A82] cursor-pointer"
+            class="filter-pill px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 bg-white text-[#454A50] border border-[#DEDEDE] hover:border-[#044A82] hover:text-[#044A82] cursor-pointer"
             data-filter="homens"
             role="tab"
             aria-selected="false"
@@ -154,7 +154,7 @@ const books = [
           </button>
           <button
             type="button"
-            class="filter-pill px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all bg-white text-[#454A50] border border-[#DEDEDE] hover:border-[#044A82] cursor-pointer"
+            class="filter-pill px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 bg-white text-[#454A50] border border-[#DEDEDE] hover:border-[#044A82] hover:text-[#044A82] cursor-pointer"
             data-filter="mulheres"
             role="tab"
             aria-selected="false"
@@ -163,7 +163,7 @@ const books = [
           </button>
           <button
             type="button"
-            class="filter-pill px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all bg-white text-[#454A50] border border-[#DEDEDE] hover:border-[#044A82] cursor-pointer"
+            class="filter-pill px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 bg-white text-[#454A50] border border-[#DEDEDE] hover:border-[#044A82] hover:text-[#044A82] cursor-pointer"
             data-filter="devocional"
             role="tab"
             aria-selected="false"
@@ -172,7 +172,7 @@ const books = [
           </button>
           <button
             type="button"
-            class="filter-pill px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all bg-white text-[#454A50] border border-[#DEDEDE] hover:border-[#044A82] cursor-pointer"
+            class="filter-pill px-4 py-2 rounded-xs font-montserrat text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 bg-white text-[#454A50] border border-[#DEDEDE] hover:border-[#044A82] hover:text-[#044A82] cursor-pointer"
             data-filter="igreja"
             role="tab"
             aria-selected="false"
@@ -187,22 +187,26 @@ const books = [
         {
           books.map((book) => (
             <article
-              class="book-item bg-white border border-[#DEDEDE] flex flex-col justify-between hover:shadow-xl hover:border-[#044A82] transition-all duration-300"
+              class="book-card book-item group flex flex-col justify-between"
               data-category={book.category}
             >
-              <!-- Card Header / Cover Mockup -->
-              <div class={`relative h-56 p-6 ${book.bgColor} flex flex-col justify-between overflow-hidden text-white`}>
+              <!-- Card Header / Hardcover Mockup with 3D Spine and Shimmer -->
+              <div class={`book-cover relative h-60 p-6 ${book.bgColor} flex flex-col justify-between overflow-hidden text-white`}>
+                <div class="book-spine-crease"></div>
+                <div class="book-cover-shimmer"></div>
+                <div class="absolute right-0 top-0 bottom-0 w-1.5 bg-gradient-to-l from-white/20 to-transparent pointer-events-none"></div>
+
                 <div class="flex items-start justify-between z-10">
-                  <span class="inline-block px-2.5 py-1 text-[0.7rem] uppercase font-bold tracking-wider rounded-xs bg-white/20 backdrop-blur-xs">
+                  <span class="inline-block px-2.5 py-1 text-[0.7rem] uppercase font-bold tracking-wider rounded-xs bg-white/20 backdrop-blur-xs group-hover:scale-105 group-hover:bg-white/30 transition-all duration-300">
                     {book.categoryLabel}
                   </span>
-                  <span class="font-ruda font-black text-lg text-white bg-black/20 px-2.5 py-0.5 rounded-xs border border-white/10">
+                  <span class="font-ruda font-black text-lg text-white bg-black/25 px-2.5 py-0.5 rounded-xs border border-white/15 group-hover:border-white/40 group-hover:scale-105 transition-all duration-300 shadow-xs">
                     {book.price}
                   </span>
                 </div>
 
                 <div class="relative z-10">
-                  <h3 class="font-ruda font-black text-xl leading-snug text-white mb-1">
+                  <h3 class="font-ruda font-black text-xl leading-snug text-white mb-1 group-hover:translate-x-1.5 transition-transform duration-300 drop-shadow-xs">
                     {book.title}
                   </h3>
                   <span class="font-montserrat text-xs text-[#C1BDA6] font-medium block">
@@ -210,17 +214,17 @@ const books = [
                   </span>
                 </div>
 
-                <!-- Decorative spine indicator -->
-                <div class="absolute left-0 top-0 bottom-0 w-2 bg-white/15"></div>
-                <div class="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-white/5 pointer-events-none"></div>
+                <!-- Decorative geometric elements with smooth hover expansion -->
+                <div class="absolute -right-8 -bottom-8 w-36 h-36 rounded-full bg-white/5 pointer-events-none group-hover:scale-150 group-hover:rotate-45 transition-transform duration-700 ease-out"></div>
+                <div class="absolute -left-6 -top-6 w-24 h-24 rounded-full bg-black/10 pointer-events-none group-hover:scale-125 transition-transform duration-700 ease-out"></div>
               </div>
 
               <!-- Card Body -->
-              <div class="p-6 flex flex-col justify-between flex-1">
+              <div class="p-6 flex flex-col justify-between flex-1 bg-white">
                 <div>
                   <!-- Focus badge -->
                   <div class="mb-3">
-                    <span class="inline-flex items-center text-[0.72rem] font-bold text-[#044A82] bg-[#044A82]/10 px-2.5 py-1 rounded-xs">
+                    <span class="inline-flex items-center text-[0.72rem] font-bold text-[#044A82] bg-[#044A82]/10 px-2.5 py-1 rounded-xs group-hover:bg-[#044A82]/15 transition-colors">
                       🎯 {book.audience}
                     </span>
                   </div>
@@ -234,15 +238,16 @@ const books = [
                 <div class="pt-4 border-t border-[#DEDEDE] flex items-center justify-between gap-3">
                   <div>
                     <span class="text-[0.68rem] uppercase font-bold text-[#727272] block">Valor</span>
-                    <strong class="font-ruda text-xl text-[#1C2530] font-black">{book.price}</strong>
+                    <strong class="font-ruda text-xl text-[#1C2530] font-black group-hover:text-[#044A82] transition-colors">{book.price}</strong>
                   </div>
 
                   <a
                     href={getWhatsAppOrderUrl(book.title)}
-                    class="btn-primary text-xs px-4 py-2.5"
+                    class="btn-primary text-xs px-4 py-2.5 inline-flex items-center gap-2 group-hover:shadow-md transition-all"
                     aria-label={`Solicitar o livro ${book.title}`}
                   >
-                    Solicitar Livro
+                    <span>Solicitar Livro</span>
+                    <span class="inline-block transform group-hover:translate-x-1 transition-transform">💬</span>
                   </a>
                 </div>
               </div>

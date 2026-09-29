@@ -41,9 +41,9 @@ const testimonials = [
     <div class="grid md:grid-cols-2 gap-8">
       {
         testimonials.map((t) => (
-          <div class="border border-[#DEDEDE] p-8 sm:p-10 bg-[#F5F2EC]/40 flex flex-col justify-between">
+          <div class="border border-[#DEDEDE] hover:border-[#044A82] p-8 sm:p-10 bg-[#F5F2EC]/40 hover:bg-white flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg group">
             <div>
-              <div class="text-[#044A82] font-editorial text-4xl mb-3 leading-none select-none" aria-hidden="true">
+              <div class="text-[#044A82] font-editorial text-4xl mb-3 leading-none select-none inline-block group-hover:scale-115 transition-transform duration-300" aria-hidden="true">
                 “
               </div>
               <blockquote class="font-montserrat text-[#1C2530] text-sm sm:text-base leading-relaxed mb-6 italic">
@@ -53,10 +53,10 @@ const testimonials = [
 
             <div class="flex flex-wrap items-center justify-between gap-4 border-t border-[#DEDEDE] pt-4">
               <div>
-                <div class="font-ruda font-bold text-[#1C2530] text-sm">{t.name}</div>
+                <div class="font-ruda font-bold text-[#1C2530] text-sm group-hover:text-[#044A82] transition-colors">{t.name}</div>
                 <div class="font-montserrat text-[#575757] text-xs uppercase tracking-wider">{t.location}</div>
               </div>
-              <span class="font-montserrat text-xs font-bold uppercase tracking-widest text-[#044A82] border border-[#044A82]/30 px-3 py-1 bg-white">
+              <span class="font-montserrat text-xs font-bold uppercase tracking-widest text-[#044A82] border border-[#044A82]/30 px-3 py-1 bg-white group-hover:bg-[#044A82] group-hover:text-white group-hover:border-[#044A82] transition-all duration-300 shadow-2xs">
                 {t.program}
               </span>
             </div>
