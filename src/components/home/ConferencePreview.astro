@@ -19,7 +19,7 @@ import Button from "../ui/Button.astro";
 
   <Container size="wide" class="relative z-10">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <div>
+      <div data-reveal="from-left">
         <span class="font-montserrat text-[#C1BDA6] text-xs font-bold tracking-[0.15em] uppercase block mb-4">
           Conferência Anual Pure Life Ministries Brasil
         </span>
@@ -65,7 +65,7 @@ import Button from "../ui/Button.astro";
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-2 gap-4" data-reveal-group>
         {
           [
             { num: "2ª", label: "Próxima edição" },
@@ -73,9 +73,9 @@ import Button from "../ui/Button.astro";
             { num: "3", label: "Dias de ensino" },
             { num: "Brasília", label: "Local" },
           ].map((stat) => (
-            <div class="border border-[#3B4C60] bg-[#1C2530]/80 p-8 text-center backdrop-blur-xs">
-              <div class="font-ruda font-black text-[#C1BDA6] text-3xl sm:text-4xl mb-2">{stat.num}</div>
-              <div class="font-montserrat text-[#DEDEDE] text-xs uppercase tracking-widest">{stat.label}</div>
+            <div class="pillar-card group border border-[#3B4C60]/70 bg-[#1C2530]/80 hover:bg-[#1C2530] hover:border-[#C1BDA6] p-6 sm:p-8 text-center backdrop-blur-xs cursor-default rounded-xs" data-reveal>
+              <div class="font-ruda font-black text-[#C1BDA6] text-3xl sm:text-4xl mb-2 transition-transform duration-500 group-hover:scale-110">{stat.num}</div>
+              <div class="font-montserrat text-[#DEDEDE] group-hover:text-white text-xs uppercase tracking-widest transition-colors duration-300">{stat.label}</div>
             </div>
           ))
         }

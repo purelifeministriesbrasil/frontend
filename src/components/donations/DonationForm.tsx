@@ -174,7 +174,7 @@ export default function DonationForm() {
           <button
             type="button"
             onClick={() => setFrequency("one_time")}
-            className={`flex-1 py-2.5 px-4 text-xs font-bold uppercase tracking-wider font-montserrat rounded-xs transition-all duration-300 cursor-pointer ${
+            className={`flex-1 py-2.5 px-4 text-xs font-bold uppercase tracking-wider font-montserrat rounded-xs transition-all duration-300 cursor-pointer active:scale-95 ${
               frequency === "one_time"
                 ? "bg-[#044A82] text-white shadow-xs"
                 : "text-[#575757] hover:text-[#1C2530] hover:bg-white/60"
@@ -185,7 +185,7 @@ export default function DonationForm() {
           <button
             type="button"
             onClick={() => setFrequency("monthly")}
-            className={`flex-1 py-2.5 px-4 text-xs font-bold uppercase tracking-wider font-montserrat rounded-xs transition-all duration-300 cursor-pointer ${
+            className={`flex-1 py-2.5 px-4 text-xs font-bold uppercase tracking-wider font-montserrat rounded-xs transition-all duration-300 cursor-pointer active:scale-95 ${
               frequency === "monthly"
                 ? "bg-[#044A82] text-white shadow-xs"
                 : "text-[#575757] hover:text-[#1C2530] hover:bg-white/60"
@@ -211,7 +211,7 @@ export default function DonationForm() {
                 key={p.cents}
                 type="button"
                 onClick={() => setAmountCents(p.cents)}
-                className={`py-3 px-2 text-xs font-bold font-montserrat rounded-xs border transition-all duration-300 flex flex-col items-center justify-center gap-0.5 cursor-pointer ${
+                className={`py-3 px-2 text-xs font-bold font-montserrat rounded-xs border transition-all duration-300 flex flex-col items-center justify-center gap-0.5 cursor-pointer active:scale-95 ${
                   isSelected
                     ? "bg-[#044A82] text-white border-[#044A82] shadow-sm -translate-y-0.5 ring-2 ring-[#044A82]/20"
                     : "bg-white text-[#1C2530] border-[#DEDEDE] hover:border-[#044A82]/50 hover:bg-[#F5F2EC]/50 hover:-translate-y-0.5 hover:shadow-2xs active:translate-y-0"

@@ -271,9 +271,16 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="btn-primary w-full text-center py-3.5 text-xs font-bold tracking-wider mt-2"
+        className="btn-primary w-full text-center py-3.5 text-xs font-bold tracking-wider mt-2 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
       >
-        {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+        {isSubmitting ? (
+          <>
+            <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+            <span>Enviando Mensagem...</span>
+          </>
+        ) : (
+          "Enviar Mensagem"
+        )}
       </button>
     </form>
   );

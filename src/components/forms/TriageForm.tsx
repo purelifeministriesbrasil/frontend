@@ -390,9 +390,16 @@ export default function TriageForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="btn-primary w-full text-center py-4 text-xs font-bold tracking-wider mt-4"
+          className="btn-primary w-full text-center py-4 text-xs font-bold tracking-wider mt-4 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
         >
-          {isSubmitting ? "Enviando com segurança..." : "Enviar Solicitação Confidencial"}
+          {isSubmitting ? (
+            <>
+              <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+              <span>Enviando com segurança...</span>
+            </>
+          ) : (
+            "Enviar Solicitação Confidencial"
+          )}
         </button>
       </div>
     </form>

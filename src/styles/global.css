@@ -509,8 +509,7 @@ section[id] {
 }
 .link-slide:hover { background-size: 100% 2px; }
 
-/* ── FAQ accordion smooth reveal ── */
-/* ── FAQ accordion smooth reveal ── */
+/* ── FAQ accordion container styling ── */
 details.faq-item {
   transition: background-color 0.3s ease, border-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
   border-radius: 4px;
@@ -524,19 +523,6 @@ details.faq-item summary::-webkit-details-marker {
 }
 details.faq-item summary {
   user-select: none;
-}
-details.faq-item[open] > .faq-content {
-  animation: faq-expand 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-@keyframes faq-expand {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 
@@ -809,17 +795,28 @@ details.faq-item[open] > .faq-content {
   display: none;
 }
 
-.faq-trigger::after {
-  content: "+";
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--color-brand-primary);
-  transition: transform 0.2s ease;
+/* ── FAQ Animated Plus to Minus (+ to −) Transition ── */
+.faq-icon-wrapper {
+  will-change: transform, background-color;
 }
 
-.faq-item[open] .faq-trigger::after {
-  content: "−";
+.faq-bar-h {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-bar-v {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+.faq-item[open] .faq-bar-v,
+details[open].group .faq-bar-v {
+  transform: rotate(90deg) scaleY(0);
+  opacity: 0;
+}
+
+.faq-item[open] .faq-bar-h,
+details[open].group .faq-bar-h {
+  transform: rotate(180deg);
 }
 
 .faq-content {
@@ -828,6 +825,21 @@ details.faq-item[open] > .faq-content {
   font-size: var(--text-sm);
   line-height: 1.7;
   color: var(--color-text-muted);
+}
+
+.faq-item[open] .faq-content {
+  animation: plmFaqReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes plmFaqReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
