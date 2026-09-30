@@ -20,12 +20,25 @@ import Button from "../ui/Button.astro";
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10" data-reveal-group>
           {
-            ["Visita ao campus", "Reunião pastoral", "Dia de imersão"].map((item) => (
-              <div class="border border-[#DEDEDE] bg-[#F5F2EC] hover:bg-white hover:border-[#044A82] p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xs cursor-default group" data-reveal>
-                <span class="font-montserrat text-[#3B4C60] group-hover:text-[#044A82] text-xs font-bold uppercase tracking-wider block transition-colors">
-                  {item}
+            [
+              { label: "Visita ao campus", href: "/campus/", desc: "Instalações & Acomodações" },
+              { label: "Reunião pastoral", href: "/contato/?assunto=Reuni%C3%A3o+Pastoral", desc: "Alinhamento com a Liderança" },
+              { label: "Dia de imersão", href: "/contato/?assunto=Dia+de+Imers%C3%A3o", desc: "Aconselhamento Intensivo" }
+            ].map((item) => (
+              <a
+                href={item.href}
+                class="campus-pill group relative border border-[#DEDEDE] bg-[#F5F2EC] hover:bg-white hover:border-[#044A82] p-4 sm:p-5 text-center block overflow-hidden cursor-pointer shadow-2xs"
+                data-reveal
+              >
+                <!-- Top accent border animation -->
+                <div class="absolute top-0 left-0 right-0 h-0.5 bg-[#044A82] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                <span class="font-montserrat text-[#1C2530] group-hover:text-[#044A82] text-xs font-bold uppercase tracking-wider block transition-colors duration-300">
+                  {item.label}
                 </span>
-              </div>
+                <span class="font-montserrat text-[#575757] text-[0.7rem] block mt-1.5 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                  {item.desc}
+                </span>
+              </a>
             ))
           }
         </div>

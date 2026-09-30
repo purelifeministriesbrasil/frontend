@@ -123,11 +123,11 @@
   position: relative;
   background: #FFFFFF;
   border: 1px solid #DEDEDE;
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
   transition: 
-    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 
     0 4px 18px -4px rgba(28, 37, 48, 0.06),
@@ -135,11 +135,11 @@
   will-change: transform, box-shadow;
 }
 .book-card:hover {
-  transform: translateY(-7px);
+  transform: translateY(-8px) scale(1.015);
   border-color: rgba(4, 74, 130, 0.45);
   box-shadow: 
     0 0 0 1px rgba(4, 74, 130, 0.22),
-    0 22px 48px -12px rgba(4, 74, 130, 0.20),
+    0 24px 50px -12px rgba(4, 74, 130, 0.22),
     0 12px 24px -6px rgba(28, 37, 48, 0.08),
     0 0 50px 0 rgba(4, 74, 130, 0.15);
 }
@@ -195,17 +195,17 @@
   position: relative;
   cursor: pointer;
   transition: 
-    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-    border-color 0.3s ease;
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, box-shadow;
 }
 .media-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px) scale(1.01);
   border-color: #044A82;
   box-shadow: 
-    0 18px 36px -8px rgba(4, 74, 130, 0.20),
-    0 8px 16px -4px rgba(28, 37, 48, 0.10);
+    0 22px 46px -10px rgba(4, 74, 130, 0.32),
+    0 10px 20px -5px rgba(28, 37, 48, 0.15);
 }
 .media-card::after {
   content: '';
@@ -380,33 +380,125 @@ section[id] {
 [data-reveal-group] > *:nth-child(5) { transition-delay: 340ms; }
 [data-reveal-group] > *:nth-child(6) { transition-delay: 425ms; }
 
-/* ── Card hover lift ── */
-.card-lift {
+/* ── Hover Reset for Stagger Delays ──
+   Ensures hover interactions respond immediately without entrance stagger delay */
+[data-reveal]:hover,
+[data-reveal-group] > *:hover {
+  transition-delay: 0ms !important;
+}
+
+/* ── Interactive Cards Smooth Hover Presets (immune to [data-reveal] shorthand override) ── */
+.book-card,
+[data-reveal].book-card,
+[data-reveal-group] > .book-card {
+  border-radius: 0;
   transition: 
-    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-    border-color 0.3s ease;
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    translate 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, box-shadow;
 }
-.card-lift:hover {
+
+.book-card:hover,
+[data-reveal].book-card:hover,
+[data-reveal-group] > .book-card:hover {
+  transform: translateY(-8px) scale(1.015);
+  border-color: rgba(4, 74, 130, 0.45);
+  box-shadow: 
+    0 0 0 1px rgba(4, 74, 130, 0.22),
+    0 24px 50px -12px rgba(4, 74, 130, 0.22),
+    0 12px 24px -6px rgba(28, 37, 48, 0.08),
+    0 0 50px 0 rgba(4, 74, 130, 0.15);
+}
+
+.media-card,
+[data-reveal].media-card,
+[data-reveal-group] > .media-card {
+  background: #1C2530;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: 
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    translate 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, box-shadow;
+}
+
+.media-card:hover,
+[data-reveal].media-card:hover,
+[data-reveal-group] > .media-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: #044A82;
+  box-shadow: 
+    0 22px 46px -10px rgba(4, 74, 130, 0.32),
+    0 10px 20px -5px rgba(28, 37, 48, 0.15);
+}
+
+.campus-pill,
+[data-reveal].campus-pill,
+[data-reveal-group] > .campus-pill {
+  transition: 
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    translate 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, box-shadow;
+}
+
+.campus-pill:hover,
+[data-reveal].campus-pill:hover,
+[data-reveal-group] > .campus-pill:hover {
+  transform: translateY(-5px) scale(1.015);
+  border-color: #044A82;
+  box-shadow: 0 16px 36px -8px rgba(4, 74, 130, 0.18);
+}
+
+/* ── Card hover lift ── */
+.card-lift,
+[data-reveal].card-lift,
+[data-reveal-group] > .card-lift {
+  transition: 
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease,
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    translate 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, box-shadow;
+}
+.card-lift:hover,
+[data-reveal].card-lift:hover,
+[data-reveal-group] > .card-lift:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px -10px rgba(59, 76, 96, 0.18);
+  box-shadow: 0 22px 44px -10px rgba(59, 76, 96, 0.20);
 }
 
 /* ── Pillar card hover (dark bg section) ── */
-.pillar-card {
+.pillar-card,
+[data-reveal].pillar-card,
+[data-reveal-group] > .pillar-card {
   transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    translate 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, box-shadow;
 }
-.pillar-card:hover {
+.pillar-card:hover,
+[data-reveal].pillar-card:hover,
+[data-reveal-group] > .pillar-card:hover {
   background-color: color-mix(in srgb, #1C2530 88%, #ffffff);
   border-color: color-mix(in srgb, #3B4C60 70%, #C1BDA6);
-  transform: translateY(-5px);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.35);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 42px -8px rgba(0, 0, 0, 0.40);
 }
 
 /* ── Interactive transitions consolidated in Buttons section ── */
@@ -532,7 +624,12 @@ details.faq-item[open] > .faq-content {
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: 
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .btn-primary:active, .btn-dark:active, .btn-outline:active, .btn-outline-light:active {
