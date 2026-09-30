@@ -66,8 +66,8 @@ import Button from "../ui/Button.astro";
               { label: "Formato", val: "Grupo guiado pela PLM Brasil" },
               { label: "Inscrições", val: "Conforme calendário oficial" },
             ].map((d) => (
-              <div class="border border-[#3B4C60] bg-[#1C2530]/80 p-6">
-                <div class="font-montserrat text-[#C1BDA6] text-xs uppercase tracking-widest font-semibold mb-2">
+              <div class="pillar-card border border-[#3B4C60] bg-[#1C2530]/80 p-6 cursor-default group" data-reveal>
+                <div class="font-montserrat text-[#C1BDA6] group-hover:text-white text-xs uppercase tracking-widest font-semibold mb-2 transition-colors duration-300">
                   {d.label}
                 </div>
                 <div class="font-ruda font-bold text-white text-base leading-snug">{d.val}</div>
@@ -76,7 +76,7 @@ import Button from "../ui/Button.astro";
           }
         </div>
 
-        <div class="border border-[#3B4C60]/60 p-6 bg-white/5">
+        <div class="pillar-card border border-[#3B4C60]/60 p-6 bg-white/5 cursor-default" data-reveal>
           <h4 class="font-ruda font-bold text-white text-base mb-3">Para quem é indicada?</h4>
           <ul class="flex flex-col gap-2.5 font-montserrat text-xs text-[#DEDEDE]">
             <li>• Pastores e presbíteros que desejam implementar aconselhamento bíblico em suas igrejas</li>

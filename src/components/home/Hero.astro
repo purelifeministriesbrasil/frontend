@@ -3,7 +3,7 @@ import Container from "../ui/Container.astro";
 import Button from "../ui/Button.astro";
 ---
 
-<section id="hero" class="relative min-h-[92vh] sm:min-h-screen flex flex-col justify-center pt-20 sm:pt-24 lg:pt-24 pb-8 sm:pb-12 overflow-hidden bg-[#1C2530] text-white">
+<section id="hero" class="relative min-h-[90vh] sm:min-h-screen flex flex-col justify-center pt-16 sm:pt-20 lg:pt-20 pb-6 sm:pb-8 overflow-hidden bg-[#1C2530] text-white">
   <!-- Imagem Local Otimizada com fetchpriority="high" (§3.4, §3.5) -->
   <div class="absolute inset-0 z-0 overflow-hidden">
     <img
@@ -29,7 +29,7 @@ import Button from "../ui/Button.astro";
   <Container size="wide" class="relative z-10">
     <div class="max-w-3xl">
       <!-- Tag de Abertura -->
-      <div class="hero-animate-1 flex items-center gap-3 mb-3 sm:mb-4 group cursor-default">
+      <div class="hero-animate-1 flex items-center gap-3 mb-2.5 sm:mb-3 group cursor-default">
         <div class="w-10 sm:w-12 h-0.5 bg-[#C1BDA6] group-hover:w-16 transition-all duration-300"></div>
         <span class="font-editorial text-[#C1BDA6] text-xs sm:text-sm tracking-[0.18em]">
           Escola de Aconselhamento Bíblico Cristão Reformado
@@ -37,19 +37,19 @@ import Button from "../ui/Button.astro";
       </div>
 
       <!-- Título Principal -->
-      <h1 class="hero-animate-2 font-ruda font-black text-white text-balance text-3xl sm:text-4xl lg:text-[3.25rem] leading-[1.1] mb-4 sm:mb-5">
+      <h1 class="hero-animate-2 font-ruda font-black text-white text-balance text-3xl sm:text-4xl lg:text-[3.15rem] leading-[1.1] mb-3.5 sm:mb-4">
         Uma vida de pureza começa com uma vida{" "}
         <span class="text-[#C1BDA6] font-normal italic font-editorial">rendida a Cristo.</span>
       </h1>
 
       <!-- Subtítulo -->
-      <p class="hero-animate-3 font-montserrat text-[#DEDEDE] text-base sm:text-lg font-light leading-relaxed mb-4 sm:mb-5 max-w-2xl">
+      <p class="hero-animate-3 font-montserrat text-[#DEDEDE] text-base sm:text-lg font-light leading-relaxed mb-3.5 sm:mb-4 max-w-2xl">
         Há mais de quatro décadas, liderando cristãos à transformação genuína por meio do aconselhamento bíblico e da graça soberana de Deus.
       </p>
 
       <!-- Destaque 40 anos -->
-      <div class="hero-animate-4 flex items-center gap-4 mb-5 sm:mb-6">
-        <div class="border border-[#C1BDA6]/40 bg-[#1C2530]/75 hover:bg-[#1C2530] hover:border-[#C1BDA6] hover:shadow-[0_0_20px_rgba(193,189,166,0.18)] hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-xs px-4 py-2 sm:px-5 sm:py-2.5 inline-flex items-center gap-3 cursor-default group">
+      <div class="hero-animate-4 flex items-center gap-4 mb-4 sm:mb-5">
+        <div class="border border-[#C1BDA6]/40 bg-[#1C2530]/75 hover:bg-[#1C2530] hover:border-[#C1BDA6] hover:shadow-[0_0_20px_rgba(193,189,166,0.18)] hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-xs px-4 py-2 sm:px-5 sm:py-2 inline-flex items-center gap-3 cursor-default group">
           <span class="font-ruda font-black text-[#C1BDA6] text-xl sm:text-2xl group-hover:scale-105 transition-transform duration-300">+40</span>
           <span class="font-montserrat text-[#DEDEDE] group-hover:text-white text-[0.7rem] sm:text-xs uppercase tracking-[0.12em] transition-colors duration-200">Anos de ministério</span>
         </div>
@@ -57,25 +57,25 @@ import Button from "../ui/Button.astro";
 
       <!-- Ações Principais -->
       <div class="hero-animate-5 flex flex-wrap items-center gap-3 sm:gap-4">
-        <Button href="/programas/" variant="primary" class="text-xs sm:text-sm px-6 sm:px-7 py-3.5 sm:py-4">
+        <Button href="/programas/" variant="primary" class="text-xs sm:text-sm px-6 sm:px-7 py-3 sm:py-3.5">
           Conheça nossos programas
         </Button>
-        <Button href="/triagem/" variant="outline-light" class="text-xs sm:text-sm px-6 sm:px-7 py-3.5 sm:py-4">
+        <Button href="/triagem/" variant="outline-light" class="text-xs sm:text-sm px-6 sm:px-7 py-3 sm:py-3.5">
           Pedir ajuda confidencial
         </Button>
       </div>
 
       <!-- Lema do Ministério -->
-      <p class="hero-animate-5 font-editorial text-[#C1BDA6]/80 text-xs sm:text-sm mt-4 sm:mt-5 tracking-widest italic">
+      <p class="hero-animate-5 font-editorial text-[#C1BDA6]/80 text-xs sm:text-sm mt-3.5 sm:mt-4 tracking-widest italic">
         "Liderando Cristãos à Pureza desde 1986!"
       </p>
     </div>
   </Container>
 
-  <!-- Indicador de Rolagem Animado -->
-  <div class="absolute bottom-8 right-8 hidden md:flex flex-col items-center gap-2 opacity-60 z-10" aria-hidden="true">
-    <span class="font-montserrat text-[#DEDEDE] text-[0.6rem] tracking-[0.2em] uppercase">Role</span>
-    <div class="w-px h-12 bg-[#C1BDA6]/50 relative overflow-hidden">
+  <!-- Indicador de Rolagem Animado (responsivo para mobile, tablet e desktop) -->
+  <div class="absolute bottom-3 right-4 sm:bottom-5 sm:right-6 md:bottom-8 md:right-8 flex flex-col items-center gap-1.5 sm:gap-2 opacity-70 hover:opacity-100 transition-opacity z-10" aria-hidden="true">
+    <span class="font-montserrat text-[#DEDEDE] text-[0.55rem] sm:text-[0.6rem] tracking-[0.2em] uppercase font-semibold">Role</span>
+    <div class="w-px h-8 sm:h-10 md:h-12 bg-[#C1BDA6]/50 relative overflow-hidden">
       <div class="absolute inset-0 bg-[#C1BDA6] animate-bounce origin-top scroll-indicator-bar"></div>
     </div>
   </div>

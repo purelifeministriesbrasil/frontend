@@ -56,7 +56,7 @@ const campusPhotos = [
     <Container size="wide">
       <!-- Visão Geral -->
       <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
-        <div>
+        <div data-reveal="from-left">
           <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
             Ambiente Separado para Deus
           </span>
@@ -79,7 +79,7 @@ const campusPhotos = [
           </div>
         </div>
 
-        <div class="overflow-hidden border border-[#DEDEDE] shadow-md bg-white p-2">
+        <div class="card-lift overflow-hidden border border-[#DEDEDE] shadow-md bg-white p-2 group" data-reveal="from-right">
           <img
             src="/images/purelife/campus-1.webp"
             alt="Ambiente externo e instalações do campus PLM Brasil"
@@ -87,13 +87,13 @@ const campusPhotos = [
             height="520"
             loading="lazy"
             decoding="async"
-            class="w-full h-[400px] object-cover"
+            class="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           />
         </div>
       </div>
 
       <!-- Resumo do Programa Residencial no Campus -->
-      <div class="bg-white border-2 border-[#044A82] p-8 sm:p-10 mb-20 shadow-sm">
+      <div class="bg-white border-2 border-[#044A82] p-8 sm:p-10 mb-20 shadow-sm" data-reveal>
         <div class="grid lg:grid-cols-4 gap-6 items-center">
           <div class="lg:col-span-3">
             <span class="font-montserrat text-xs uppercase font-bold tracking-wider text-[#044A82] block mb-1">
@@ -130,7 +130,7 @@ const campusPhotos = [
 
       <!-- Galeria de Fotos do Campus -->
       <div class="mb-20">
-        <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="text-center max-w-2xl mx-auto mb-12" data-reveal>
           <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
             Galeria do Campus
           </span>
@@ -142,10 +142,10 @@ const campusPhotos = [
           </p>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" data-reveal-group>
           {
             campusPhotos.map((photo) => (
-              <div class="bg-white border border-[#DEDEDE] overflow-hidden hover:border-[#044A82] hover:shadow-lg transition-all duration-300 flex flex-col group">
+              <div class="card-lift bg-white border border-[#DEDEDE] overflow-hidden hover:border-[#044A82] hover:shadow-lg transition-all duration-500 flex flex-col group cursor-default" data-reveal>
                 <div class="h-52 overflow-hidden relative">
                   <img
                     src={photo.src}
@@ -154,12 +154,12 @@ const campusPhotos = [
                     height="400"
                     loading="lazy"
                     decoding="async"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    class="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700 ease-out"
                   />
                 </div>
                 <div class="p-5 flex-1 flex flex-col justify-between">
                   <div>
-                    <h4 class="font-ruda font-bold text-base text-[#1C2530] mb-2">{photo.title}</h4>
+                    <h4 class="font-ruda font-bold text-base text-[#1C2530] group-hover:text-[#044A82] transition-colors mb-2">{photo.title}</h4>
                     <p class="font-montserrat text-xs text-[#575757] leading-relaxed">{photo.desc}</p>
                   </div>
                 </div>
@@ -170,20 +170,20 @@ const campusPhotos = [
       </div>
 
       <!-- Diferenciais do campus -->
-      <div class="grid sm:grid-cols-3 gap-6">
-        <div class="bg-white border border-[#DEDEDE] p-8">
+      <div class="grid sm:grid-cols-3 gap-6" data-reveal-group>
+        <div class="card-lift bg-white border border-[#DEDEDE] hover:border-[#044A82] p-8 hover:shadow-md cursor-default transition-all duration-500 group" data-reveal>
           <h4 class="font-ruda font-bold text-lg text-[#044A82] mb-2">Paz e Recolhimento</h4>
           <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
             Ambiente reservado favorável à oração contínua, meditação profunda na Palavra e reconciliação genuína com o Senhor.
           </p>
         </div>
-        <div class="bg-white border border-[#DEDEDE] p-8">
+        <div class="card-lift bg-white border border-[#DEDEDE] hover:border-[#044A82] p-8 hover:shadow-md cursor-default transition-all duration-500 group" data-reveal>
           <h4 class="font-ruda font-bold text-lg text-[#044A82] mb-2">Comunhão Fraternal</h4>
           <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
             Convivência diária transparente com conselheiros bíblicos experientes e irmãos unidos no mesmo propósito de restauração.
           </p>
         </div>
-        <div class="bg-white border border-[#DEDEDE] p-8">
+        <div class="card-lift bg-white border border-[#DEDEDE] hover:border-[#044A82] p-8 hover:shadow-md cursor-default transition-all duration-500 group" data-reveal>
           <h4 class="font-ruda font-bold text-lg text-[#044A82] mb-2">Acesso Facilitado</h4>
           <p class="font-montserrat text-[#575757] text-sm leading-relaxed">
             Localizado a aproximadamente 50 km do Aeroporto Internacional de Brasília, facilitando a vinda de participantes de todo o Brasil.

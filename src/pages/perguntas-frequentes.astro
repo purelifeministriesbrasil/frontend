@@ -79,9 +79,14 @@ const faqJsonLd = {
       <div class="divide-y divide-[#DEDEDE] border-y border-[#DEDEDE] mb-12">
         {
           faqs.map((faq) => (
-            <details class="faq-item group">
+            <details class="faq-item group transition-all duration-300 px-4 -mx-4 rounded-xs hover:bg-[#F5F2EC]/50">
               <summary class="faq-trigger font-ruda font-bold text-base sm:text-lg text-[#1C2530] hover:text-[#044A82] transition-colors py-5 flex items-center justify-between cursor-pointer list-none">
                 <span>{faq.q}</span>
+                <span class="w-7 h-7 rounded-full bg-[#F5F2EC] group-hover:bg-[#044A82]/10 group-open:bg-[#044A82] text-[#044A82] group-open:text-white flex items-center justify-center transition-all duration-300 shrink-0 ml-4 group-open:rotate-180 shadow-2xs" aria-hidden="true">
+                  <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
               </summary>
               <div class="faq-content font-montserrat text-sm sm:text-base text-[#575757] leading-relaxed pb-6 pt-1">
                 <p>{faq.a}</p>

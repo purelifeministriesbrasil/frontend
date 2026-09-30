@@ -207,16 +207,6 @@
     0 22px 46px -10px rgba(4, 74, 130, 0.32),
     0 10px 20px -5px rgba(28, 37, 48, 0.15);
 }
-.media-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(4, 74, 130, 0.35);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-.media-card:hover::after { opacity: 1; }
 
 .quote-mark {
   font-family: var(--font-editorial);
@@ -520,19 +510,28 @@ section[id] {
 .link-slide:hover { background-size: 100% 2px; }
 
 /* ── FAQ accordion smooth reveal ── */
+/* ── FAQ accordion smooth reveal ── */
 details.faq-item {
-  transition: background-color 0.25s ease, border-color 0.25s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 4px;
+}
+details.faq-item[open] {
+  background-color: #F8F7F4;
+  box-shadow: 0 4px 18px -4px rgba(28, 37, 48, 0.06);
 }
 details.faq-item summary::-webkit-details-marker {
   display: none;
 }
+details.faq-item summary {
+  user-select: none;
+}
 details.faq-item[open] > .faq-content {
-  animation: faq-expand 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: faq-expand 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 @keyframes faq-expand {
   from {
     opacity: 0;
-    transform: translateY(-6px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
