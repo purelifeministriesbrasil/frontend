@@ -123,20 +123,25 @@
   position: relative;
   background: #FFFFFF;
   border: 1px solid #DEDEDE;
+  border-radius: 4px;
   overflow: hidden;
   transition: 
-    transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
-    border-color 0.3s ease;
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 4px 18px -4px rgba(28, 37, 48, 0.06),
+    0 2px 6px -1px rgba(0, 0, 0, 0.03);
   will-change: transform, box-shadow;
 }
 .book-card:hover {
-  transform: translateY(-8px) scale(1.015);
-  border-color: #044A82;
+  transform: translateY(-7px);
+  border-color: rgba(4, 74, 130, 0.45);
   box-shadow: 
-    0 22px 45px -12px rgba(4, 74, 130, 0.22),
-    0 12px 22px -8px rgba(28, 37, 48, 0.10),
-    0 0 0 1px rgba(4, 74, 130, 0.25);
+    0 0 0 1px rgba(4, 74, 130, 0.22),
+    0 22px 48px -12px rgba(4, 74, 130, 0.20),
+    0 12px 24px -6px rgba(28, 37, 48, 0.08),
+    0 0 50px 0 rgba(4, 74, 130, 0.15);
 }
 
 /* Realistic Book Spine Texture & Crease */
@@ -176,7 +181,7 @@
     transparent 100%
   );
   transform: translateX(-160%) skewX(-20deg);
-  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
   z-index: 6;
 }

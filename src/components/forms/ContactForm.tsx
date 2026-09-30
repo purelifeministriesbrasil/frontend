@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Check } from "lucide-react";
 import { contactSubmissionSchema, type ContactSubmission } from "@/schemas";
+import Checkbox from "../ui/Checkbox";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<Partial<ContactSubmission>>({
@@ -231,25 +232,37 @@ export default function ContactForm() {
         )}
       </div>
 
-      <div>
-        <label className="flex items-start gap-3 cursor-pointer">
-          <input
-            type="checkbox"
-            name="consent"
-            checked={formData.consent === true}
-            onChange={handleChange}
-            className="mt-1 h-4 w-4 rounded border-gray-300 text-[#044A82] focus:ring-[#D99B26]"
-            aria-describedby={errors.consent ? "contact-error-consent" : undefined}
-          />
-          <span className="font-montserrat text-xs text-[#575757] leading-relaxed">
-            Concordo com a utilização dos meus dados para retorno do contato conforme a{" "}
-            <a href="/politica-de-privacidade/" className="text-[#044A82] underline font-bold" target="_blank" rel="noreferrer">
-              Política de Privacidade
-            </a>.
-          </span>
-        </label>
+      <div className="pt-1">
+        <Checkbox
+          name="consent"
+          checked={formData.consent === true}
+          onChange={(checked) => {
+            setFormData((prev) => ({ ...prev, consent: checked }));
+            if (errors.consent) {
+              setErrors((prev) => {
+                const next = { ...prev };
+                delete next.consent;
+                return next;
+              });
+            }
+          }}
+          aria-describedby={errors.consent ? "contact-error-consent" : undefined}
+          label={
+            <span>
+              Concordo com a utilização dos meus dados para retorno do contato conforme a{" "}
+              <a
+                href="/politica-de-privacidade/"
+                className="text-[#044A82] underline font-bold hover:text-[#033863] transition-colors"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Política de Privacidade
+              </a>.
+            </span>
+          }
+        />
         {errors.consent && (
-          <div id="contact-error-consent" role="alert" className="field-error">
+          <div id="contact-error-consent" role="alert" className="field-error mt-2">
             {errors.consent}
           </div>
         )}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Check, Info } from "lucide-react";
 import { triageSubmissionSchema, type TriageSubmission } from "@/schemas";
+import Checkbox from "../ui/Checkbox";
 
 export default function TriageForm() {
   const [step, setStep] = useState<number>(0);
@@ -350,21 +351,37 @@ export default function TriageForm() {
 
         {/* Termo de Consentimento Explícito */}
         <div className="pt-2">
-          <label className="flex items-start gap-3 cursor-pointer">
-            <input
-              type="checkbox"
-              name="consent"
-              checked={formData.consent === true}
-              onChange={handleChange}
-              className="mt-1 h-4 w-4 rounded border-gray-300 text-[#044A82] focus:ring-[#D99B26]"
-              aria-describedby={errors.consent ? "triage-error-consent" : undefined}
-            />
-            <span className="font-montserrat text-xs text-[#575757] leading-relaxed">
-              Concordo expressamente com a <a href="/politica-de-privacidade/" className="text-[#044A82] underline font-bold" target="_blank" rel="noreferrer">Política de Privacidade</a> (versão 2026-09-19) e autorizo o contato confidencial da equipe pastoral.
-            </span>
-          </label>
+          <Checkbox
+            name="consent"
+            checked={formData.consent === true}
+            onChange={(checked) => {
+              setFormData((prev) => ({ ...prev, consent: checked }));
+              if (errors.consent) {
+                setErrors((prev) => {
+                  const next = { ...prev };
+                  delete next.consent;
+                  return next;
+                });
+              }
+            }}
+            aria-describedby={errors.consent ? "triage-error-consent" : undefined}
+            label={
+              <span>
+                Concordo expressamente com a{" "}
+                <a
+                  href="/politica-de-privacidade/"
+                  className="text-[#044A82] underline font-bold hover:text-[#033863] transition-colors"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Política de Privacidade
+                </a>{" "}
+                (versão 2026-09-19) e autorizo o contato confidencial da equipe pastoral.
+              </span>
+            }
+          />
           {errors.consent && (
-            <div id="triage-error-consent" role="alert" className="field-error">
+            <div id="triage-error-consent" role="alert" className="field-error mt-2">
               {errors.consent}
             </div>
           )}
