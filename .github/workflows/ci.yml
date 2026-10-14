@@ -6,16 +6,24 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   verify:
-    name: Verify Topology, HTML and Static Build
+    name: Typecheck, Static Build, CSP and Topology
     runs-on: ubuntu-latest
+    env:
+      # Valores públicos de build (o deploy real usa as variáveis do projeto no Cloudflare Pages).
+      PUBLIC_SITE_ORIGIN: https://purelifebrasil.org
+      PUBLIC_API_URL: https://api.purelifebrasil.org
+      PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
           version: 12
 
@@ -28,5 +36,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build and verify frontend
+      - name: Typecheck, build (with CSP generation) and verify
         run: pnpm ci:verify
