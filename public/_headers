@@ -1,12 +1,15 @@
-# Cloudflare Pages _headers (§9.2, §17.1)
+# Cloudflare Pages — headers de segurança e cache (§9.2, §17.1)
+# O valor do Content-Security-Policy é gerado no build por scripts/generate-csp.mjs com os hashes SHA-256 dos
+# scripts inline gerados pelo Astro e a origem da API (PUBLIC_API_URL). Não edite em dist/.
 
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
-  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://cdn.sanity.io data:; font-src 'self'; connect-src 'self' https://challenges.cloudflare.com https://*.sanity.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; report-uri /api/csp-report
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Content-Security-Policy: __CSP__
 
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
@@ -20,4 +23,8 @@
 /triagem/*
   Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, private
   Pragma: no-cache
+  Referrer-Policy: no-referrer
+
+/newsletter/*
+  Cache-Control: no-store
   Referrer-Policy: no-referrer

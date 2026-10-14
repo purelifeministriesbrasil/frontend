@@ -27,6 +27,8 @@ const requiredStaticPages = [
   "doar/obrigado/index.html",
   "contato/index.html",
   "perguntas-frequentes/index.html",
+  "politica-de-privacidade/index.html",
+  "newsletter/confirmar/index.html",
   "404.html",
 ];
 
@@ -42,6 +44,18 @@ for (const relPath of requiredStaticPages) {
 if (missing.length > 0) {
   console.error(`[verify-topology] FAILED: Missing static HTML pages (may have defaulted to SSR):`);
   missing.forEach((p) => console.error(`  - ${p}`));
+  process.exit(1);
+}
+
+// Cloudflare Pages: _headers deve existir com o CSP já gerado (sem placeholder).
+const headersFile = path.join(clientDir, "_headers");
+if (!fs.existsSync(headersFile)) {
+  console.error("[verify-topology] FAILED: dist/_headers ausente (headers de segurança do Cloudflare Pages).");
+  process.exit(1);
+}
+const headers = fs.readFileSync(headersFile, "utf-8");
+if (headers.includes("__CSP__") || !/Content-Security-Policy: default-src 'self'/.test(headers)) {
+  console.error("[verify-topology] FAILED: CSP não gerado em dist/_headers. O build deve rodar scripts/generate-csp.mjs.");
   process.exit(1);
 }
 
