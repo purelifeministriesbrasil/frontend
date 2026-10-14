@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Check } from "lucide-react";
 import { contactSubmissionSchema, type ContactSubmission } from "@/schemas";
+import { compact, fieldErrors, newIdempotencyKey, postJson } from "@/lib/api";
+import { siteConfig } from "@/lib/site-config";
 import Checkbox from "../ui/Checkbox";
+import Turnstile, { type TurnstileHandle } from "./Turnstile";
+
+/** Estado de edição: o checkbox pode estar desmarcado; o schema só aceita `true` no envio. */
+type ContactFormState = Omit<Partial<ContactSubmission>, "consent"> & { consent?: boolean };
+
+const INITIAL: ContactFormState = { subject: "Geral", policyVersion: siteConfig.privacyPolicyVersion };
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState<Partial<ContactSubmission>>({
-    subject: "Geral",
-    policyVersion: "2026-09-19",
-    turnstileToken: "dummy-turnstile-token",
-  });
+  const [formData, setFormData] = useState<ContactFormState>(INITIAL);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileHandle>(null);
+  // Mesma chave em retentativas da mesma mensagem: o servidor não duplica o registro.
+  const idempotencyKey = useRef<string>(newIdempotencyKey());
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -28,36 +36,33 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setErrors({});
 
-    const result = contactSubmissionSchema.safeParse(formData);
+    const result = contactSubmissionSchema.safeParse(compact({ ...formData, turnstileToken: turnstileToken ?? undefined }));
     if (!result.success) {
-      const fieldErrors: Record<string, string> = {};
-      result.error.errors.forEach((err) => {
-        const path = err.path.join(".");
-        fieldErrors[path] = err.message;
-      });
-      setErrors(fieldErrors);
+      const fields = fieldErrors(result.error);
+      if (fields.turnstileToken) {
+        delete fields.turnstileToken;
+        fields.form = "Aguarde a verificação de segurança ser concluída e tente novamente.";
+      }
+      setErrors(fields);
       return;
     }
 
     setIsSubmitting(true);
     try {
-      const res = await fetch("/api/forms/contato", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(result.data),
+      const response = await postJson<{ ok: true; referenceCode: string }>("/api/forms/contato", result.data, {
+        idempotencyKey: idempotencyKey.current,
       });
-
-      if (res.ok) {
+      if (response.ok) {
         setSubmitted(true);
+        idempotencyKey.current = newIdempotencyKey();
       } else {
-        const errData = await res.json().catch(() => ({}));
-        setErrors({ form: errData.message || "Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato pelo e-mail institucional." });
+        setErrors({ ...(response.fields ?? {}), form: response.message });
       }
-    } catch {
-      setErrors({ form: "Erro de conexão ao enviar. Verifique sua rede e tente novamente." });
     } finally {
+      turnstileRef.current?.reset();
       setIsSubmitting(false);
     }
   };
@@ -76,11 +81,7 @@ export default function ContactForm() {
           type="button"
           onClick={() => {
             setSubmitted(false);
-            setFormData({
-              subject: "Geral",
-              policyVersion: "2026-09-19",
-              turnstileToken: "dummy-turnstile-token",
-            });
+            setFormData(INITIAL);
           }}
           className="btn-outline text-xs px-5 py-2.5"
         >
@@ -267,6 +268,8 @@ export default function ContactForm() {
           </div>
         )}
       </div>
+
+      <Turnstile ref={turnstileRef} action="contact" onToken={setTurnstileToken} />
 
       <button
         type="submit"

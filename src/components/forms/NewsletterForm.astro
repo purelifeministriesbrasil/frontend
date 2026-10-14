@@ -1,15 +1,20 @@
 ---
+import { apiUrl } from "../../lib/api";
+import { siteConfig } from "../../lib/site-config";
+
 interface Props {
   policyVersion?: string;
 }
 
-const { policyVersion = "2026-09-19" } = Astro.props;
+const { policyVersion = siteConfig.privacyPolicyVersion } = Astro.props;
+// URL absoluta da API: o POST nativo (sem JavaScript) também precisa alcançar o Worker.
+const action = apiUrl("/api/forms/newsletter");
 ---
 
 <div class="w-full max-w-md mx-auto">
   <div id="newsletter-feedback" class="hidden mb-4" role="status" aria-live="polite"></div>
 
-  <form method="post" action="/api/forms/newsletter" class="newsletter-form flex flex-col sm:flex-row gap-3">
+  <form method="post" action={action} class="newsletter-form flex flex-col sm:flex-row gap-3">
     <div class="flex-1">
       <label for="nl-email" class="sr-only">Seu e-mail</label>
       <input
