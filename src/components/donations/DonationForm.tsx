@@ -1,6 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Check, Copy, ArrowLeft } from "lucide-react";
-import { createPixSchema } from "@/schemas";
+import { createPixSchema, type CreatePixResponse } from "@/schemas";
+import { newIdempotencyKey, postJson } from "@/lib/api";
+import Turnstile, { type TurnstileHandle } from "../forms/Turnstile";
+
+const expiryFormatter = new Intl.DateTimeFormat("pt-BR", {
+  dateStyle: "short",
+  timeStyle: "short",
+  timeZone: "America/Sao_Paulo",
+});
 
 export default function DonationForm() {
   const [amountCents, setAmountCents] = useState<number>(5000); // R$ 50,00 padrão
@@ -14,6 +22,15 @@ export default function DonationForm() {
   } | null>(null);
   const [copied, setCopied] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileHandle>(null);
+
+  // Uma chave por doação lógica: duplo clique ou retentativa reutilizam a mesma (mesma cobrança);
+  // alterar valor, frequência ou e-mail gera nova intenção.
+  const idempotencyKey = useRef<string>("");
+  useEffect(() => {
+    idempotencyKey.current = newIdempotencyKey();
+  }, [amountCents, frequency, donorEmail]);
 
   const presets = [
     { label: "R$ 30", cents: 3000 },
@@ -25,64 +42,64 @@ export default function DonationForm() {
 
   const handleCreatePix = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setErrorMessage(null);
 
-    const inputData = {
+    if (!turnstileToken) {
+      setErrorMessage("Aguarde a verificação de segurança ser concluída e tente novamente.");
+      return;
+    }
+
+    const parsed = createPixSchema.safeParse({
       amountCents,
       frequency,
       donorEmail: donorEmail.trim() || undefined,
-      turnstileToken: "cf-dummy-token",
-    };
-
-    const parsed = createPixSchema.safeParse(inputData);
+      turnstileToken,
+    });
     if (!parsed.success) {
-      setErrorMessage(parsed.error.errors[0]?.message || "Valor inválido.");
+      setErrorMessage(parsed.error.issues[0]?.message ?? "Valor inválido.");
       return;
     }
 
     setIsSubmitting(true);
     try {
-      const res = await fetch("/api/donations/create-pix", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed.data),
+      const result = await postJson<CreatePixResponse>("/api/donations/create-pix", parsed.data, {
+        idempotencyKey: idempotencyKey.current,
       });
 
-      if (res.ok) {
-        const data = await res.json();
-        const pixCopyPaste = data.pixCopyPaste;
-        const expiresAt = data.expiresAt;
-
-        // Geração dinâmica de QR Code local sem imagem base64 do servidor (§7.1)
-        const qr = await import("qrcode");
-        const svg = await qr.toString(pixCopyPaste, {
-          type: "svg",
-          errorCorrectionLevel: "M",
-          margin: 1,
-          width: 260,
-        });
-
-        setPixPayload({
-          pixCopyPaste,
-          expiresAt,
-          svgString: svg,
-        });
-      } else {
-        const errData = await res.json().catch(() => ({}));
-        setErrorMessage(errData.message || "Não foi possível gerar a chave PIX no momento. Por favor, tente novamente mais tarde.");
+      if (!result.ok) {
+        setErrorMessage(result.message);
+        return;
       }
+
+      // Geração local do QR Code a partir do payload "copia e cola" (§7.1): mesmo conteúdo do QR
+      // do provedor, sem trafegar imagem base64 e sem exigir `data:` no CSP de imagens.
+      const qr = await import("qrcode");
+      const svg = await qr.toString(result.data.pixCopyPaste, {
+        type: "svg",
+        errorCorrectionLevel: "M",
+        margin: 1,
+        width: 260,
+      });
+
+      setPixPayload({ pixCopyPaste: result.data.pixCopyPaste, expiresAt: result.data.expiresAt, svgString: svg });
     } catch {
-      setErrorMessage("Erro de conexão ao comunicar com o servidor de cobrança. Verifique sua rede e tente novamente.");
+      setErrorMessage("Não foi possível exibir o QR Code. Use o código Pix Copia e Cola ou tente novamente.");
     } finally {
+      // Tokens Turnstile são de uso único: renova após qualquer resposta.
+      turnstileRef.current?.reset();
       setIsSubmitting(false);
     }
   };
 
-  const handleCopy = () => {
-    if (pixPayload?.pixCopyPaste) {
-      navigator.clipboard.writeText(pixPayload.pixCopyPaste);
+  const handleCopy = async () => {
+    if (!pixPayload?.pixCopyPaste) return;
+    try {
+      await navigator.clipboard.writeText(pixPayload.pixCopyPaste);
       setCopied(true);
       setTimeout(() => setCopied(false), 3000);
+    } catch {
+      setErrorMessage("Não foi possível copiar automaticamente. Selecione e copie o código manualmente.");
     }
   };
 
@@ -96,8 +113,11 @@ export default function DonationForm() {
         <h3 className="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-2">
           Valor: R$ {(amountCents / 100).toFixed(2).replace(".", ",")}
         </h3>
-        <p className="font-montserrat text-xs text-[#575757] mb-6 max-w-sm mx-auto leading-relaxed">
+        <p className="font-montserrat text-xs text-[#575757] mb-2 max-w-sm mx-auto leading-relaxed">
           Abra o aplicativo do seu banco, escolha a opção <strong>Pix Copia e Cola</strong> ou aponte a câmera para o QR Code abaixo.
+        </p>
+        <p className="font-montserrat text-xs text-[#575757] mb-6">
+          Válido até <strong>{expiryFormatter.format(new Date(pixPayload.expiresAt))}</strong>.
         </p>
 
         {/* QR Code dinâmico renderizado com moldura e sombra suave */}
@@ -107,6 +127,16 @@ export default function DonationForm() {
             dangerouslySetInnerHTML={{ __html: pixPayload.svgString }}
           />
         </div>
+
+        <label htmlFor="pix-copy-paste" className="sr-only">Código Pix Copia e Cola</label>
+        <textarea
+          id="pix-copy-paste"
+          readOnly
+          rows={3}
+          value={pixPayload.pixCopyPaste}
+          onFocus={(e) => e.currentTarget.select()}
+          className="form-input w-full font-mono text-[0.65rem] break-all resize-none mb-3"
+        />
 
         <div className="mb-6">
           <button
@@ -132,9 +162,16 @@ export default function DonationForm() {
           </button>
         </div>
 
+        <a href="/doar/obrigado/" className="btn-outline w-full inline-flex justify-center py-3 text-xs font-bold uppercase tracking-wider mb-4">
+          Já concluí o pagamento
+        </a>
+
         <button
           type="button"
-          onClick={() => setPixPayload(null)}
+          onClick={() => {
+            setPixPayload(null);
+            idempotencyKey.current = newIdempotencyKey();
+          }}
           className="font-montserrat text-xs text-[#575757] hover:text-[#044A82] underline inline-flex items-center gap-1.5 transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
@@ -267,6 +304,10 @@ export default function DonationForm() {
           placeholder="seu@email.com"
           className="form-input hover:border-[#044A82]/50 focus:ring-2 focus:ring-[#044A82]/20 transition-all duration-300"
         />
+      </div>
+
+      <div className="mb-6">
+        <Turnstile ref={turnstileRef} action="donation" onToken={setTurnstileToken} />
       </div>
 
       <button

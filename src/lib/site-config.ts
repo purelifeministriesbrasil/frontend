@@ -8,6 +8,13 @@ export const siteConfig = {
   origin: "https://purelifebrasil.org",
   canonicalOrigin: "https://purelifebrasil.org",
 
+  /** Base da API (Cloudflare Worker). Vazio = mesma origem (rota do Worker no domínio do site). */
+  apiBaseUrl: (import.meta.env.PUBLIC_API_URL ?? "").trim().replace(/\/+$/, ""),
+  /** Site key pública do Turnstile (não é segredo; a secret fica só no Worker). */
+  turnstileSiteKey: (import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "").trim(),
+  /** Versão vigente da Política de Privacidade registrada nos consentimentos. */
+  privacyPolicyVersion: "2026-09-19",
+
   contact: {
     email: "contato@purelifebrasil.org",
     phone: "",

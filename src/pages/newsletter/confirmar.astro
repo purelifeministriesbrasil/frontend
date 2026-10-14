@@ -1,0 +1,72 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import Button from "../../components/ui/Button.astro";
+import { apiUrl } from "../../lib/api";
+
+// Endpoint resolvido no build a partir de PUBLIC_API_URL (vazio = mesma origem).
+const confirmEndpoint = apiUrl("/api/forms/newsletter/confirm");
+---
+
+<ContentLayout
+  title="Confirmação de Inscrição | Pure Life Ministries Brasil"
+  description="Confirmação da inscrição na newsletter da Pure Life Ministries Brasil."
+  canonical="https://purelifebrasil.org/newsletter/confirmar/"
+  robots="noindex, nofollow"
+  currentPath="/newsletter/confirmar/"
+>
+  <section class="py-24 bg-[#F5F2EC]">
+    <Container size="narrow" class="text-center">
+      <div class="bg-white border border-[#DEDEDE] p-8 sm:p-12 shadow-xs">
+        <h1 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-4">Confirmação de inscrição</h1>
+        <p
+          id="newsletter-confirm-status"
+          class="font-montserrat text-[#575757] text-sm sm:text-base leading-relaxed mb-8"
+          role="status"
+          aria-live="polite"
+          data-endpoint={confirmEndpoint}
+        >
+          Confirmando sua inscrição…
+        </p>
+        <noscript>
+          <p class="font-montserrat text-[#575757] text-sm mb-8">
+            Ative o JavaScript para concluir a confirmação ou escreva para contato@purelifebrasil.org.
+          </p>
+        </noscript>
+        <Button href="/" variant="primary">Voltar à página inicial</Button>
+      </div>
+    </Container>
+  </section>
+</ContentLayout>
+
+<script>
+  // O token chega no fragmento (#token=...): não é enviado a servidores, logs nem Referer.
+  // A confirmação exige este POST explícito, então leitores de link de antivírus (GET) não confirmam.
+  const status = document.getElementById("newsletter-confirm-status");
+  const token = new URLSearchParams(window.location.hash.slice(1)).get("token");
+  history.replaceState(null, "", window.location.pathname);
+
+  const show = (message: string) => {
+    if (status) status.textContent = message;
+  };
+
+  if (!status || !token) {
+    show("Link de confirmação inválido. Solicite a inscrição novamente.");
+  } else {
+    fetch(status.dataset.endpoint ?? "/api/forms/newsletter/confirm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ token }),
+      signal: AbortSignal.timeout(15000),
+    })
+      .then(async (res) => {
+        if (res.ok) return show("Inscrição confirmada! Você passará a receber nossos conteúdos.");
+        if (res.status === 410) return show("Este link expirou ou já foi utilizado. Faça a inscrição novamente.");
+        if (res.status === 400) return show("Link de confirmação inválido. Solicite a inscrição novamente.");
+        show("Não foi possível confirmar agora. Tente novamente em instantes.");
+      })
+      .catch(() => show("Erro de conexão. Verifique sua rede e recarregue a página."));
+  }
+</script>

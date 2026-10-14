@@ -1,18 +1,27 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Check, Info } from "lucide-react";
 import { triageSubmissionSchema, type TriageSubmission } from "@/schemas";
+import { compact, fieldErrors, newIdempotencyKey, postJson } from "@/lib/api";
+import { siteConfig } from "@/lib/site-config";
 import Checkbox from "../ui/Checkbox";
+import Turnstile, { type TurnstileHandle } from "./Turnstile";
+
+/** Estado de edição: o checkbox pode estar desmarcado; o schema só aceita `true` no envio. */
+type TriageFormState = Omit<Partial<TriageSubmission>, "consent"> & { consent?: boolean };
 
 export default function TriageForm() {
   const [step, setStep] = useState<number>(0);
   const [isAdult, setIsAdult] = useState<boolean | null>(null);
-  const [formData, setFormData] = useState<Partial<TriageSubmission>>({
+  const [formData, setFormData] = useState<TriageFormState>({
     programInterest: "residencial",
     profile: "para_mim",
     contactChannel: "whatsapp",
-    policyVersion: "2026-09-19",
-    turnstileToken: "cf-turnstile-dummy-token",
+    policyVersion: siteConfig.privacyPolicyVersion,
   });
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileHandle>(null);
+  // Mesma chave em retentativas: uma falha de rede após o commit não gera triagem duplicada.
+  const idempotencyKey = useRef<string>(newIdempotencyKey());
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedCode, setSubmittedCode] = useState<string | null>(null);
@@ -114,37 +123,38 @@ export default function TriageForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
     setErrors({});
 
-    const result = triageSubmissionSchema.safeParse(formData);
+    const result = triageSubmissionSchema.safeParse(compact({ ...formData, turnstileToken: turnstileToken ?? undefined }));
     if (!result.success) {
-      const fieldErrors: Record<string, string> = {};
-      result.error.errors.forEach((err) => {
-        const path = err.path.join(".");
-        fieldErrors[path] = err.message;
-      });
-      setErrors(fieldErrors);
+      const fields = fieldErrors(result.error);
+      if (fields.turnstileToken) {
+        delete fields.turnstileToken;
+        fields.form = "Aguarde a verificação de segurança ser concluída e tente novamente.";
+      }
+      setErrors(fields);
       return;
     }
 
     setIsSubmitting(true);
     try {
-      const res = await fetch("/api/forms/triagem", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(result.data),
+      const response = await postJson<{ referenceCode: string }>("/api/forms/triagem", result.data, {
+        idempotencyKey: idempotencyKey.current,
       });
-
-      if (res.ok) {
-        const data = await res.json().catch(() => ({ referenceCode: "PLM-CONFIDENCIAL" }));
-        setSubmittedCode(data.referenceCode || "PLM-CONFIDENCIAL");
+      if (response.ok) {
+        setSubmittedCode(response.data.referenceCode);
       } else {
-        const errData = await res.json().catch(() => ({}));
-        setErrors({ form: errData.message || "Erro ao processar sua solicitação. Por favor, tente novamente ou entre em contato pelo e-mail pastoral." });
+        setErrors({
+          ...(response.fields ?? {}),
+          form:
+            response.status === 0 || response.status >= 500
+              ? `${response.message} Se preferir, escreva para ${siteConfig.contact.email}.`
+              : response.message,
+        });
       }
-    } catch {
-      setErrors({ form: "Erro de conexão ao enviar. Verifique sua rede e tente novamente." });
     } finally {
+      turnstileRef.current?.reset();
       setIsSubmitting(false);
     }
   };
@@ -376,7 +386,7 @@ export default function TriageForm() {
                 >
                   Política de Privacidade
                 </a>{" "}
-                (versão 2026-09-19) e autorizo o contato confidencial da equipe pastoral.
+                (versão {siteConfig.privacyPolicyVersion}) e autorizo o contato confidencial da equipe pastoral.
               </span>
             }
           />
@@ -386,6 +396,8 @@ export default function TriageForm() {
             </div>
           )}
         </div>
+
+        <Turnstile ref={turnstileRef} action="triage" onToken={setTurnstileToken} />
 
         <button
           type="submit"

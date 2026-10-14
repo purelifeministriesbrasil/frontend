@@ -25,18 +25,19 @@ export function initNewsletterEnhancement() {
       const payload = {
         email: emailInput.value,
         website: websiteInput?.value || undefined,
-        policyVersion: policyVersionInput?.value || "2026-09-19",
+        policyVersion: policyVersionInput?.value ?? "",
       };
 
       let success = false;
       try {
-        const res = await fetch(form.action || "/api/forms/newsletter", {
+        const res = await fetch(form.action, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
           body: JSON.stringify(payload),
+          signal: AbortSignal.timeout(15000),
         });
         success = res.ok;
       } catch {
