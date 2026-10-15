@@ -5,6 +5,9 @@ import ContentLayout from "../layouts/ContentLayout.astro";
 import Container from "../components/ui/Container.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import Button from "../components/ui/Button.astro";
+import { siteConfig } from "../lib/site-config";
+
+const { pastConferences } = siteConfig.media;
 
 const conferenceVideos = [
   {
@@ -45,7 +48,7 @@ const conferenceVideos = [
 <ContentLayout
   title="Conferência Anual 2027 | Pure Life Ministries Brasil"
   description="O maior encontro de aconselhamento bíblico reformado de Brasília. Dias intensos de ensino expositivo, comunhão e capacitação ministerial."
-  canonical="https://purelifebrasil.org/conferencia/"
+  canonical="https://purelifeministriesbrasil.org/conferencia/"
   currentPath="/conferencia/"
 >
   <!-- Hero Section -->
@@ -195,6 +198,19 @@ const conferenceVideos = [
               </a>
             ))
           }
+        </div>
+
+        <div class="mt-12 bg-[#1C2530] text-white p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6" data-reveal>
+          <div>
+            <h4 class="font-ruda font-bold text-lg text-white mb-1">Assista às ministrações das conferências anteriores</h4>
+            <p class="font-montserrat text-xs text-[#DEDEDE]">
+              Playlist oficial no canal da Pure Life Ministries Brasil no YouTube.
+            </p>
+          </div>
+          <Button href={pastConferences.url} variant="primary" class="shrink-0 text-xs px-6 py-3" target="_blank" rel="noopener noreferrer">
+            Abrir playlist no YouTube
+            <span class="sr-only"> (abre em nova aba)</span>
+          </Button>
         </div>
       </div>
     </Container>

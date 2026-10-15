@@ -5,7 +5,7 @@
 Caso identifique vulnerabilidades no frontend (como riscos de Cross-Site Scripting - XSS, injeção de HTML, quebra de Content Security Policy ou vazamento acidental de tokens em bundles públicos), **NÃO abra uma issue pública**.
 
 Envie o relatório imediatamente para:
-- **E-mail de Segurança**: `seguranca@purelifebrasil.org`
+- **E-mail de Segurança**: `purelifeministriesbrasil1986@gmail.com` (assunto: "Segurança")
 - **Assunto**: `[Segurança Frontend] <Resumo>`
 
 ---

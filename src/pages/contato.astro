@@ -5,12 +5,15 @@ import ContentLayout from "../layouts/ContentLayout.astro";
 import Container from "../components/ui/Container.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import ContactForm from "../components/forms/ContactForm";
+import { siteConfig } from "../lib/site-config";
+
+const { contact } = siteConfig;
 ---
 
 <ContentLayout
   title="Fale Conosco | Pure Life Ministries Brasil"
   description="Entre em contato com nossa equipe pastoral para tirar dúvidas sobre programas, livros ou agendar atendimentos."
-  canonical="https://purelifebrasil.org/contato/"
+  canonical="https://purelifeministriesbrasil.org/contato/"
   currentPath="/contato/"
 >
   <section class="py-20 bg-[#1C2530] text-white">
@@ -48,9 +51,29 @@ import ContactForm from "../components/forms/ContactForm";
               </div>
               <div>
                 <strong class="font-ruda font-bold text-[#1C2530] group-hover:text-[#044A82] transition-colors block">E-mail Institucional</strong>
-                <span class="font-montserrat text-sm text-[#575757]">contato@purelifebrasil.org</span>
+                <a href={`mailto:${contact.email}`} class="font-montserrat text-sm text-[#575757] hover:text-[#044A82] break-all">{contact.email}</a>
               </div>
             </div>
+
+            {[
+              { label: "WhatsApp — Triagem e Atendimento Pastoral", channel: contact.whatsapp },
+              { label: "WhatsApp — Livraria e Editora", channel: contact.bookstoreWhatsapp },
+              { label: "WhatsApp — Pós-Graduação", channel: contact.courseWhatsapp },
+            ].map(({ label, channel }) => (
+              <div class="card-lift bg-white border border-[#DEDEDE] hover:border-[#044A82] p-6 flex items-start gap-4 transition-all duration-500 hover:shadow-xs group" data-reveal>
+                <div class="text-[#044A82] shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <strong class="font-ruda font-bold text-[#1C2530] group-hover:text-[#044A82] transition-colors block">{label}</strong>
+                  <a href={channel.url} target="_blank" rel="noopener noreferrer" class="font-montserrat text-sm text-[#575757] hover:text-[#044A82]">
+                    {channel.display}
+                  </a>
+                </div>
+              </div>
+            ))}
 
             <div class="card-lift bg-white border border-[#DEDEDE] hover:border-[#044A82] p-6 flex items-start gap-4 transition-all duration-500 hover:shadow-xs group cursor-default" data-reveal>
               <div class="text-[#044A82] shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-300">
@@ -60,8 +83,8 @@ import ContactForm from "../components/forms/ContactForm";
                 </svg>
               </div>
               <div>
-                <strong class="font-ruda font-bold text-[#1C2530] group-hover:text-[#044A82] transition-colors block">Localização do Campus</strong>
-                <span class="font-montserrat text-sm text-[#575757]">Águas Lindas de Goiás – GO (a 50 km de Brasília)</span>
+                <strong class="font-ruda font-bold text-[#1C2530] group-hover:text-[#044A82] transition-colors block">Endereço do Campus</strong>
+                <address class="font-montserrat text-sm text-[#575757] not-italic">{contact.address.full}</address>
               </div>
             </div>
 

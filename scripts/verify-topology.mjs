@@ -21,6 +21,7 @@ const requiredStaticPages = [
   "viagem-eua/index.html",
   "programas/index.html",
   "programas/residencial/index.html",
+  "curso/index.html",
   "triagem/index.html",
   "triagem/recebido/index.html",
   "doar/index.html",

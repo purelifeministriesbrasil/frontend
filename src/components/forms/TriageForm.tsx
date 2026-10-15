@@ -40,8 +40,16 @@ export default function TriageForm() {
         </p>
         <div className="border-t border-[#DEDEDE] pt-6">
           <p className="font-montserrat font-bold text-sm text-[#044A82]">
-            E-mail pastoral: contato@purelifebrasil.org
+            E-mail pastoral: {siteConfig.contact.email}
           </p>
+          <a
+            href={siteConfig.contact.whatsapp.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-montserrat font-bold text-sm text-[#044A82] underline mt-2 inline-block"
+          >
+            WhatsApp pastoral: {siteConfig.contact.whatsapp.display}
+          </a>
         </div>
       </div>
     );
@@ -56,8 +64,11 @@ export default function TriageForm() {
         <h3 className="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-4">
           Você tem 18 anos de idade ou mais?
         </h3>
-        <p className="font-montserrat text-[#575757] text-sm leading-relaxed mb-8">
+        <p className="font-montserrat text-[#575757] text-sm leading-relaxed mb-4">
           Para garantir a conformidade jurídica da avaliação pastoral e proteger a privacidade do atendimento, confirme sua faixa etária.
+        </p>
+        <p className="font-montserrat text-xs text-[#1C2530] bg-[#F5F2EC] border-l-2 border-[#044A82] px-4 py-3 leading-relaxed mb-8">
+          {siteConfig.residentialProgram.feeNotice}
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <button
@@ -101,8 +112,11 @@ export default function TriageForm() {
           </span>
           <span className="font-mono font-bold text-lg text-[#044A82]">{submittedCode}</span>
         </div>
-        <p className="font-montserrat text-xs text-[#575757] leading-relaxed">
+        <p className="font-montserrat text-xs text-[#575757] leading-relaxed mb-4">
           Nossa equipe entrará em contato exclusivamente através do canal selecionado em breve.
+        </p>
+        <p className="font-montserrat text-xs text-[#1C2530] leading-relaxed">
+          Nenhum pagamento é necessário agora. A taxa de inscrição de {siteConfig.residentialProgram.registrationFeeFormatted} só é paga após a entrevista e a aprovação pastoral.
         </p>
       </div>
     );

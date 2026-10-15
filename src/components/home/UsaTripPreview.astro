@@ -2,6 +2,12 @@
 import Container from "../ui/Container.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import Button from "../ui/Button.astro";
+import { siteConfig, whatsappUrl } from "../../lib/site-config";
+
+const tripWhatsAppUrl = whatsappUrl(
+  siteConfig.contact.whatsapp.number,
+  "Olá! Tenho interesse na Viagem Pure Life Ministries aos EUA (Cincinnati, Ohio & Kentucky). Gostaria de informações sobre lotes, investimento e visto."
+);
 ---
 
 <section id="viagem" class="py-24 bg-[#1C2530] text-white relative overflow-hidden">
@@ -14,7 +20,7 @@ import Button from "../ui/Button.astro";
         Conheça a sede da Pure Life Ministries Internacional
       </h2>
       <p class="font-montserrat text-[#DEDEDE] text-base sm:text-lg leading-relaxed mb-6">
-        Uma experiência única de imersão na fonte do ministério que inspirou a PLM Brasil em Dry Ridge, Kentucky.
+        Uma experiência de imersão em Cincinnati, Ohio & Kentucky, com visita ao campus internacional da Pure Life Ministries em Kentucky — a fonte do ministério que inspirou a PLM Brasil.
       </p>
     </div>
 
@@ -25,13 +31,14 @@ import Button from "../ui/Button.astro";
           A <strong class="text-white font-semibold">Viagem PLM aos EUA</strong> é organizada pela Pure Life Ministries Brasil para pastores, líderes, conselheiros e cristãos interessados em conhecer pessoalmente o campus e o modelo comprovado por quatro décadas de ministério.
         </p>
         <p class="font-montserrat text-[#DEDEDE] text-sm sm:text-base leading-relaxed mb-8">
-          Durante a estadia, os participantes visitam as instalações residenciais americanas, participam de ministrações com a liderança sênior e vivenciam de perto o rigor bíblico e o acolhimento pastoral que caracterizam a obra internacional.
+          A programação combina a imersão no campus internacional da Pure Life Ministries em Kentucky com atividades na região de Cincinnati, Ohio. Os participantes visitam as instalações residenciais, participam de ministrações com a liderança sênior e vivenciam de perto o rigor bíblico e o acolhimento pastoral que caracterizam a obra internacional.
         </p>
 
         <div class="flex flex-col gap-3 mb-8">
           {
             [
-              "Visita às instalações do campus PLM Internacional",
+              "Visita ao campus internacional da Pure Life Ministries em Kentucky",
+              "Atividades e programação na região de Cincinnati, Ohio",
               "Ensinamentos com a equipe de liderança americana",
               "Participação em sessões e dinâmicas do programa",
               "Comunhão com a equipe e ex-participantes do programa",
@@ -51,8 +58,9 @@ import Button from "../ui/Button.astro";
           <Button href="/viagem-eua/" variant="primary">
             Ver detalhes da viagem
           </Button>
-          <Button href="/contato/" variant="outline-light">
-            Manifestar interesse
+          <Button href={tripWhatsAppUrl} variant="outline-light" target="_blank" rel="noopener noreferrer">
+            Inscrição e dúvidas pelo WhatsApp
+            <span class="sr-only"> (abre em nova aba)</span>
           </Button>
         </div>
       </div>
@@ -61,10 +69,10 @@ import Button from "../ui/Button.astro";
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-reveal-group>
           {
             [
-              { label: "Destino", val: "Dry Ridge, Kentucky – EUA" },
-              { label: "Público", val: "Pastores, líderes e conselheiros" },
-              { label: "Formato", val: "Grupo guiado pela PLM Brasil" },
-              { label: "Inscrições", val: "Conforme calendário oficial" },
+              { label: "Destino", val: "Cincinnati, Ohio & Kentucky – EUA" },
+              { label: "Programação", val: "Imersão no campus em Kentucky e atividades em Ohio" },
+              { label: "Lotes e investimento", val: "Valores por lote informados pela equipe no WhatsApp" },
+              { label: "Inscrição e visto", val: `Orientação pelo WhatsApp ${siteConfig.contact.whatsapp.display}` },
             ].map((d) => (
               <div class="pillar-card border border-[#3B4C60] bg-[#1C2530]/80 p-6 cursor-default group" data-reveal>
                 <div class="font-montserrat text-[#C1BDA6] group-hover:text-white text-xs uppercase tracking-widest font-semibold mb-2 transition-colors duration-300">

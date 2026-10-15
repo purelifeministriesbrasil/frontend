@@ -1,6 +1,7 @@
 ---
 import Container from "../ui/Container.astro";
 import Button from "../ui/Button.astro";
+import { siteConfig } from "../../lib/site-config";
 ---
 
 <section id="conferencia" class="py-24 bg-[#1C2530] text-white relative overflow-hidden">
@@ -8,8 +9,8 @@ import Button from "../ui/Button.astro";
     <img
       src="/images/conference.webp"
       alt=""
-      width="1920"
-      height="800"
+      width="700"
+      height="520"
       loading="lazy"
       decoding="async"
       class="w-full h-full object-cover"
@@ -58,6 +59,10 @@ import Button from "../ui/Button.astro";
         <div class="flex flex-wrap gap-4">
           <Button href="/conferencia/" variant="primary" class="text-xs px-6 py-3.5">
             Página da Conferência
+          </Button>
+          <Button href={siteConfig.media.pastConferences.url} variant="outline-light" class="text-xs px-6 py-3.5" target="_blank" rel="noopener noreferrer">
+            Assistir conferências anteriores
+            <span class="sr-only"> (abre em nova aba)</span>
           </Button>
           <Button href="/contato/" variant="outline-light" class="text-xs px-6 py-3.5">
             Avise-me sobre 2027

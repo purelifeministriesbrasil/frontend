@@ -77,6 +77,12 @@
 .nav-link:hover { color: #C1BDA6; }
 .nav-link:hover::after { width: 100%; }
 
+.course-glow {
+  background:
+    radial-gradient(circle at 85% 20%, rgba(217, 155, 38, 0.16), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(4, 74, 130, 0.35), transparent 50%);
+}
+
 .hero-overlay {
   background: linear-gradient(
     to bottom,

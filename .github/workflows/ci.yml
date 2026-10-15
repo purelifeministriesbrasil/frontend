@@ -15,9 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Valores públicos de build (o deploy real usa as variáveis do projeto no Cloudflare Pages).
-      PUBLIC_SITE_ORIGIN: https://purelifebrasil.org
-      PUBLIC_API_URL: https://api.purelifebrasil.org
+      PUBLIC_SITE_ORIGIN: https://purelifeministriesbrasil.org
+      PUBLIC_API_URL: https://api.purelifeministriesbrasil.org
       PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+      PUBLIC_ENABLE_PIX_GATEWAY: "false"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

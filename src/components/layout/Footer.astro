@@ -1,5 +1,8 @@
 ---
 import Container from "../ui/Container.astro";
+import { siteConfig } from "../../lib/site-config";
+
+const { contact, social } = siteConfig;
 ---
 
 <footer class="bg-[#1C2530] border-t border-[#3B4C60]/40 text-[#DEDEDE] py-16">
@@ -14,7 +17,7 @@ import Container from "../ui/Container.astro";
           "Liderando Cristãos à Pureza desde 1986!"
         </p>
         <p class="font-montserrat text-[#DEDEDE] text-xs leading-relaxed">
-          Escola de Aconselhamento Bíblico Cristão Reformado.<br />
+          {siteConfig.descriptor}.<br />
           Águas Lindas de Goiás – GO, Brasil.
         </p>
       </div>
@@ -28,6 +31,7 @@ import Container from "../ui/Container.astro";
           <li><a href="/sobre/" class="hover:text-white transition-colors">Sobre o Ministério</a></li>
           <li><a href="/programas/" class="hover:text-white transition-colors">Todos os Programas</a></li>
           <li><a href="/programas/residencial/" class="hover:text-white transition-colors">Programa Residencial</a></li>
+          <li><a href="/curso/" class="hover:text-white transition-colors">Pós-Graduação</a></li>
           <li><a href="/campus/" class="hover:text-white transition-colors">Campus em Goiás</a></li>
           <li><a href="/perguntas-frequentes/" class="hover:text-white transition-colors">Perguntas Frequentes</a></li>
         </ul>
@@ -53,9 +57,17 @@ import Container from "../ui/Container.astro";
           Contato & Localização
         </h3>
         <div class="flex flex-col gap-3 font-montserrat text-xs text-[#DEDEDE]">
-          <p>Águas Lindas de Goiás - GO</p>
-          <p>contato@purelifebrasil.org</p>
-          <p>Atendimento Pastoral Confidencial</p>
+          <address class="not-italic leading-relaxed">{contact.address.full}</address>
+          <a href={`mailto:${contact.email}`} class="hover:text-white transition-colors break-all">{contact.email}</a>
+          <a href={contact.whatsapp.url} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+            WhatsApp pastoral: {contact.whatsapp.display}
+          </a>
+          <a href={contact.courseWhatsapp.url} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+            WhatsApp Pós-Graduação: {contact.courseWhatsapp.display}
+          </a>
+          <a href={social.youtube} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+            YouTube @purelifebrasil
+          </a>
           <div class="mt-3">
             <a href="/contato/" class="btn-outline-light text-xs py-2 px-4 inline-block">
               Fale Conosco

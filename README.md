@@ -7,9 +7,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Security Policy](https://img.shields.io/badge/Security-Policy-red.svg)](./SECURITY.md)
 
-Site estático do **Pure Life Ministries Brasil** (`purelifebrasil.org`): **Astro 5 (SSG)**, **Tailwind CSS v4** e
+Site estático do **Pure Life Ministries Brasil** (`purelifeministriesbrasil.org`): **Astro 5 (SSG)**, **Tailwind CSS v4** e
 **ilhas React 19**, hospedado no **Cloudflare Pages**. Toda escrita de dados passa pela API do Worker
-(`api.purelifebrasil.org`); o frontend **não** fala com o Supabase e não carrega nenhuma chave de banco.
+(`api.purelifeministriesbrasil.org`); o frontend **não** fala com o Supabase e não carrega nenhuma chave de banco.
 
 ---
 
@@ -53,9 +53,10 @@ pnpm --dir ../backend exec wrangler pages dev ../frontend/dist
 
 | Variável | Exemplo | Uso |
 |---|---|---|
-| `PUBLIC_SITE_ORIGIN` | `https://purelifebrasil.org` | Origem canônica |
-| `PUBLIC_API_URL` | `https://api.purelifebrasil.org` | Base da API e CSP |
+| `PUBLIC_SITE_ORIGIN` | `https://purelifeministriesbrasil.org` | Origem canônica |
+| `PUBLIC_API_URL` | `https://api.purelifeministriesbrasil.org` | Base da API e CSP |
 | `PUBLIC_TURNSTILE_SITE_KEY` | `0x4AAAA...` | Widget Turnstile (teste: `1x00000000000000000000AA`) |
+| `PUBLIC_ENABLE_PIX_GATEWAY` | `false` | `true` liga o PIX dinâmico pela API; `false` mostra a chave PIX CNPJ |
 
 Veja `.env.example`. No Cloudflare Pages, configure-as em **Settings → Variables and Secrets** (build).
 

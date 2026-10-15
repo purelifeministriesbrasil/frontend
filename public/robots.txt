@@ -5,4 +5,4 @@ Disallow: /triagem/*
 Disallow: /doar/obrigado
 Disallow: /404
 
-Sitemap: https://purelifebrasil.org/sitemap-index.xml
+Sitemap: https://purelifeministriesbrasil.org/sitemap-index.xml

@@ -4,17 +4,22 @@ export const prerender = true;
 import ContentLayout from "../../layouts/ContentLayout.astro";
 import Container from "../../components/ui/Container.astro";
 import DonationForm from "../../components/donations/DonationForm";
+import ManualPixDonation from "../../components/donations/ManualPixDonation";
+import { siteConfig } from "../../lib/site-config";
+
+// Definido no build (PUBLIC_ENABLE_PIX_GATEWAY). Desligado = chave PIX institucional estática.
+const { pixGatewayEnabled } = siteConfig.donation;
 ---
 
 <ContentLayout
   title="Apoie o Ministério com sua Doação | Pure Life Ministries Brasil"
-  description="Faça sua contribuição via Pix oficial e viabilize o acolhimento pastoral de famílias e homens em recuperação."
-  canonical="https://purelifebrasil.org/doar/"
+  description="Faça sua contribuição via PIX para a chave CNPJ oficial e viabilize o acolhimento pastoral de famílias e homens em recuperação."
+  canonical="https://purelifeministriesbrasil.org/doar/"
   currentPath="/doar/"
 >
   <section class="py-16 sm:py-24 bg-[#F5F2EC]">
     <Container size="default">
-      <DonationForm client:load />
+      {pixGatewayEnabled ? <DonationForm client:load /> : <ManualPixDonation client:load />}
     </Container>
   </section>
 </ContentLayout>

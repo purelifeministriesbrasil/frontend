@@ -5,6 +5,7 @@ import ContentLayout from "../layouts/ContentLayout.astro";
 import Container from "../components/ui/Container.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import Button from "../components/ui/Button.astro";
+import { siteConfig } from "../lib/site-config";
 
 const ministryVideos = [
   {
@@ -45,7 +46,7 @@ const ministryVideos = [
 <ContentLayout
   title="Sobre o Ministério | Pure Life Ministries Brasil"
   description="Conheça a história de mais de 40 anos de liderança cristã na restauração de vidas pela suficiência das Escrituras e graça de Cristo."
-  canonical="https://purelifebrasil.org/sobre/"
+  canonical="https://purelifeministriesbrasil.org/sobre/"
   currentPath="/sobre/"
 >
   <!-- Hero Section -->
@@ -57,6 +58,19 @@ const ministryVideos = [
         description="A Pure Life Ministries Brasil é fruto de um chamado pastoral dedicado à restauração de vidas e casamentos feridos pelo pecado sexual."
         invert={true}
       />
+    </Container>
+  </section>
+
+  <!-- Apresentação Institucional -->
+  <section class="py-16 bg-white">
+    <Container size="default">
+      <div class="max-w-3xl space-y-5" data-reveal>
+        {siteConfig.aboutParagraphs.map((paragraph, index) => (
+          <p class={`font-montserrat leading-relaxed ${index === 0 ? "text-[#1C2530] text-lg" : "text-[#575757] text-base"}`}>
+            {paragraph}
+          </p>
+        ))}
+      </div>
     </Container>
   </section>
 
