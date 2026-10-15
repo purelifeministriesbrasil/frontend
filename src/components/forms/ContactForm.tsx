@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Check } from "lucide-react";
+import { Check } from "lucide-preact";
 import { contactSubmissionSchema, type ContactSubmission } from "@/schemas";
 import { compact, fieldErrors, newIdempotencyKey, postJson } from "@/lib/api";
 import { siteConfig } from "@/lib/site-config";
@@ -22,8 +22,8 @@ export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
-    const val = type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
+    const { name, value, type } = e.currentTarget;
+    const val = type === "checkbox" ? (e.currentTarget as HTMLInputElement).checked : value;
     setFormData((prev) => ({ ...prev, [name]: val }));
     if (errors[name]) {
       setErrors((prev) => {

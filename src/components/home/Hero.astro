@@ -2,16 +2,23 @@
 import Container from "../ui/Container.astro";
 import Button from "../ui/Button.astro";
 import { siteConfig } from "../../lib/site-config";
+import { Picture } from "astro:assets";
+import heroImg from "../../assets/images/hero.webp";
 ---
 
 <section id="hero" class="relative -mt-16 sm:-mt-20 min-h-[100dvh] flex flex-col justify-center pt-20 sm:pt-20 md:pt-22 pb-4 sm:pb-6 overflow-hidden bg-[#1C2530] text-white">
   <!-- Imagem Local Otimizada com fetchpriority="high" (§3.4, §3.5) -->
   <div class="absolute inset-0 z-0 overflow-hidden">
-    <img
-      src="/images/hero.webp"
+    <Picture
+      src={heroImg}
       alt="Casa principal do campus da Pure Life Ministries Brasil em Águas Lindas de Goiás, com varanda, palmeiras e céu azul"
-      width="1600"
-      height="900"
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality="low"
+      pictureAttributes={{ class: "contents" }}
+      widths={[640, 960, 1280, 1600]}
+      sizes="100vw"
+      loading="eager"
       fetchpriority="high"
       class="hero-img w-full h-full object-cover opacity-45 scale-105"
     />

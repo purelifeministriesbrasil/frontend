@@ -9,6 +9,8 @@ import Button from "../../components/ui/Button.astro";
 import { pickCampusPhotos } from "../../data/campus-photos";
 
 const residentialPhotos = pickCampusPhotos(["salao-estudo", "refeitorio", "biblioteca", "varanda-corredor"]);
+import { Picture } from "astro:assets";
+
 ---
 
 <ContentLayout
@@ -190,11 +192,15 @@ const residentialPhotos = pickCampusPhotos(["salao-estudo", "refeitorio", "bibli
             residentialPhotos.map((photo) => (
               <div class="group bg-white border border-[#DEDEDE] overflow-hidden hover:border-[#044A82] hover:shadow-lg transition-all duration-300 flex flex-col">
                 <div class="relative h-56 overflow-hidden">
-                  <img
+                  <Picture
                     src={photo.src}
                     alt={photo.alt}
-                    width={photo.width}
-                    height={photo.height}
+                    formats={["avif", "webp"]}
+                    fallbackFormat="webp"
+                    quality="mid"
+                    pictureAttributes={{ class: "contents" }}
+                    widths={[400, 800]}
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                     loading="lazy"
                     decoding="async"
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

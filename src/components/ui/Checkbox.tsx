@@ -1,5 +1,5 @@
 import React from "react";
-import { Check } from "lucide-react";
+import { Check } from "lucide-preact";
 
 interface CheckboxProps {
   id?: string;
@@ -40,7 +40,7 @@ export default function Checkbox({
           name={name}
           checked={checked}
           disabled={disabled}
-          onChange={(e) => onChange(e.target.checked)}
+          onChange={(e) => onChange(e.currentTarget.checked)}
           aria-describedby={ariaDescribedBy}
           className="sr-only peer"
         />
