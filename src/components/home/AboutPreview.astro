@@ -5,6 +5,8 @@ import { siteConfig } from "../../lib/site-config";
 
 const [lead, ...rest] = siteConfig.aboutParagraphs;
 const leadBody = lead.replace(siteConfig.name, "");
+import { Picture } from "astro:assets";
+import aboutImg from "../../assets/images/about.webp";
 ---
 
 <section id="sobre" class="py-24 bg-[#F5F2EC]">
@@ -13,11 +15,15 @@ const leadBody = lead.replace(siteConfig.name, "");
       <!-- Imagem Institucional e Moldura -->
       <div class="relative" data-reveal="from-left">
         <div class="relative z-10 overflow-hidden shadow-lg border border-[#DEDEDE] card-lift">
-          <img
-            src="/images/about.webp"
+          <Picture
+            src={aboutImg}
             alt="Grupo de homens reunido em círculo para estudo bíblico no salão do campus, com uma cruz de madeira na parede"
-            width="700"
-            height="900"
+            formats={["avif", "webp"]}
+            fallbackFormat="webp"
+            quality="mid"
+            pictureAttributes={{ class: "contents" }}
+            widths={[480, 700]}
+            sizes="(min-width: 1024px) 45vw, 100vw"
             loading="lazy"
             decoding="async"
             class="w-full h-[400px] sm:h-[480px] lg:h-[520px] object-cover"

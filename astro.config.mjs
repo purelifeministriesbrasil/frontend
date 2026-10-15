@@ -1,12 +1,14 @@
 import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
+import preact from '@astrojs/preact';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://purelifeministriesbrasil.org',
   output: 'static',
-  integrations: [react()],
+  // compat: os componentes .tsx e o lucide-react usam a API do React, servida pelo preact/compat (~4x menor).
+  integrations: [preact({ compat: true })],
   vite: { plugins: [tailwindcss()] },
   build: { inlineStylesheets: 'never' },
-  prefetch: { defaultStrategy: 'tap', prefetchAll: false }
+  // hover: baixa a página ao passar o mouse/tocar no link; evita prefetch em massa no celular.
+  prefetch: { defaultStrategy: 'hover', prefetchAll: true }
 });

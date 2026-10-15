@@ -3,6 +3,8 @@ import Container from "../ui/Container.astro";
 import { siteConfig } from "../../lib/site-config";
 
 const { contact, social } = siteConfig;
+import { Image } from "astro:assets";
+import logoWhiteImg from "../../assets/images/logo-plm-branca.webp";
 ---
 
 <footer class="bg-[#1C2530] border-t border-[#3B4C60]/40 text-[#DEDEDE] py-16">
@@ -11,7 +13,7 @@ const { contact, social } = siteConfig;
       <!-- Coluna 1: Identidade Oficial -->
       <div class="lg:col-span-1">
         <div class="mb-6">
-          <img src="/images/logo-purelife-branca-m.png" alt="Pure Life Ministries Brasil" class="h-11 sm:h-12 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity" />
+          <Image src={logoWhiteImg} alt="Pure Life Ministries Brasil" height={48} loading="lazy" class="h-11 sm:h-12 w-auto object-contain opacity-95 hover:opacity-100 transition-opacity" />
         </div>
         <p class="font-editorial text-[#C1BDA6] text-sm italic leading-relaxed mb-4">
           "Liderando Cristãos à Pureza desde 1986!"

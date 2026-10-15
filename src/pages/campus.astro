@@ -8,6 +8,8 @@ import Button from "../components/ui/Button.astro";
 import { campusPhotos } from "../data/campus-photos";
 
 const heroPhoto = campusPhotos[0];
+import { Picture } from "astro:assets";
+
 ---
 
 <ContentLayout
@@ -56,11 +58,15 @@ const heroPhoto = campusPhotos[0];
         </div>
 
         <div class="card-lift overflow-hidden border border-[#DEDEDE] shadow-md bg-white p-2 group" data-reveal="from-right">
-          <img
+          <Picture
             src={heroPhoto.src}
             alt={heroPhoto.alt}
-            width={heroPhoto.width}
-            height={heroPhoto.height}
+            formats={["avif", "webp"]}
+            fallbackFormat="webp"
+            quality="mid"
+            pictureAttributes={{ class: "contents" }}
+            widths={[640, 1200]}
+            sizes="(min-width: 1024px) 45vw, 100vw"
             loading="lazy"
             decoding="async"
             class="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
@@ -124,11 +130,15 @@ const heroPhoto = campusPhotos[0];
             campusPhotos.map((photo) => (
               <div class="card-lift bg-white border border-[#DEDEDE] overflow-hidden hover:border-[#044A82] hover:shadow-lg transition-all duration-500 flex flex-col group cursor-default" data-reveal>
                 <div class="h-52 overflow-hidden relative">
-                  <img
+                  <Picture
                     src={photo.src}
                     alt={photo.alt}
-                    width={photo.width}
-                    height={photo.height}
+                    formats={["avif", "webp"]}
+                    fallbackFormat="webp"
+                    quality="mid"
+                    pictureAttributes={{ class: "contents" }}
+                    widths={[400, 800]}
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                     loading="lazy"
                     decoding="async"
                     class="w-full h-full object-cover group-hover:scale-106 transition-transform duration-700 ease-out"

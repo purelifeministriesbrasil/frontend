@@ -2,15 +2,21 @@
 import Container from "../ui/Container.astro";
 import Button from "../ui/Button.astro";
 import { siteConfig } from "../../lib/site-config";
+import { Picture } from "astro:assets";
+import conferenceImg from "../../assets/images/conference.webp";
 ---
 
 <section id="conferencia" class="py-24 bg-[#1C2530] text-white relative overflow-hidden">
   <div class="absolute inset-0 opacity-20 pointer-events-none">
-    <img
-      src="/images/conference.webp"
+    <Picture
+      src={conferenceImg}
       alt=""
-      width="700"
-      height="520"
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality="mid"
+      pictureAttributes={{ class: "contents" }}
+      widths={[480, 700]}
+      sizes="(min-width: 1024px) 50vw, 100vw"
       loading="lazy"
       decoding="async"
       class="w-full h-full object-cover"

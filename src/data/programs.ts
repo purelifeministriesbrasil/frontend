@@ -1,4 +1,7 @@
 import { siteConfig } from "@/lib/site-config";
+import residentialImg from "@/assets/images/residential.webp";
+import onlineImg from "@/assets/images/online.webp";
+import convivenciaImg from "@/assets/images/campus/sala-de-convivencia.webp";
 
 /** Programas exibidos na Home e em /programas/ (mesma fonte para as duas páginas). */
 export interface Program {
@@ -9,7 +12,7 @@ export interface Program {
   subtitle: string;
   description: string;
   features: string[];
-  imageSrc: string;
+  imageSrc: ImageMetadata;
   imageAlt: string;
   leaderName?: string;
   ctaText: string;
@@ -36,7 +39,7 @@ export const programs: Program[] = [
       "Aconselhamento bíblico pastoral semanal",
       "Integração ativa à comunhão da igreja local",
     ],
-    imageSrc: "/images/residential.webp",
+    imageSrc: residentialImg,
     imageAlt: "Estante de madeira com livros cristãos na biblioteca do campus residencial",
     leaderName: "Pr. Paulo Gouvêa",
     ctaText: "Iniciar triagem",
@@ -58,7 +61,7 @@ export const programs: Program[] = [
       "Estudo no seu ritmo, de casa",
       "Recursos digitais e áudios",
     ],
-    imageSrc: "/images/online.webp",
+    imageSrc: onlineImg,
     imageAlt: "Aconselhamento bíblico online com conselheiro",
     leaderName: "Pr. Filipe Bentle",
     ctaText: "Inscrever-se na Hotmart",
@@ -79,7 +82,7 @@ export const programs: Program[] = [
       "Encontros online",
       "Esperança para o casamento",
     ],
-    imageSrc: "/images/purelife/campus-sala-de-convivencia.webp",
+    imageSrc: convivenciaImg,
     imageAlt: "Sala de convivência tranquila com sofás e uma coroa de espinhos decorativa na parede",
     ctaText: "Pedir acompanhamento",
     ctaHref: "/triagem/",

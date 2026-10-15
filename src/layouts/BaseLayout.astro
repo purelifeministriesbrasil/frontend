@@ -1,6 +1,7 @@
 ---
 import { buildOrganizationJsonLd } from "@/lib/seo";
 import "@/styles/global.css";
+import { siteConfig } from "@/lib/site-config";
 
 interface Props {
   title: string;
@@ -16,11 +17,13 @@ const {
   description,
   canonical,
   robots = "index, follow",
-  ogImage = "/images/hero.webp",
+  ogImage = "/og-image.jpg",
   jsonLd = [],
 } = Astro.props;
 
 const schemas = [buildOrganizationJsonLd(), ...jsonLd];
+// Redes sociais exigem URL absoluta na imagem de compartilhamento.
+const ogImageUrl = ogImage ? new URL(ogImage, siteConfig.canonicalOrigin).href : undefined;
 ---
 
 <!doctype html>
@@ -38,13 +41,15 @@ const schemas = [buildOrganizationJsonLd(), ...jsonLd];
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    {ogImageUrl && <meta property="og:image:width" content="1200" />}
+    {ogImageUrl && <meta property="og:image:height" content="630" />}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
 
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=3" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
@@ -55,6 +60,13 @@ const schemas = [buildOrganizationJsonLd(), ...jsonLd];
     <link
       rel="preload"
       href="/fonts/ruda-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/montserrat-latin-var.woff2"
       as="font"
       type="font/woff2"
       crossorigin="anonymous"

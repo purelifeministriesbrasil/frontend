@@ -8,7 +8,7 @@ interface Props {
   subtitle: string;
   description: string;
   features: string[];
-  imageSrc: string;
+  imageSrc: ImageMetadata;
   imageAlt: string;
   leaderLabel?: string;
   leaderName?: string;
@@ -39,17 +39,23 @@ const {
 } = Astro.props;
 
 const externalLinkAttrs = ctaExternal ? { target: "_blank", rel: "noopener noreferrer" } : {};
+import { Picture } from "astro:assets";
+
 ---
 
 <div class="card-lift group bg-white border border-[#DEDEDE] hover:border-[#044A82] overflow-hidden flex flex-col justify-between shadow-xs" data-reveal="scale">
   <div>
     <!-- Imagem de Destaque -->
     <div class="relative h-72 bg-[#1C2530] overflow-hidden">
-      <img
+      <Picture
         src={imageSrc}
         alt={imageAlt}
-        width="800"
-        height="500"
+        formats={["avif", "webp"]}
+        fallbackFormat="webp"
+        quality="mid"
+        pictureAttributes={{ class: "contents" }}
+        widths={[480, 800]}
+        sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw"
         loading="lazy"
         decoding="async"
         class="w-full h-full object-cover opacity-65 group-hover:opacity-90 group-hover:scale-108 transition-all duration-700 ease-out"

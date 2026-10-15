@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Check, Copy, ArrowLeft } from "lucide-react";
+import { Check, Copy, ArrowLeft } from "lucide-preact";
 import { createPixSchema, type CreatePixResponse } from "@/schemas";
 import { newIdempotencyKey, postJson } from "@/lib/api";
 import Turnstile, { type TurnstileHandle } from "../forms/Turnstile";
@@ -281,7 +281,7 @@ export default function DonationForm() {
               step="1"
               value={amountCents / 100}
               onChange={(e) => {
-                const val = Math.round(Number(e.target.value) * 100);
+                const val = Math.round(Number(e.currentTarget.value) * 100);
                 setAmountCents(isNaN(val) ? 0 : val);
               }}
               className="w-full pl-11 pr-4 py-2.5 bg-white border border-[#DEDEDE] hover:border-[#044A82]/50 rounded-xs font-ruda font-bold text-lg text-[#044A82] transition-all duration-300 focus:border-[#044A82] focus:ring-2 focus:ring-[#044A82]/20 focus:outline-none"
@@ -300,7 +300,7 @@ export default function DonationForm() {
           type="email"
           autoComplete="email"
           value={donorEmail}
-          onChange={(e) => setDonorEmail(e.target.value)}
+          onChange={(e) => setDonorEmail(e.currentTarget.value)}
           placeholder="seu@email.com"
           className="form-input hover:border-[#044A82]/50 focus:ring-2 focus:ring-[#044A82]/20 transition-all duration-300"
         />

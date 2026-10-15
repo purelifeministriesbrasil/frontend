@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, Copy, MessageCircle } from "lucide-react";
+import { Check, Copy, MessageCircle } from "lucide-preact";
 import { siteConfig, whatsappUrl } from "@/lib/site-config";
 
 type CopyState = "idle" | "copied" | "failed";

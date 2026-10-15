@@ -2,6 +2,8 @@
 import Container from "../ui/Container.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import Button from "../ui/Button.astro";
+import { Picture } from "astro:assets";
+import campusImg from "../../assets/images/campus.webp";
 ---
 
 <section id="campus" class="py-24 bg-white">
@@ -55,11 +57,15 @@ import Button from "../ui/Button.astro";
 
       <div class="relative group" data-reveal="from-right">
         <div class="overflow-hidden border border-[#DEDEDE] shadow-md card-lift">
-          <img
-            src="/images/campus.webp"
+          <Picture
+            src={campusImg}
             alt="Vista panorâmica do campus da Pure Life Ministries Brasil em Águas Lindas de Goiás, com gramado, palmeiras e as construções ao fundo"
-            width="1280"
-            height="533"
+            formats={["avif", "webp"]}
+            fallbackFormat="webp"
+            quality="mid"
+            pictureAttributes={{ class: "contents" }}
+            widths={[640, 960, 1280]}
+            sizes="(min-width: 1024px) 45vw, 100vw"
             loading="lazy"
             decoding="async"
             class="w-full h-[360px] sm:h-[420px] object-cover group-hover:scale-106 transition-transform duration-700 ease-out"

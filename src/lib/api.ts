@@ -1,4 +1,4 @@
-import type { ZodError } from "zod";
+import type { z } from "zod/mini";
 import { IDEMPOTENCY_KEY_HEADER } from "@/schemas";
 import { siteConfig } from "@/lib/site-config";
 
@@ -56,7 +56,7 @@ export async function postJson<T>(
 }
 
 /** Mensagens por campo a partir de um ZodError (Zod 4: `issues`). */
-export function fieldErrors(error: ZodError): Record<string, string> {
+export function fieldErrors(error: z.core.$ZodError): Record<string, string> {
   const result: Record<string, string> = {};
   for (const issue of error.issues) {
     const path = issue.path.join(".") || "form";
