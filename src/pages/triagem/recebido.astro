@@ -4,12 +4,13 @@ export const prerender = true;
 import ContentLayout from "../../layouts/ContentLayout.astro";
 import Container from "../../components/ui/Container.astro";
 import Button from "../../components/ui/Button.astro";
+import { siteConfig } from "../../lib/site-config";
 ---
 
 <ContentLayout
   title="Solicitação Recebida | Pure Life Ministries Brasil"
   description="Sua solicitação confidencial foi recebida com sucesso por nossa equipe pastoral."
-  canonical="https://purelifebrasil.org/triagem/recebido/"
+  canonical="https://purelifeministriesbrasil.org/triagem/recebido/"
   robots="noindex, nofollow"
   currentPath="/triagem/recebido/"
 >
@@ -27,6 +28,9 @@ import Button from "../../components/ui/Button.astro";
         <p class="font-montserrat text-[#575757] text-sm sm:text-base leading-relaxed mb-6">
           Sua mensagem foi recebida pela nossa equipe pastoral e criptografada com segurança institucional.
           Entraremos em contato através do canal indicado com discrição e respeito.
+        </p>
+        <p class="font-montserrat text-[#1C2530] text-sm leading-relaxed mb-6">
+          Nenhum pagamento é necessário agora: a taxa de inscrição de {siteConfig.residentialProgram.registrationFeeFormatted} só é paga após a entrevista e a aprovação pastoral.
         </p>
         <Button href="/" variant="primary">
           Voltar à página inicial

@@ -7,15 +7,14 @@ interface Props {
 const { currentPath = "", isMobile = false } = Astro.props;
 
 const navItems = [
+  { href: "/", label: "Início" },
   { href: "/sobre/", label: "Sobre" },
   { href: "/programas/", label: "Programas" },
-  { href: "/programas/residencial/", label: "Residencial" },
-  { href: "/campus/", label: "Campus" },
-  { href: "/conferencia/", label: "Conferência" },
+  { href: "/curso/", label: "Curso" },
   { href: "/editora/", label: "Editora" },
+  { href: "/conferencia/", label: "Conferência" },
   { href: "/viagem-eua/", label: "Viagem EUA" },
-  { href: "/perguntas-frequentes/", label: "FAQ" },
-  { href: "/contato/", label: "Contato" },
+  { href: "/perguntas-frequentes/", label: "Perguntas" },
 ];
 ---
 
@@ -23,7 +22,7 @@ const navItems = [
   <ul class={isMobile ? "flex flex-col gap-4 text-left" : "flex items-center gap-3 2xl:gap-5"}>
     {
       navItems.map((item) => {
-        const isActive = currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href));
+        const isActive = item.href === "/" ? currentPath === "/" : currentPath.startsWith(item.href);
         return (
           <li>
             <a

@@ -2,8 +2,20 @@
 import Container from "../ui/Container.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import Button from "../ui/Button.astro";
+import { siteConfig } from "../../lib/site-config";
+
+const { featuredVideo, pastConferences } = siteConfig.media;
 
 const mediaVideos = [
+  {
+    title: featuredVideo.title,
+    speaker: "Railca Gouvea",
+    youtubeId: featuredVideo.youtubeId,
+    url: featuredVideo.url,
+    tag: "Em Destaque",
+    type: "Destaque",
+    featured: true,
+  },
   {
     title: "Testemunho: Paulo Gouvêa e Railca — IECBR Reaviva",
     speaker: "Pr. Paulo e Railca Gouvêa",
@@ -75,7 +87,7 @@ const mediaVideos = [
 
         <div class="flex flex-col gap-3 mb-8">
           <a
-            href="https://www.youtube.com/@purelifeministriesbrasil"
+            href={siteConfig.social.youtube}
             target="_blank"
             rel="noopener noreferrer"
             class="flex items-center justify-between p-4 border border-[#044A82] bg-white hover:bg-[#044A82] text-[#044A82] hover:text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md group"
@@ -94,11 +106,13 @@ const mediaVideos = [
           </a>
 
           <a
-            href="/conferencia/"
+            href={pastConferences.url}
+            target="_blank"
+            rel="noopener noreferrer"
             class="flex items-center justify-between p-4 border border-[#DEDEDE] bg-white hover:border-[#044A82] hover:bg-white hover:-translate-y-0.5 hover:shadow-xs transition-all duration-300 group"
           >
             <span class="font-montserrat font-semibold text-sm text-[#1C2530] group-hover:text-[#044A82] transition-colors">
-              Mensagens da Conferência Anual
+              Ministrações das Conferências Anteriores
             </span>
             <span class="text-[#044A82] text-lg font-bold group-hover:translate-x-1.5 transition-transform duration-300" aria-hidden="true">
               →
@@ -127,7 +141,7 @@ const mediaVideos = [
               href={video.url}
               target="_blank"
               rel="noopener noreferrer"
-              class="media-card group relative overflow-hidden bg-[#1C2530] flex flex-col justify-between"
+              class={`media-card group relative overflow-hidden bg-[#1C2530] flex flex-col justify-between ${video.featured ? "sm:col-span-2" : ""}`}
               data-reveal
               aria-label={`Assistir no YouTube: ${video.title}`}
             >
@@ -192,7 +206,7 @@ const mediaVideos = [
           Inscreva-se em nosso canal e ative as notificações para receber novos estudos bíblicos, palestras e mensagens.
         </p>
       </div>
-      <Button href="https://www.youtube.com/@purelifeministriesbrasil" variant="dark" class="shrink-0 text-xs">
+      <Button href={siteConfig.social.youtube} variant="dark" class="shrink-0 text-xs">
         Acessar Canal Completo
       </Button>
     </div>

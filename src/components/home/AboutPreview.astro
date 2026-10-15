@@ -1,6 +1,10 @@
 ---
 import Container from "../ui/Container.astro";
 import Button from "../ui/Button.astro";
+import { siteConfig } from "../../lib/site-config";
+
+const [lead, ...rest] = siteConfig.aboutParagraphs;
+const leadBody = lead.replace(siteConfig.name, "");
 ---
 
 <section id="sobre" class="py-24 bg-[#F5F2EC]">
@@ -11,7 +15,7 @@ import Button from "../ui/Button.astro";
         <div class="relative z-10 overflow-hidden shadow-lg border border-[#DEDEDE] card-lift">
           <img
             src="/images/about.webp"
-            alt="Ambiente de estudo bíblico e reflexão"
+            alt="Grupo de homens reunido em círculo para estudo bíblico no salão do campus, com uma cruz de madeira na parede"
             width="700"
             height="900"
             loading="lazy"
@@ -41,16 +45,14 @@ import Button from "../ui/Button.astro";
         </h2>
 
         <p class="font-montserrat text-[#1C2530] leading-relaxed mb-5 text-base">
-          A <strong class="font-semibold text-[#044A82]">Pure Life Ministries Brasil</strong> é uma escola de aconselhamento bíblico cristão reformado dedicada à restauração de homens e mulheres que enfrentam pecados de controle e vícios comportamentais.
+          <strong class="font-semibold text-[#044A82]">{siteConfig.name}</strong>{leadBody}
         </p>
 
-        <p class="font-montserrat text-[#575757] leading-relaxed mb-5 text-sm sm:text-base">
-          Fundada sobre a convicção de que a Bíblia é suficiente para cada desafio da alma humana, nossa metodologia combina exposição sistemática das Escrituras, aconselhamento individual, responsabilidade comunitária e disciplina espiritual intensiva.
-        </p>
-
-        <p class="font-montserrat text-[#575757] leading-relaxed mb-8 text-sm sm:text-base">
-          Somos afiliados à Pure Life Ministries Internacional (EUA) e adaptamos com fidelidade o modelo comprovado por mais de quatro décadas de transformação ao contexto cultural e eclesial brasileiro.
-        </p>
+        {rest.map((paragraph, index) => (
+          <p class={`font-montserrat text-[#575757] leading-relaxed text-sm sm:text-base ${index === rest.length - 1 ? "mb-8" : "mb-5"}`}>
+            {paragraph}
+          </p>
+        ))}
 
         <!-- Métricas Responsivas (Piso WCAG e grid flexível) -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8 py-6 border-t border-b border-[#DEDEDE]" data-reveal-group>

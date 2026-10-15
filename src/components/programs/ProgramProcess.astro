@@ -1,9 +1,10 @@
 ---
 import Button from "../ui/Button.astro";
+import { siteConfig } from "../../lib/site-config";
 
 const steps = [
-  { num: "01", title: "Avaliação", desc: "Formulário inicial e entrevista com nossa equipe de conselheiros para compreender a situação." },
-  { num: "02", title: "Inscrição", desc: "Documentação, orientação e preparação para o ingresso no programa." },
+  { num: "01", title: "Triagem Gratuita", desc: "Formulário online gratuito e confidencial, seguido de entrevista com nossa equipe de conselheiros para compreender a situação." },
+  { num: "02", title: "Aprovação e Inscrição", desc: `Após a entrevista e a aprovação pastoral, é paga a taxa de inscrição de ${siteConfig.residentialProgram.registrationFeeFormatted}, com documentação e preparação para o ingresso.` },
   { num: "03", title: "Aconselhamento Bíblico", desc: "Sessões intensivas fundamentadas nas Escrituras com conselheiros certificados." },
   { num: "04", title: "Disciplina Espiritual", desc: "Oração, leitura sistemática da Bíblia, jejum e responsabilidade mútua no dia a dia." },
   { num: "05", title: "Transformação", desc: "Renovação progressiva da mente conforme Romanos 12.2, com evidências práticas de mudança." },
@@ -39,10 +40,10 @@ const steps = [
 
   <div class="border-t border-[#DEDEDE] pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
     <p class="font-montserrat text-[#1C2530] text-sm leading-relaxed max-w-xl">
-      Cada caso é avaliado individualmente com absoluto sigilo. Nossa equipe orienta o candidato e sua família em cada passo.
+      Cada caso é avaliado individualmente com absoluto sigilo. {siteConfig.residentialProgram.feeNotice}
     </p>
     <Button href="/triagem/" variant="primary" class="shrink-0 text-xs px-6 py-3.5">
-      Iniciar avaliação gratuita
+      Iniciar triagem gratuita
     </Button>
   </div>
 </div>

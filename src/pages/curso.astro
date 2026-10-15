@@ -1,0 +1,90 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Container from "../components/ui/Container.astro";
+import SectionHeading from "../components/ui/SectionHeading.astro";
+import Button from "../components/ui/Button.astro";
+import CourseHighlight from "../components/course/CourseHighlight.astro";
+import { siteConfig } from "../lib/site-config";
+
+const { course, contact } = siteConfig;
+
+const audience = [
+  { title: "Pastores e líderes", desc: "Que acompanham membros e famílias feridos pelo pecado sexual na igreja local." },
+  { title: "Conselheiros bíblicos", desc: "Que desejam aprofundar o atendimento a vícios comportamentais à luz das Escrituras." },
+  { title: "Cristãos vocacionados", desc: "Que sentem o chamado para servir na restauração de indivíduos e casamentos." },
+];
+
+const facts = [
+  { label: "Curso", value: course.title },
+  { label: "Duração", value: course.durationLabel },
+  { label: "Modalidade", value: `${course.modalityLabel} (EAD)` },
+  { label: "Certificação", value: "Certificado de pós-graduação reconhecido pelo MEC" },
+  { label: "Chancela", value: "SEBI (Sociedade Bíblica de Estudos Interdisciplinares) + Pure Life Ministries" },
+  { label: "Abordagem", value: "100% centrada na suficiência das Escrituras" },
+];
+---
+
+<ContentLayout
+  title="Pós-Graduação em Aconselhamento Bíblico | Pure Life Ministries Brasil"
+  description="Pós-Graduação em Aconselhamento Bíblico e Distúrbios da Sexualidade: 6 meses, 100% online, certificado reconhecido pelo MEC, com chancela SEBI + Pure Life Ministries."
+  canonical="https://purelifeministriesbrasil.org/curso/"
+  currentPath="/curso/"
+>
+  <CourseHighlight headingLevel="h1" />
+
+  <section class="py-24 bg-[#F5F2EC]">
+    <Container size="wide">
+      <SectionHeading
+        tag="Para quem é"
+        title="Formação para quem está na linha de frente"
+        description="A pós-graduação prepara servos de Cristo para acolher, aconselhar e acompanhar pessoas e famílias cativas pelo pecado sexual."
+      />
+
+      <div class="grid sm:grid-cols-3 gap-6" data-reveal-group>
+        {audience.map((item) => (
+          <div class="card-lift bg-white border border-[#DEDEDE] hover:border-[#044A82] p-8 transition-all duration-500" data-reveal>
+            <h3 class="font-ruda font-bold text-lg text-[#044A82] mb-2">{item.title}</h3>
+            <p class="font-montserrat text-[#575757] text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section id="grade" class="py-24 bg-white scroll-mt-24">
+    <Container size="wide">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <SectionHeading
+            tag="Grade e Estrutura"
+            title="Informações do curso"
+            description="Confira a estrutura geral da pós-graduação. A grade curricular completa, com disciplinas, carga horária, investimento e datas de matrícula, é enviada pelo consultor acadêmico."
+          />
+          <Button
+            href={contact.courseWhatsapp.url}
+            variant="primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Solicitar grade completa
+            <span class="sr-only"> (WhatsApp, abre em nova aba)</span>
+          </Button>
+          <p class="font-montserrat text-xs text-[#575757] mt-4">
+            WhatsApp exclusivo do curso: {contact.courseWhatsapp.display}
+          </p>
+        </div>
+
+        <dl class="border border-[#DEDEDE] divide-y divide-[#DEDEDE]">
+          {facts.map((fact) => (
+            <div class="grid sm:grid-cols-3 gap-2 p-5">
+              <dt class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82]">{fact.label}</dt>
+              <dd class="sm:col-span-2 font-montserrat text-sm text-[#1C2530] leading-relaxed">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </Container>
+  </section>
+</ContentLayout>

@@ -8,6 +8,8 @@ import { join } from "node:path";
 
 const distDir = join(process.cwd(), "dist");
 const headersPath = join(distDir, "_headers");
+// Modelo versionado: reler daqui (e não de dist/) torna o script idempotente após o build.
+const headersTemplatePath = join(process.cwd(), "public", "_headers");
 
 function readDotEnv() {
   const envPath = join(process.cwd(), ".env");
@@ -84,11 +86,11 @@ const directives = [
 ];
 const csp = directives.join("; ");
 
-const template = readFileSync(headersPath, "utf-8");
+const template = readFileSync(headersTemplatePath, "utf-8");
 const CSP_LINE = /^(\s*Content-Security-Policy:\s*)__CSP__\s*$/gm;
 const occurrences = template.match(CSP_LINE)?.length ?? 0;
 if (occurrences !== 1) {
-  console.error(`[generate-csp] Esperada exatamente 1 linha "Content-Security-Policy: __CSP__" em dist/_headers (encontradas: ${occurrences}).`);
+  console.error(`[generate-csp] Esperada exatamente 1 linha "Content-Security-Policy: __CSP__" em public/_headers (encontradas: ${occurrences}).`);
   process.exit(1);
 }
 writeFileSync(headersPath, template.replace(CSP_LINE, (_line, prefix) => `${prefix}${csp}`));
