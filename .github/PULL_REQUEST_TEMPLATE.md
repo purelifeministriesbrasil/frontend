@@ -1,19 +1,17 @@
-## Descrição da Alteração
+## Descrição
 
-Descrição da Alteração
+<!-- O que muda no site e por quê. Inclua capturas de tela para mudanças visuais. -->
 
-Descreva sucintamente as alterações visuais, funcionais ou estruturais realizadas no frontend.
+## Referências
 
-## Relações e Referências
-
-Relação com Issues
 - Issue: #
 
-## Diretrizes e Checklist
+## Checklist
 
-Checklist de Qualidade, Performance e AppSec
-- [ ] `pnpm run ci:verify` executou com sucesso (build SSG + verificação de topologia + verificação de estilos inline).
-- [ ] Zero inline styles (`style="..."`) introduzidos.
-- [ ] O componente segue o design system do Tailwind CSS v4.
-- [ ] Nenhuma chave de API ou segredo foi exposto em variáveis de ambiente públicas ou código fonte.
-- [ ] Caso uma nova Island React 19 tenha sido criada, a diretiva de hidratação adequada (`client:load` ou `client:idle`) foi utilizada.
+- [ ] `pnpm ci:verify` passou localmente.
+- [ ] Nenhum `style="…"` ou handler inline (`onclick=`) foi introduzido.
+- [ ] Textos, preços e contatos seguem o site novo (`src/lib/site-config.ts` e `src/data/`).
+- [ ] Imagens novas têm texto alternativo (`alt`) descritivo.
+- [ ] Nenhum segredo foi adicionado (variáveis `PUBLIC_*` são públicas).
+- [ ] Ilha Preact nova (se houver) usa a diretiva de hidratação adequada (`client:load` ou `client:visible`).
+- [ ] Se `src/schemas/` mudou, a mesma mudança foi feita no `backend`.

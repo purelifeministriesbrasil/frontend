@@ -148,17 +148,19 @@ Todas são **públicas** (acabam no HTML ou no JavaScript); nenhum segredo perte
 
 ## 7. Publicação
 
-O projeto do Cloudflare Pages publica o `main` automaticamente:
+Todo merge no `main` é publicado automaticamente pelo GitHub Actions (`.github/workflows/ci.yml`):
 
-| Configuração | Valor |
-|---|---|
-| Framework preset | Astro |
-| Build command | `pnpm ci:verify` |
-| Output directory | `dist` |
-| Variáveis | as da seção 5, mais `NODE_VERSION=22` |
+```
+push no main → job verify (typecheck, build, CSP, topologia) → job deploy → Cloudflare Pages (purelife-site)
+```
 
-Cada pull request ganha uma prévia com endereço próprio. Para voltar a uma versão anterior:
-*Workers & Pages → projeto → Deployments → Rollback*. Runbook completo:
+| Configuração no GitHub (*Settings → Secrets and variables → Actions*) | Tipo | Conteúdo |
+|---|---|---|
+| `CLOUDFLARE_API_TOKEN` | **Secret** | Token da conta institucional com permissão *Cloudflare Pages: Edit* |
+| `PUBLIC_TURNSTILE_SITE_KEY` | **Variable** | Chave pública do widget Turnstile institucional |
+
+Se a verificação falhar, nada é publicado. Para voltar a uma versão anterior:
+*Workers & Pages → purelife-site → Deployments → Rollback*. Runbook completo:
 [Implantação](https://purelifeministriesbrasil.github.io/documentation/operations/deployment/).
 
 ---

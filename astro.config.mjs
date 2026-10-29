@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://purelifeministriesbrasil.org',
   output: 'static',
-  // compat: os componentes .tsx e o lucide-react usam a API do React, servida pelo preact/compat (~4x menor).
+  // compat: os componentes .tsx usam a API do React, servida pelo preact/compat (~4x menor).
   integrations: [preact({ compat: true })],
   vite: { plugins: [tailwindcss()] },
   build: { inlineStylesheets: 'never' },
