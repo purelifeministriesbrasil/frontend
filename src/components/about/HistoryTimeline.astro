@@ -1,0 +1,83 @@
+---
+import Container from "../ui/Container.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import { timeline } from "../../data/timeline";
+---
+
+<section id="nossa-historia" class="py-20 bg-[#1C2530] text-white overflow-hidden" aria-labelledby="timeline-heading">
+  <Container size="wide">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
+      <div id="timeline-heading">
+        <SectionHeading
+          tag="Linha do tempo"
+          title="Quatro décadas de restauração"
+          description="Da fundação em Sacramento, em 1986, ao campus em Águas Lindas de Goiás."
+          invert={true}
+        />
+      </div>
+      <div class="flex gap-3 shrink-0 mb-12" data-timeline-controls>
+        <button type="button" class="timeline-nav" data-timeline-prev aria-label="Marcos anteriores" aria-controls="timeline-track">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+        </button>
+        <button type="button" class="timeline-nav" data-timeline-next aria-label="Próximos marcos" aria-controls="timeline-track">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <ol
+      id="timeline-track"
+      class="timeline-track"
+      tabindex="0"
+      aria-label="Marcos da história da Pure Life Ministries. Use as setas do teclado para navegar."
+    >
+      {timeline.map((event) => (
+        <li class={`timeline-item ${event.brazil ? "timeline-item-brazil" : ""}`}>
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <p class="font-montserrat text-xs font-bold uppercase tracking-[0.15em] text-[#D99B26] mb-2">
+            {event.date}
+            {event.brazil && <span class="ml-2 text-[#C1BDA6]">· Brasil</span>}
+          </p>
+          <h3 class="font-ruda font-bold text-base leading-snug text-white mb-2">{event.title}</h3>
+          {event.desc && <p class="font-montserrat text-sm text-[#DEDEDE] leading-relaxed">{event.desc}</p>}
+        </li>
+      ))}
+    </ol>
+  </Container>
+</section>
+
+<script>
+  // Navegação por botões e teclado; o próprio scroll-snap do CSS cuida do alinhamento.
+  function initTimeline() {
+    const track = document.getElementById("timeline-track");
+    const prev = document.querySelector<HTMLButtonElement>("[data-timeline-prev]");
+    const next = document.querySelector<HTMLButtonElement>("[data-timeline-next]");
+    if (!track || !prev || !next) return;
+
+    const behavior: ScrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+    const step = () => {
+      const item = track.querySelector<HTMLElement>(".timeline-item");
+      return item ? item.offsetWidth + 24 : track.clientWidth * 0.8;
+    };
+    const update = () => {
+      prev.disabled = track.scrollLeft <= 4;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    };
+
+    prev.addEventListener("click", () => track.scrollBy({ left: -step(), behavior }));
+    next.addEventListener("click", () => track.scrollBy({ left: step(), behavior }));
+    track.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        track.scrollBy({ left: step(), behavior });
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        track.scrollBy({ left: -step(), behavior });
+      }
+    });
+    track.addEventListener("scroll", update, { passive: true });
+    update();
+  }
+
+  initTimeline();
+</script>

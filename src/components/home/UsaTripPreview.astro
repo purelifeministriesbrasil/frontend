@@ -3,10 +3,11 @@ import Container from "../ui/Container.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import Button from "../ui/Button.astro";
 import { siteConfig, whatsappUrl } from "../../lib/site-config";
+import { usaTrip } from "../../data/usa-trip";
 
 const tripWhatsAppUrl = whatsappUrl(
   siteConfig.contact.whatsapp.number,
-  "Olá! Tenho interesse na Viagem Pure Life Ministries aos EUA (Cincinnati, Ohio & Kentucky). Gostaria de informações sobre lotes, investimento e visto."
+  `Olá! Tenho interesse na ${usaTrip.title} (${usaTrip.travelDates}). Gostaria de tirar dúvidas sobre a inscrição.`
 );
 ---
 
@@ -14,13 +15,13 @@ const tripWhatsAppUrl = whatsappUrl(
   <Container size="wide">
     <div class="text-center mb-16 max-w-3xl mx-auto" data-reveal>
       <span class="font-montserrat text-[#C1BDA6] text-xs font-bold tracking-[0.15em] uppercase block mb-4">
-        Viagem PLM aos EUA
+        {usaTrip.title}
       </span>
       <h2 class="font-ruda font-black text-white text-balance text-3xl sm:text-4xl lg:text-5xl mb-6">
-        Conheça a sede da Pure Life Ministries Internacional
+        Uma jornada de fé e renovação nos EUA
       </h2>
       <p class="font-montserrat text-[#DEDEDE] text-base sm:text-lg leading-relaxed mb-6">
-        Uma experiência de imersão em Cincinnati, Ohio & Kentucky, com visita ao campus internacional da Pure Life Ministries em Kentucky — a fonte do ministério que inspirou a PLM Brasil.
+        De {usaTrip.travelDates}, em Cincinnati, Ohio & Kentucky: Conferência Pure Life Ministries EUA, Ark Encounter, Creation Museum e Museu da Força Aérea Americana, em um grupo exclusivo de {usaTrip.seats} pessoas.
       </p>
     </div>
 
@@ -69,10 +70,10 @@ const tripWhatsAppUrl = whatsappUrl(
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" data-reveal-group>
           {
             [
-              { label: "Destino", val: "Cincinnati, Ohio & Kentucky – EUA" },
-              { label: "Programação", val: "Imersão no campus em Kentucky e atividades em Ohio" },
-              { label: "Lotes e investimento", val: "Valores por lote informados pela equipe no WhatsApp" },
-              { label: "Inscrição e visto", val: `Orientação pelo WhatsApp ${siteConfig.contact.whatsapp.display}` },
+              { label: "Destino", val: usaTrip.destination },
+              { label: "Data da viagem", val: usaTrip.travelDates },
+              { label: "Conferência", val: usaTrip.conferenceDates },
+              { label: "Vagas", val: `Apenas ${usaTrip.seats} participantes · ${usaTrip.installments.toLowerCase()}` },
             ].map((d) => (
               <div class="pillar-card border border-[#3B4C60] bg-[#1C2530]/80 p-6 cursor-default group" data-reveal>
                 <div class="font-montserrat text-[#C1BDA6] group-hover:text-white text-xs uppercase tracking-widest font-semibold mb-2 transition-colors duration-300">
