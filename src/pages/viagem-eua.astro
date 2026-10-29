@@ -4,25 +4,196 @@ export const prerender = true;
 import ContentLayout from "../layouts/ContentLayout.astro";
 import Container from "../components/ui/Container.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
-import UsaTripPreview from "../components/home/UsaTripPreview.astro";
+import Button from "../components/ui/Button.astro";
+import { siteConfig, whatsappUrl } from "../lib/site-config";
+import { usaTrip } from "../data/usa-trip";
+
+const tripWhatsAppUrl = whatsappUrl(
+  siteConfig.contact.whatsapp.number,
+  `Olá! Tenho interesse na ${usaTrip.title} (${usaTrip.travelDates}). Gostaria de tirar dúvidas sobre a inscrição.`
+);
 ---
 
 <ContentLayout
-  title="Viagem PLM aos EUA | Pure Life Ministries Brasil"
-  description="Viagem Pure Life Ministries aos EUA: Cincinnati, Ohio & Kentucky, com imersão no campus internacional em Kentucky. Inscrições e dúvidas sobre visto pelo WhatsApp."
+  title="Viagem e Conferência PLM EUA 2027 | Pure Life Ministries Brasil"
+  description={`${usaTrip.title}: ${usaTrip.travelDates} em Cincinnati, Ohio & Kentucky. Conferência, Ark Encounter, Creation Museum e Museu da Força Aérea. Apenas ${usaTrip.seats} vagas, em até 10x sem juros.`}
   canonical="https://purelifeministriesbrasil.org/viagem-eua/"
   currentPath="/viagem-eua/"
 >
+  <!-- Abertura -->
   <section class="py-20 bg-[#1C2530] text-white">
     <Container size="wide">
       <SectionHeading
-        tag="Imersão Internacional"
-        title="Viagem de Formação Pastoral à Sede nos EUA"
-        description="Conheça de perto o berço do ministério que há mais de 40 anos lidera cristãos à vitória em Cristo."
+        tag={`Conferência Exclusiva · ${usaTrip.seats} vagas`}
+        title={`${usaTrip.title}: ${usaTrip.tagline.toLowerCase()}`}
+        description="Explore Kentucky e Ohio, visite a réplica em tamanho real da Arca de Noé e participe da Conferência Pure Life Ministries. Uma experiência de cura, restauração e inspiração profunda."
         invert={true}
       />
+      <dl class="grid sm:grid-cols-3 gap-4 mb-10">
+        {[
+          { label: "Data da viagem", value: usaTrip.travelDates },
+          { label: "Conferência", value: usaTrip.conferenceDates },
+          { label: "Localização", value: usaTrip.destination },
+        ].map((item) => (
+          <div class="border border-[#3B4C60] p-5">
+            <dt class="font-montserrat text-[#C1BDA6] text-xs uppercase tracking-widest font-semibold mb-1">{item.label}</dt>
+            <dd class="font-ruda font-bold text-white text-lg">{item.value}</dd>
+          </div>
+        ))}
+      </dl>
+      <div class="flex flex-wrap gap-4">
+        <Button href={usaTrip.paymentUrl} variant="primary" target="_blank" rel="noopener noreferrer">
+          Garantir minha vaga
+          <span class="sr-only"> (pagamento na plataforma da SEBI, abre em nova aba)</span>
+        </Button>
+        <Button href={tripWhatsAppUrl} variant="outline-light" target="_blank" rel="noopener noreferrer">
+          Falar no WhatsApp
+          <span class="sr-only"> (abre em nova aba)</span>
+        </Button>
+      </div>
     </Container>
   </section>
 
-  <UsaTripPreview />
+  <!-- O que está incluso -->
+  <section id="incluso" class="py-20 bg-[#F5F2EC]">
+    <Container size="wide">
+      <SectionHeading
+        tag="O que está incluso"
+        title="Seu pacote garante uma experiência completa"
+        description="A programação específica de cada atividade será enviada aos viajantes posteriormente."
+      />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" data-reveal-group>
+        {usaTrip.included.map((item) => (
+          <div class="card-lift bg-white border border-[#DEDEDE] hover:border-[#044A82] p-6 transition-all duration-500" data-reveal>
+            <h3 class="font-ruda font-bold text-lg text-[#044A82] mb-2">{item.title}</h3>
+            <p class="font-montserrat text-sm text-[#575757] leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Destaques e programação -->
+  <section id="programacao" class="py-20 bg-white">
+    <Container size="wide">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div>
+          <SectionHeading tag="Experiência completa" title="Destaques da jornada" />
+          <div class="space-y-6">
+            {usaTrip.highlights.map((item) => (
+              <div class="border-l-2 border-[#D99B26] pl-5">
+                <h3 class="font-ruda font-bold text-lg text-[#1C2530] mb-1">{item.title}</h3>
+                <p class="font-montserrat text-sm text-[#575757] leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <SectionHeading
+            tag="Programação geral"
+            title="Cronograma"
+            description="Cronograma ilustrativo. As datas específicas de cada atividade serão confirmadas posteriormente."
+          />
+          <ol class="space-y-5">
+            {usaTrip.schedule.map((item) => (
+              <li class="grid grid-cols-[6.5rem_1fr] gap-4">
+                <span class="font-ruda font-black text-[#044A82] text-sm uppercase pt-0.5">{item.date}</span>
+                <div>
+                  <h3 class="font-ruda font-bold text-[#1C2530]">{item.title}</h3>
+                  <p class="font-montserrat text-sm text-[#575757] leading-relaxed">{item.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Investimento -->
+  <section id="investimento" class="py-20 bg-[#1C2530] text-white">
+    <Container size="wide">
+      <SectionHeading
+        tag="Investimento"
+        title="Investimento na sua jornada"
+        description={`${usaTrip.installments}. Garanta sua vaga nos primeiros lotes.`}
+        invert={true}
+      />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {usaTrip.lots.map((lot) => (
+          <div
+            class={`p-6 border flex flex-col justify-between ${
+              lot.closed ? "border-[#3B4C60] opacity-60" : lot.featured ? "border-[#D99B26] bg-white/5" : "border-[#3B4C60]"
+            }`}
+          >
+            <div>
+              {lot.featured && (
+                <span class="inline-block font-montserrat text-[0.65rem] font-bold uppercase tracking-widest text-[#1C2530] bg-[#D99B26] px-2 py-1 mb-3">
+                  Melhor valor
+                </span>
+              )}
+              <h3 class="font-montserrat text-xs uppercase tracking-widest font-semibold text-[#C1BDA6] mb-2">{lot.name}</h3>
+              <p class={`font-ruda font-black text-2xl mb-1 ${lot.closed ? "line-through" : ""}`}>{lot.price}</p>
+              <p class="font-montserrat text-xs text-[#DEDEDE]">Em até 10x sem juros</p>
+              <p class="font-montserrat text-xs text-[#C1BDA6] mt-3">{lot.note}</p>
+            </div>
+            {lot.closed ? (
+              <span class="mt-6 font-montserrat text-xs font-bold uppercase tracking-wider text-[#C1BDA6]">Lote encerrado</span>
+            ) : (
+              <Button href={usaTrip.paymentUrl} variant="primary" class="mt-6 text-xs text-center" target="_blank" rel="noopener noreferrer">
+                Selecionar
+                <span class="sr-only"> {lot.name} (pagamento na plataforma da SEBI, abre em nova aba)</span>
+              </Button>
+            )}
+          </div>
+        ))}
+      </div>
+      <p class="font-montserrat text-xs text-[#DEDEDE] mt-6">
+        O pagamento é feito com segurança na plataforma da SEBI. Dúvidas sobre lotes e outras formas de pagamento:
+        <a href={tripWhatsAppUrl} target="_blank" rel="noopener noreferrer" class="underline hover:text-white">
+          WhatsApp {siteConfig.contact.whatsapp.display}
+        </a>.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Informações importantes e FAQ -->
+  <section id="observacoes" class="py-20 bg-[#F5F2EC]">
+    <Container size="wide">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div>
+          <SectionHeading tag="Observações" title="Informações importantes" />
+          <div class="grid sm:grid-cols-2 gap-5">
+            {usaTrip.notes.map((note) => (
+              <div class="bg-white border border-[#DEDEDE] p-5">
+                <h3 class="font-ruda font-bold text-[#044A82] mb-1">{note.title}</h3>
+                <p class="font-montserrat text-sm text-[#575757] leading-relaxed">{note.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <SectionHeading tag="Dúvidas" title="Perguntas frequentes" />
+          <div class="space-y-3">
+            {usaTrip.faq.map((item) => (
+              <details class="bg-white border border-[#DEDEDE] p-5 group">
+                <summary class="font-ruda font-bold text-[#1C2530] cursor-pointer list-none flex justify-between gap-4">
+                  {item.q}
+                  <span class="text-[#044A82] group-open:rotate-45 transition-transform" aria-hidden="true">+</span>
+                </summary>
+                <p class="font-montserrat text-sm text-[#575757] leading-relaxed mt-3">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="mt-16 bg-[#1C2530] text-white p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <p class="font-ruda font-bold text-lg">Não perca a oportunidade de viver essa experiência transformadora.</p>
+        <Button href={usaTrip.paymentUrl} variant="primary" class="shrink-0" target="_blank" rel="noopener noreferrer">
+          Garantir minha vaga
+          <span class="sr-only"> (pagamento na plataforma da SEBI, abre em nova aba)</span>
+        </Button>
+      </div>
+    </Container>
+  </section>
 </ContentLayout>

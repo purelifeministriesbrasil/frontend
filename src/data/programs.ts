@@ -1,11 +1,10 @@
 import { siteConfig } from "@/lib/site-config";
-import residentialImg from "@/assets/images/residential.webp";
-import onlineImg from "@/assets/images/online.webp";
-import convivenciaImg from "@/assets/images/campus/sala-de-convivencia.webp";
+import residentialImg from "@/assets/images/campus/salao-estudo-biblico.webp";
+import onlineImg from "@/assets/images/campus/gramado-palmeiras.webp";
 
 /** Programas exibidos na Home e em /programas/ (mesma fonte para as duas páginas). */
 export interface Program {
-  id: "residencial" | "online" | "esposas";
+  id: "residencial" | "online";
   badge: string;
   badgeVariant: "blue" | "dark";
   title: string;
@@ -40,7 +39,7 @@ export const programs: Program[] = [
       "Integração ativa à comunhão da igreja local",
     ],
     imageSrc: residentialImg,
-    imageAlt: "Estante de madeira com livros cristãos na biblioteca do campus residencial",
+    imageAlt: "Homens reunidos em círculo para estudo bíblico no salão do campus residencial",
     leaderName: "Pr. Paulo Gouvêa",
     ctaText: "Iniciar triagem",
     ctaHref: "/triagem/",
@@ -62,29 +61,10 @@ export const programs: Program[] = [
       "Recursos digitais e áudios",
     ],
     imageSrc: onlineImg,
-    imageAlt: "Aconselhamento bíblico online com conselheiro",
+    imageAlt: "Gramado e palmeiras da chácara da Pure Life Ministries Brasil em Águas Lindas de Goiás",
     leaderName: "Pr. Filipe Bentle",
     ctaText: "Inscrever-se na Hotmart",
     ctaHref: onlineProgram.enrollmentUrl,
     ctaExternal: true,
-  },
-  {
-    id: "esposas",
-    badge: "Cuidado para Mulheres",
-    badgeVariant: "blue",
-    title: "Apoio para Esposas",
-    subtitle: "Acompanhamento online · Todo o Brasil",
-    description:
-      "Acompanhamento pastoral dedicado a esposas e mulheres feridas pelo pecado sexual do cônjuge, conduzido por conselheiras que compreendem as dores e os desafios do contexto conjugal e familiar.",
-    features: [
-      "Conselheiras dedicadas",
-      "Atendimento confidencial",
-      "Encontros online",
-      "Esperança para o casamento",
-    ],
-    imageSrc: convivenciaImg,
-    imageAlt: "Sala de convivência tranquila com sofás e uma coroa de espinhos decorativa na parede",
-    ctaText: "Pedir acompanhamento",
-    ctaHref: "/triagem/",
   },
 ];

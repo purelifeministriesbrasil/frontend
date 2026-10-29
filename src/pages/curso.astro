@@ -11,24 +11,35 @@ import { siteConfig } from "../lib/site-config";
 const { course, contact } = siteConfig;
 
 const audience = [
-  { title: "Pastores e líderes", desc: "Que acompanham membros e famílias feridos pelo pecado sexual na igreja local." },
-  { title: "Conselheiros bíblicos", desc: "Que desejam aprofundar o atendimento a vícios comportamentais à luz das Escrituras." },
-  { title: "Cristãos vocacionados", desc: "Que sentem o chamado para servir na restauração de indivíduos e casamentos." },
+  { title: "Pastores e líderes", desc: "Que precisam responder com sabedoria, graça e fundamento aos desafios da sexualidade na igreja." },
+  { title: "Conselheiros bíblicos", desc: "Que desejam aprofundar o aconselhamento na área da sexualidade à luz das Escrituras." },
+  { title: "Educadores e profissionais", desc: "Que querem compreender identidade, casamento e família a partir de uma cosmovisão bíblica." },
+];
+
+/** Temas da formação (divulgação oficial do curso). A grade completa é enviada pelo consultor. */
+const themes = [
+  "Teologia da Sexualidade",
+  "Teologia do Casamento",
+  "Aconselhamento Bíblico",
+  "O impacto pessoal e social da pornografia",
+  "Cosmovisões contemporâneas sobre gênero, identidade e sexualidade",
+  "Transformação da mente e santificação",
 ];
 
 const facts = [
   { label: "Curso", value: course.title },
+  { label: "Certificação", value: course.institution },
   { label: "Duração", value: course.durationLabel },
   { label: "Modalidade", value: `${course.modalityLabel} (EAD)` },
-  { label: "Certificação", value: "Certificado de pós-graduação reconhecido pelo MEC" },
+  { label: "Corpo docente", value: "Professores experientes, incluindo o Pr. Paulo Gouvêa, referência em aconselhamento bíblico na área da sexualidade" },
   { label: "Chancela", value: "SEBI (Sociedade Bíblica de Estudos Interdisciplinares) + Pure Life Ministries" },
-  { label: "Abordagem", value: "100% centrada na suficiência das Escrituras" },
+  { label: "Abordagem", value: "Interdisciplinar e comprometida com a autoridade das Escrituras" },
 ];
 ---
 
 <ContentLayout
-  title="Pós-Graduação em Aconselhamento Bíblico | Pure Life Ministries Brasil"
-  description="Pós-Graduação em Aconselhamento Bíblico e Distúrbios da Sexualidade: 6 meses, 100% online, certificado reconhecido pelo MEC, com chancela SEBI + Pure Life Ministries."
+  title="Formação Superior em Sexualidade Humana sob Perspectiva Bíblica | Pure Life Ministries Brasil"
+  description="Formação Superior Sequencial em Sexualidade Humana sob Perspectiva Bíblica, certificada pela Faculdade Coram Deo: teologia da sexualidade e do casamento, aconselhamento bíblico e cosmovisões contemporâneas."
   canonical="https://purelifeministriesbrasil.org/curso/"
   currentPath="/curso/"
 >
@@ -39,7 +50,7 @@ const facts = [
       <SectionHeading
         tag="Para quem é"
         title="Formação para quem está na linha de frente"
-        description="A pós-graduação prepara servos de Cristo para acolher, aconselhar e acompanhar pessoas e famílias cativas pelo pecado sexual."
+        description="A formação prepara servos de Cristo para acolher, aconselhar e acompanhar pessoas e famílias cativas pelo pecado sexual."
       />
 
       <div class="grid sm:grid-cols-3 gap-6" data-reveal-group>
@@ -60,7 +71,7 @@ const facts = [
           <SectionHeading
             tag="Grade e Estrutura"
             title="Informações do curso"
-            description="Confira a estrutura geral da pós-graduação. A grade curricular completa, com disciplinas, carga horária, investimento e datas de matrícula, é enviada pelo consultor acadêmico."
+            description="Confira a estrutura da formação e os temas estudados. Investimento, datas da próxima turma e a grade completa são enviados pelo consultor acadêmico."
           />
           <Button
             href={contact.courseWhatsapp.url}
@@ -76,14 +87,26 @@ const facts = [
           </p>
         </div>
 
-        <dl class="border border-[#DEDEDE] divide-y divide-[#DEDEDE]">
+        <div>
+          <dl class="border border-[#DEDEDE] divide-y divide-[#DEDEDE] mb-10">
           {facts.map((fact) => (
             <div class="grid sm:grid-cols-3 gap-2 p-5">
               <dt class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82]">{fact.label}</dt>
               <dd class="sm:col-span-2 font-montserrat text-sm text-[#1C2530] leading-relaxed">{fact.value}</dd>
             </div>
           ))}
-        </dl>
+          </dl>
+
+          <h3 class="font-ruda font-bold text-xl text-[#1C2530] mb-4">Temas da formação</h3>
+          <ol class="space-y-3">
+            {themes.map((theme, index) => (
+              <li class="flex gap-4 border-l-2 border-[#D99B26] pl-4">
+                <span class="font-ruda font-black text-[#044A82] shrink-0">{String(index + 1).padStart(2, "0")}</span>
+                <span class="font-montserrat text-sm text-[#1C2530] leading-relaxed">{theme}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </Container>
   </section>
