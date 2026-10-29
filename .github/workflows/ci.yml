@@ -14,7 +14,7 @@ jobs:
     name: Typecheck, Static Build, CSP and Topology
     runs-on: ubuntu-latest
     env:
-      # Valores públicos de build (o deploy real usa as variáveis do projeto no Cloudflare Pages).
+      # Valores públicos de build; o job deploy usa a chave real do Turnstile.
       PUBLIC_SITE_ORIGIN: https://purelifeministriesbrasil.org
       PUBLIC_API_URL: https://api.purelifeministriesbrasil.org
       PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
@@ -39,3 +39,50 @@ jobs:
 
       - name: Typecheck, build (with CSP generation) and verify
         run: pnpm ci:verify
+
+  deploy:
+    name: Deploy to Cloudflare Pages (production)
+    needs: verify
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    concurrency:
+      group: pages-production
+      cancel-in-progress: false
+    env:
+      PUBLIC_SITE_ORIGIN: https://purelifeministriesbrasil.org
+      PUBLIC_API_URL: https://api.purelifeministriesbrasil.org
+      # Chave pública do widget (não é segredo): variável do repositório.
+      PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
+      PUBLIC_ENABLE_PIX_GATEWAY: "false"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fail if the Turnstile site key is missing
+        run: test -n "$PUBLIC_TURNSTILE_SITE_KEY"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build and verify with production values
+        run: pnpm ci:verify
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: e1728ab8a6578c45419c0c6e06901ad9
+          wranglerVersion: "3.114.0"
+          command: pages deploy dist --project-name=purelife-site --branch=main --commit-hash=${{ github.sha }}
