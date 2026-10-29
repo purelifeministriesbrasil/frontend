@@ -79,10 +79,12 @@ jobs:
       - name: Build and verify with production values
         run: pnpm ci:verify
 
+      # wrangler via npx: o wrangler-action instalaria o pacote no projeto e o pnpm bloqueia o postinstall do workerd.
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: e1728ab8a6578c45419c0c6e06901ad9
-          wranglerVersion: "3.114.0"
-          command: pages deploy dist --project-name=purelife-site --branch=main --commit-hash=${{ github.sha }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: e1728ab8a6578c45419c0c6e06901ad9
+        run: >-
+          npx --yes wrangler@3.114.0 pages deploy dist
+          --project-name=purelife-site --branch=main
+          --commit-hash=${{ github.sha }} --commit-dirty=true
