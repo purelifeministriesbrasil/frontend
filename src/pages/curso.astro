@@ -11,39 +11,35 @@ import { siteConfig } from "../lib/site-config";
 const { course, contact } = siteConfig;
 
 const audience = [
-  { title: "Pastores e líderes", desc: "Que acompanham membros e famílias feridos pelo pecado sexual na igreja local." },
-  { title: "Conselheiros bíblicos", desc: "Que desejam aprofundar o atendimento a vícios comportamentais à luz das Escrituras." },
-  { title: "Cristãos vocacionados", desc: "Que sentem o chamado para servir na restauração de indivíduos e casamentos." },
+  { title: "Pastores e líderes", desc: "Que precisam responder com sabedoria, graça e fundamento aos desafios da sexualidade na igreja." },
+  { title: "Conselheiros bíblicos", desc: "Que desejam aprofundar o aconselhamento na área da sexualidade à luz das Escrituras." },
+  { title: "Educadores e profissionais", desc: "Que querem compreender identidade, casamento e família a partir de uma cosmovisão bíblica." },
 ];
 
-/** Disciplinas da última turma (site anterior). A coordenação confirma a grade vigente pelo WhatsApp. */
-const modules = [
-  "Fundamentos Bíblicos do Aconselhamento",
-  "Aconselhamento Bíblico Familiar: resolução de conflitos, papéis e funções na família e suas influências na sexualidade",
-  "Ídolos do Coração e a Dinâmica do Comportamento Humano: por que fazemos o que fazemos?",
-  "Aconselhamento Bíblico e Hábitos Escravizadores na Sexualidade",
-  "Distúrbios e Disfunções na Sexualidade: cosmovisão bíblica do sexo e diagnóstico de distúrbios",
-  "Cosmovisão Bíblica da Sexualidade",
-  "Transgenerismo e Ideologia de Gênero: entendendo a teoria e desconstruindo o engano",
-  "Aconselhamento Bíblico em Terapia Sexual: disfunções masculinas, femininas e terapias de reparação",
-  "Metodologia de Pesquisa Científica",
+/** Temas da formação (divulgação oficial do curso). A grade completa é enviada pelo consultor. */
+const themes = [
+  "Teologia da Sexualidade",
+  "Teologia do Casamento",
+  "Aconselhamento Bíblico",
+  "O impacto pessoal e social da pornografia",
+  "Cosmovisões contemporâneas sobre gênero, identidade e sexualidade",
+  "Transformação da mente e santificação",
 ];
 
 const facts = [
   { label: "Curso", value: course.title },
+  { label: "Certificação", value: course.institution },
   { label: "Duração", value: course.durationLabel },
   { label: "Modalidade", value: `${course.modalityLabel} (EAD)` },
-  { label: "Certificação", value: "Curso livre certificado pela Faculdade Coram Deo" },
-  { label: "Aulas", value: "Ao vivo pela plataforma virtual, às segundas e terças, das 19h30 às 22h30" },
-  { label: "Turmas", value: "Formadas a partir de 30 alunos" },
+  { label: "Corpo docente", value: "Professores experientes, incluindo o Pr. Paulo Gouvêa, referência em aconselhamento bíblico na área da sexualidade" },
   { label: "Chancela", value: "SEBI (Sociedade Bíblica de Estudos Interdisciplinares) + Pure Life Ministries" },
-  { label: "Abordagem", value: "100% centrada na suficiência das Escrituras" },
+  { label: "Abordagem", value: "Interdisciplinar e comprometida com a autoridade das Escrituras" },
 ];
 ---
 
 <ContentLayout
-  title="Pós-Graduação em Aconselhamento Bíblico | Pure Life Ministries Brasil"
-  description="Pós-Graduação em Aconselhamento Bíblico e Distúrbios da Sexualidade: 6 meses, 100% online, curso livre certificado pela Faculdade Coram Deo, com chancela SEBI + Pure Life Ministries."
+  title="Formação Superior em Sexualidade Humana sob Perspectiva Bíblica | Pure Life Ministries Brasil"
+  description="Formação Superior Sequencial em Sexualidade Humana sob Perspectiva Bíblica, certificada pela Faculdade Coram Deo: teologia da sexualidade e do casamento, aconselhamento bíblico e cosmovisões contemporâneas."
   canonical="https://purelifeministriesbrasil.org/curso/"
   currentPath="/curso/"
 >
@@ -54,7 +50,7 @@ const facts = [
       <SectionHeading
         tag="Para quem é"
         title="Formação para quem está na linha de frente"
-        description="A pós-graduação prepara servos de Cristo para acolher, aconselhar e acompanhar pessoas e famílias cativas pelo pecado sexual."
+        description="A formação prepara servos de Cristo para acolher, aconselhar e acompanhar pessoas e famílias cativas pelo pecado sexual."
       />
 
       <div class="grid sm:grid-cols-3 gap-6" data-reveal-group>
@@ -75,7 +71,7 @@ const facts = [
           <SectionHeading
             tag="Grade e Estrutura"
             title="Informações do curso"
-            description="Confira a estrutura da pós-graduação e as disciplinas da última turma. Investimento, datas da próxima turma e a grade vigente são confirmados pelo consultor acadêmico."
+            description="Confira a estrutura da formação e os temas estudados. Investimento, datas da próxima turma e a grade completa são enviados pelo consultor acadêmico."
           />
           <Button
             href={contact.courseWhatsapp.url}
@@ -101,12 +97,12 @@ const facts = [
           ))}
           </dl>
 
-          <h3 class="font-ruda font-bold text-xl text-[#1C2530] mb-4">Disciplinas</h3>
+          <h3 class="font-ruda font-bold text-xl text-[#1C2530] mb-4">Temas da formação</h3>
           <ol class="space-y-3">
-            {modules.map((module, index) => (
+            {themes.map((theme, index) => (
               <li class="flex gap-4 border-l-2 border-[#D99B26] pl-4">
                 <span class="font-ruda font-black text-[#044A82] shrink-0">{String(index + 1).padStart(2, "0")}</span>
-                <span class="font-montserrat text-sm text-[#1C2530] leading-relaxed">{module}</span>
+                <span class="font-montserrat text-sm text-[#1C2530] leading-relaxed">{theme}</span>
               </li>
             ))}
           </ol>

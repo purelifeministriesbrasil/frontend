@@ -48,7 +48,7 @@ export const siteConfig = {
       display: "(61) 99566-1936",
       url: whatsappUrl(pastoralWhatsApp),
     },
-    /** WhatsApp exclusivo da Pós-Graduação. */
+    /** WhatsApp exclusivo do curso (Formação Superior). */
     courseWhatsapp: {
       number: courseWhatsApp,
       display: "+55 62 9119-1098",
@@ -88,7 +88,8 @@ export const siteConfig = {
   },
 
   course: {
-    title: "Pós-Graduação em Aconselhamento Bíblico e Distúrbios da Sexualidade",
+    title: "Formação Superior Sequencial em Sexualidade Humana sob Perspectiva Bíblica",
+    institution: "Faculdade Coram Deo",
     durationLabel: "6 Meses",
     modalityLabel: "100% Online",
   },
