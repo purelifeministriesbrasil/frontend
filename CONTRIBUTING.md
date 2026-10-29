@@ -1,48 +1,44 @@
 # Guia de Contribuição — purelife-web
 
-O repositório `purelife-web` é responsável pela experiência visual, acessibilidade e performance do portal público do **Pure Life Ministries Brasil**.
+Este repositório cuida da experiência visual, da acessibilidade e do desempenho do site público do
+**Pure Life Ministries Brasil**.
 
 ---
 
-## Diretrizes e Checklist
+## 1. Regras de arquitetura
 
-Regras de Arquitetura e Frontend
-
-1. **Astro SSG por Padrão**:
-   - Todo novo conteúdo institucional deve ser criado como página ou componente Astro estático (`.astro`).
-   - Evite bibliotecas externas pesadas para manipulação visual; priorize Vanilla JS moderno em tags `<script>` com escopo isolado.
-
-2. **React 19 Islands Restritas**:
-   - Componentes React só são aceitos quando houver necessidade imperativa de formulários interativos, integração de áudio contínuo ou modais dinâmicos.
-   - Utilize a diretiva `client:idle` ou `client:load` conscientemente para manter o JS bundle mínimo.
-
-3. **Zero Inline Styles e Conformidade CSP**:
-   - O uso de `style="..."` é proibido.
-   - Utilize as classes utilitárias do **Tailwind CSS v4** declaradas em `src/styles/global.css`.
-
-4. **Verificação de Topologia e Isolamento**:
-   - Nunca importe código de banco de dados (`drizzle-orm`, Neon, etc.) no frontend.
-   - Contratos de dados devem ser consumidos unicamente através do pacote `purelife-contracts`.
+1. **Astro estático por padrão**
+   - Conteúdo institucional é página ou componente `.astro`, renderizado no build.
+   - Comportamentos simples usam `<script>` do Astro (TypeScript, sem bibliotecas pesadas).
+2. **Ilhas Preact só quando necessário**
+   - Use `.tsx` apenas quando houver estado no navegador (formulários). Os ícones vêm de `lucide-preact`.
+   - Hidrate com `client:load` (conteúdo principal) ou `client:visible` (abaixo da dobra).
+3. **Sem estilos inline e CSP estrita**
+   - `style="…"` e handlers inline (`onclick=`) são proibidos e quebram o build.
+   - Use as classes do Tailwind v4 e os tokens de `src/styles/tokens.css`.
+4. **Fronteira com a API**
+   - Nunca importe código de banco (`drizzle-orm`, drivers Postgres) nem coloque segredos no frontend.
+   - Os contratos ficam em `src/schemas/`, **idênticos** aos do `backend` (ver
+     [`src/schemas/README.md`](src/schemas/README.md)).
+5. **Conteúdo**
+   - Textos, preços e contatos ficam em `src/lib/site-config.ts` e `src/data/`; o site novo é a referência.
 
 ---
 
-## Validação Local
+## 2. Validação local
 
-Validação Local Obrigatória
-
-Antes de enviar qualquer Pull Request:
 ```bash
-# Executa compilação estática + verificação de topologia + verificação de estilos inline
-pnpm run ci:verify
+pnpm ci:verify   # typecheck + build + topologia + ausência de estilos inline
 ```
 
+O CI executa o mesmo comando em todo pull request.
+
 ---
 
-## Fluxo de Trabalho Git
+## 3. Fluxo de trabalho Git
 
-Fluxo de Branches e Commits
-
-- Crie uma branch com prefixo claro: `feat/nova-secao-podcast` ou `fix/modal-doacao-pix`.
-- Adote o padrão Conventional Commits:
-  - `feat(ui): add accessible audio player island`
-  - `fix(styles): eliminate inline style from testimonial card`
+- Crie a branch a partir do `main` com prefixo claro: `feat/…`, `fix/…`, `docs/…`, `ci/…`.
+- Mensagens no padrão *Conventional Commits*:
+  - `feat(curso): adiciona a seção de corpo docente`
+  - `fix(styles): remove estilo inline do card de depoimento`
+- Abra o pull request preenchendo o modelo; após o merge no `main`, o site é publicado automaticamente.

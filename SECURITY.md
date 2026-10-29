@@ -1,23 +1,26 @@
 # Política de Segurança — purelife-web
 
-## Segurança: Relato de Vulnerabilidades
+## 1. Como relatar uma vulnerabilidade
 
-Caso identifique vulnerabilidades no frontend (como riscos de Cross-Site Scripting - XSS, injeção de HTML, quebra de Content Security Policy ou vazamento acidental de tokens em bundles públicos), **NÃO abra uma issue pública**.
+Encontrou uma falha no site (XSS, injeção de HTML, quebra da CSP, segredo exposto no código publicado)?
+**Não abra uma issue pública.** Envie o relato para:
 
-Envie o relatório imediatamente para:
-- **E-mail de Segurança**: `purelifeministriesbrasil1986@gmail.com` (assunto: "Segurança")
-- **Assunto**: `[Segurança Frontend] <Resumo>`
+- **E-mail:** `purelifeministriesbrasil1986@gmail.com`
+- **Assunto:** `[Segurança Frontend] <resumo>`
+
+Inclua a página afetada, os passos para reproduzir e o impacto. Responderemos o quanto antes e pedimos até
+30 dias para corrigir antes de qualquer divulgação.
 
 ---
 
-## Governança e Contribuição
+## 2. Regras de segurança do frontend
 
-Diretrizes de Segurança Frontend
-
-1. **Content Security Policy (CSP)**:
-   - Todo script deve ser originado de fontes confiáveis (`'self'`).
-   - É terminantemente vedada a injeção não sanitizada de dados HTML no DOM (`set:html` ou `dangerouslySetInnerHTML`) sem uso de biblioteca de sanitização auditada.
-2. **Zero Segredos no Cliente**:
-   - Nenhuma variável privada (chaves de banco, chaves de webhook Asaas, chaves de criptografia AES) deve possuir o prefixo `PUBLIC_` ou ser embutida no bundle estático.
-3. **Isolamento de Formulários**:
-   - Dados de formulários sensíveis de triagem nunca devem ser enviados para URLs de terceiros ou armazenados em `localStorage` / `sessionStorage`.
+1. **Content Security Policy**
+   - Scripts só de `'self'`, do Turnstile e scripts inline autorizados por *hash* no build.
+   - É proibido inserir HTML não confiável (`set:html`, `dangerouslySetInnerHTML`).
+2. **Nenhum segredo no navegador**
+   - Toda variável com prefixo `PUBLIC_` vai para o código publicado. Chaves de banco, de criptografia, de
+     webhook, da Resend ou a chave **secreta** do Turnstile pertencem só à API.
+3. **Dados dos formulários**
+   - Enviados apenas para a API oficial (`PUBLIC_API_URL`), nunca para terceiros.
+   - Nunca guardados em `localStorage`, `sessionStorage`, cookies ou na URL.
