@@ -1,6 +1,7 @@
 {
   "name": "purelife-web",
   "type": "module",
+  "packageManager": "pnpm@12.18.0",
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
@@ -10,7 +11,8 @@
     "typecheck": "astro check && tsc --noEmit",
     "verify:topology": "node ./scripts/verify-topology.mjs",
     "verify:no-inline-style": "node ./scripts/verify-no-inline-style.mjs",
-    "ci:verify": "pnpm typecheck && pnpm build && pnpm verify:topology && pnpm verify:no-inline-style"
+    "ci:verify": "pnpm typecheck && pnpm build && pnpm verify:topology && pnpm verify:no-inline-style",
+    "verify:pnpm": "node ./scripts/verify-package-manager.mjs"
   },
   "dependencies": {
     "@astrojs/preact": "4.1.3",
