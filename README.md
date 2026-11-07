@@ -47,7 +47,7 @@ o navegador nunca acessa o banco e não recebe nenhuma credencial.
 | Programa Residencial | `/programas/residencial/` | Campus | `/campus/` |
 | Curso (Formação Superior) | `/curso/` | Perguntas frequentes | `/perguntas-frequentes/` |
 | Triagem | `/triagem/` → `/triagem/recebido/` | Contato | `/contato/` |
-| Doar | `/doar/` → `/doar/obrigado/` | Confirmação da newsletter | `/newsletter/confirmar/` |
+| Doar | `/doar/` → `/doar/obrigado/` | Confirmação da newsletter | `/newsletter/confirmar/` (cancelamento: `/newsletter/cancelar/`) |
 | Política de privacidade | `/politica-de-privacidade/` | Página não encontrada | `/404` |
 
 ---
