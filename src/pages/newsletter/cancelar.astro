@@ -1,0 +1,87 @@
+---
+export const prerender = true;
+
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import Container from "../../components/ui/Container.astro";
+import Button from "../../components/ui/Button.astro";
+import { apiUrl } from "../../lib/api";
+
+// Endpoint resolvido no build a partir de PUBLIC_API_URL (vazio = mesma origem).
+const unsubscribeEndpoint = apiUrl("/api/forms/newsletter/unsubscribe");
+---
+
+<ContentLayout
+  title="Cancelar inscrição | Pure Life Ministries Brasil"
+  description="Cancelamento da inscrição na newsletter da Pure Life Ministries Brasil."
+  canonical="https://purelifeministriesbrasil.org/newsletter/cancelar/"
+  robots="noindex, nofollow"
+  currentPath="/newsletter/cancelar/"
+>
+  <section class="py-24 bg-[#F5F2EC]">
+    <Container size="narrow" class="text-center">
+      <div class="bg-white border border-[#DEDEDE] p-8 sm:p-12 shadow-xs">
+        <h1 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-4">Cancelar inscrição</h1>
+        <p
+          id="newsletter-unsubscribe-status"
+          class="font-montserrat text-[#575757] text-sm sm:text-base leading-relaxed mb-8"
+          role="status"
+          aria-live="polite"
+          data-endpoint={unsubscribeEndpoint}
+        >
+          Para deixar de receber nossas mensagens, confirme abaixo.
+        </p>
+        <noscript>
+          <p class="font-montserrat text-[#575757] text-sm mb-8">
+            Ative o JavaScript para concluir o cancelamento ou escreva para purelifeministriesbrasil1986@gmail.com.
+          </p>
+        </noscript>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <Button id="newsletter-unsubscribe-button" type="button" variant="primary">Confirmar cancelamento</Button>
+          <Button href="/" variant="outline">Voltar à página inicial</Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</ContentLayout>
+
+<script>
+  // O token chega no fragmento (#token=...): não é enviado a servidores, logs nem Referer.
+  // Abrir o link (GET, inclusive por leitores de link de antivírus) nunca cancela a inscrição:
+  // a alteração só ocorre no POST disparado pelo clique explícito no botão.
+  const status = document.getElementById("newsletter-unsubscribe-status");
+  const button = document.getElementById("newsletter-unsubscribe-button") as HTMLButtonElement | null;
+  const token = new URLSearchParams(window.location.hash.slice(1)).get("token");
+  history.replaceState(null, "", window.location.pathname);
+
+  const show = (message: string) => {
+    if (status) status.textContent = message;
+  };
+
+  if (!status || !button || !token) {
+    show("Link de cancelamento inválido. Use o link mais recente recebido por e-mail.");
+    button?.setAttribute("hidden", "");
+  } else {
+    button.addEventListener("click", () => {
+      button.disabled = true;
+      fetch(status.dataset.endpoint ?? "/api/forms/newsletter/unsubscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ token }),
+        signal: AbortSignal.timeout(15000),
+      })
+        .then((res) => {
+          if (res.ok) {
+            button.setAttribute("hidden", "");
+            return show("Pedido processado. Se o endereço estava inscrito, ele não receberá mais mensagens.");
+          }
+          button.disabled = false;
+          if (res.status === 400) return show("Link de cancelamento inválido. Use o link mais recente recebido por e-mail.");
+          show("Não foi possível cancelar agora. Tente novamente em instantes.");
+        })
+        .catch(() => {
+          button.disabled = false;
+          show("Erro de conexão. Verifique sua rede e tente novamente.");
+        });
+    });
+  }
+</script>

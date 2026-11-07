@@ -30,6 +30,7 @@ const requiredStaticPages = [
   "perguntas-frequentes/index.html",
   "politica-de-privacidade/index.html",
   "newsletter/confirmar/index.html",
+  "newsletter/cancelar/index.html",
   "404.html",
 ];
 
