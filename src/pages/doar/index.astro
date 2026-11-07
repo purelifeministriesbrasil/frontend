@@ -19,6 +19,7 @@ const { pixGatewayEnabled } = siteConfig.donation;
 >
   <section class="py-16 sm:py-24 bg-[#F5F2EC]">
     <Container size="default">
+      <h1 class="sr-only">Doação ao ministério</h1>
       {pixGatewayEnabled ? <DonationForm client:load /> : <ManualPixDonation client:load />}
     </Container>
   </section>
