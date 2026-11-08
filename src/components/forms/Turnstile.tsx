@@ -104,7 +104,7 @@ const Turnstile = forwardRef<TurnstileHandle, Props>(function Turnstile({ action
     );
   }
 
-  return <div ref={containerRef} className="min-h-[65px]" aria-label="Verificação de segurança" />;
+  return <div ref={containerRef} className="min-h-[65px]" role="group" aria-label="Verificação de segurança" />;
 });
 
 export default Turnstile;

@@ -223,9 +223,9 @@ const books = [
                 </div>
 
                 <div class={`relative z-10 ${book.cover ? "sr-only" : ""}`}>
-                  <h3 class="font-ruda font-black text-xl leading-snug text-white mb-1 group-hover:translate-x-1.5 transition-transform duration-300 drop-shadow-xs">
+                  <h2 class="font-ruda font-black text-xl leading-snug text-white mb-1 group-hover:translate-x-1.5 transition-transform duration-300 drop-shadow-xs">
                     {book.title}
-                  </h3>
+                  </h2>
                   <span class="font-montserrat text-xs text-[#C1BDA6] font-medium block">
                     {book.author}
                   </span>
@@ -269,7 +269,7 @@ const books = [
                   <a
                     href={getWhatsAppOrderUrl(book.title)}
                     class="btn-primary text-xs px-4 py-2.5 inline-flex items-center gap-2 group-hover:shadow-md transition-all"
-                    aria-label={`Solicitar o livro ${book.title}`}
+                    aria-label={`Solicitar Livro: ${book.title}`}
                   >
                     <span>Solicitar Livro</span>
                     <svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -293,9 +293,9 @@ const books = [
           <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
             Distribuição para Comunidades
           </span>
-          <h3 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-6">
+          <h2 class="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-6">
             Deseja distribuir nossos livros em sua igreja, escola teológica ou livraria?
-          </h3>
+          </h2>
           <p class="font-montserrat text-[#575757] text-base leading-relaxed mb-6">
             A Editora Pure Life Ministries Brasil atende diretamente conselhos pastorais, ministérios de casais, lideranças de homens e livrarias cristãs em todo o país com condições diferenciadas e lotes com desconto.
           </p>
@@ -319,9 +319,9 @@ const books = [
         </div>
 
         <div class="bg-[#F5F2EC] border border-[#DEDEDE] p-8 sm:p-10">
-          <h4 class="font-ruda font-bold text-xl text-[#1C2530] mb-4">
+          <h3 class="font-ruda font-bold text-xl text-[#1C2530] mb-4">
             Como funciona a solicitação de livros?
-          </h4>
+          </h3>
           <ol class="space-y-4 font-montserrat text-sm text-[#575757]">
             <li class="flex items-start gap-3">
               <span class="w-6 h-6 rounded-full bg-[#044A82] text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</span>

@@ -33,7 +33,7 @@ export default function TriageForm() {
         <div className="w-12 h-12 bg-[#044A82] text-white rounded-full flex items-center justify-center mx-auto mb-4">
           <Info className="w-6 h-6 text-white stroke-[2.5]" />
         </div>
-        <h3 className="font-ruda font-bold text-2xl text-[#1C2530] mb-3">Atendimento a Menores</h3>
+        <h2 className="font-ruda font-bold text-2xl text-[#1C2530] mb-3">Atendimento a Menores</h2>
         <p className="font-montserrat text-[#575757] text-sm leading-relaxed mb-6">
           Por razões de conformidade legal e proteção à privacidade, o formulário online é restrito a maiores de 18 anos.
           Se você é menor de idade e precisa de orientação bíblica, por favor peça a um dos seus pais ou responsável legal para entrar em contato diretamente pelo nosso atendimento pastoral.
@@ -61,9 +61,9 @@ export default function TriageForm() {
         <span className="font-montserrat text-xs uppercase tracking-widest text-[#044A82] font-bold block mb-2">
           Etapa de Verificação
         </span>
-        <h3 className="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-4">
+        <h2 className="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-4">
           Você tem 18 anos de idade ou mais?
-        </h3>
+        </h2>
         <p className="font-montserrat text-[#575757] text-sm leading-relaxed mb-4">
           Para garantir a conformidade jurídica da avaliação pastoral e proteger a privacidade do atendimento, confirme sua faixa etária.
         </p>
@@ -100,9 +100,9 @@ export default function TriageForm() {
         <div className="w-16 h-16 bg-[#1D6F42] text-white rounded-full flex items-center justify-center mx-auto mb-4">
           <Check className="w-8 h-8 text-white stroke-[2.5]" />
         </div>
-        <h3 className="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-3">
+        <h2 className="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-3">
           Solicitação Registrada com Sigilo
-        </h3>
+        </h2>
         <p className="font-montserrat text-[#575757] text-sm sm:text-base leading-relaxed mb-6">
           Sua mensagem foi recebida pela nossa equipe pastoral e criptografada com segurança de nível institucional.
         </p>
@@ -179,9 +179,9 @@ export default function TriageForm() {
         <span className="font-montserrat text-xs uppercase tracking-widest text-[#044A82] font-bold block mb-1">
           Formulário Confidencial
         </span>
-        <h3 className="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530]">
+        <h2 className="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530]">
           Solicitação de Triagem e Aconselhamento
-        </h3>
+        </h2>
         <p className="font-montserrat text-[#575757] text-xs sm:text-sm mt-2">
           Suas informações são protegidas com criptografia de ponta a ponta e sigilo pastoral absoluto.
         </p>

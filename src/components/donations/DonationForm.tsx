@@ -110,9 +110,9 @@ export default function DonationForm() {
           <Check className="w-3.5 h-3.5 text-[#044A82] stroke-[3]" />
           Pix Gerado com Sucesso
         </span>
-        <h3 className="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-2">
+        <h2 className="font-ruda font-bold text-2xl sm:text-3xl text-[#1C2530] mb-2">
           Valor: R$ {(amountCents / 100).toFixed(2).replace(".", ",")}
-        </h3>
+        </h2>
         <p className="font-montserrat text-xs text-[#575757] mb-2 max-w-sm mx-auto leading-relaxed">
           Abra o aplicativo do seu banco, escolha a opção <strong>Pix Copia e Cola</strong> ou aponte a câmera para o QR Code abaixo.
         </p>
@@ -190,9 +190,9 @@ export default function DonationForm() {
         <span className="font-montserrat text-xs uppercase tracking-widest text-[#044A82] font-bold block mb-1">
           Apoie este Ministério
         </span>
-        <h3 className="font-ruda font-bold text-2xl text-[#1C2530]">
+        <h2 className="font-ruda font-bold text-2xl text-[#1C2530]">
           Doação via Pix Oficial
-        </h3>
+        </h2>
         <p className="font-montserrat text-[#575757] text-xs mt-1">
           Contribuição instantânea sem taxas bancárias abusivas e com destinação 100% ministerial.
         </p>

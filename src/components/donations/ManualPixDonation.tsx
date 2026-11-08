@@ -36,7 +36,7 @@ export default function ManualPixDonation() {
         <span className="font-montserrat text-xs uppercase tracking-widest text-[#044A82] font-bold block mb-1">
           Apoie este Ministério
         </span>
-        <h3 className="font-ruda font-bold text-2xl text-[#1C2530]">Doação Direta via Chave PIX</h3>
+        <h2 className="font-ruda font-bold text-2xl text-[#1C2530]">Doação Direta via Chave PIX</h2>
         <p className="font-montserrat text-[#575757] text-sm mt-2 leading-relaxed">
           Abra o aplicativo do seu banco, escolha <strong>Pix → Pagar com chave</strong> e use a chave CNPJ
           institucional abaixo. Confira o nome do recebedor antes de confirmar.
