@@ -4,6 +4,102 @@ export const prerender = true;
 import ContentLayout from "../layouts/ContentLayout.astro";
 import Container from "../components/ui/Container.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
+import { siteConfig } from "../lib/site-config";
+
+const email = siteConfig.contact.email;
+
+interface PolicySection {
+  title: string;
+  paragraphs: string[];
+  items?: string[];
+}
+
+const sections: PolicySection[] = [
+  {
+    title: "1. Quem somos e quem decide sobre os seus dados",
+    paragraphs: [
+      "O controlador dos dados tratados neste site é [PREENCHER: razão social completa da entidade], inscrita no CNPJ sob o nº [PREENCHER: CNPJ], com sede em [PREENCHER: endereço da sede para fins de notificação].",
+      "Encarregado pelo tratamento de dados pessoais (DPO): [PREENCHER: nome do encarregado], contato: [PREENCHER: e-mail ou canal exclusivo do encarregado]. Enquanto o canal exclusivo não existir, você pode escrever para " + email + ".",
+    ],
+  },
+  {
+    title: "2. Compromisso de sigilo",
+    paragraphs: [
+      "Reconhecemos a delicadeza dos relatos espirituais, morais e comportamentais enviados por quem nos procura. Nenhum dado enviado pelos formulários é vendido, usado para publicidade ou para rastreamento.",
+      "Os dados são acessados apenas pela equipe pastoral autorizada, para responder a você, e por prestadores de serviço que operam a infraestrutura do site, como descrito na seção 6.",
+    ],
+  },
+  {
+    title: "3. Quais dados coletamos e para quê",
+    paragraphs: ["Coletamos somente o que você digita nos formulários, mais dados técnicos mínimos de segurança."],
+    items: [
+      "Fale conosco: nome, e-mail, telefone (opcional), assunto e mensagem. Finalidade: responder ao seu contato.",
+      "Triagem confidencial: confirmação de que você é maior de 18 anos, programa de interesse, para quem é o atendimento, nome, e-mail, telefone (opcional), canal de contato preferido e relato (opcional, até 2.000 caracteres). Finalidade: avaliação pastoral e retorno a você. O relato pode conter dados pessoais sensíveis (por exemplo, sobre vida sexual ou convicção religiosa), tratados com as proteções da seção 5.",
+      "Newsletter: e-mail. Você recebe uma mensagem de confirmação (o link vale 48 horas) e só passa a receber conteúdo depois de confirmar. Cada mensagem traz um link para cancelar a inscrição.",
+      "Doações: o site exibe a chave PIX institucional e não coleta dados de doadores. Se você enviar um comprovante pelo WhatsApp, a conversa segue as regras do WhatsApp e é usada apenas para confirmar a doação.",
+      "Dados técnicos: o endereço IP é usado de forma momentânea para verificação anti-robô (Cloudflare Turnstile) e limitação de abuso. Os registros técnicos do servidor passam por filtro que remove e-mails, telefones e conteúdo de formulários.",
+    ],
+  },
+  {
+    title: "4. Base legal",
+    paragraphs: [
+      "[PREENCHER: base legal de cada tratamento (LGPD, art. 7º e, para dados sensíveis, art. 11), definida e validada pelo encarregado e pela assessoria jurídica.] Quando o tratamento depender do seu consentimento, ele é pedido de forma específica nos formulários e você pode retirá-lo a qualquer momento.",
+    ],
+  },
+  {
+    title: "5. Como protegemos os dados",
+    paragraphs: [
+      "Nome, e-mail, telefone, mensagem e relato são cifrados no banco de dados com AES-256-GCM, com chaves guardadas fora do banco. Para evitar duplicidades e permitir buscas sem expor o e-mail, usamos um código irreversível (HMAC) derivado dele.",
+      "As conexões usam HTTPS, o acesso do banco é restrito e as consultas pastorais exigem justificativa registrada em trilha de auditoria. Nenhuma medida elimina todo risco; em caso de incidente com risco relevante, comunicaremos você e a ANPD nos termos da lei. [PREENCHER: confirmar o procedimento de comunicação de incidentes.]",
+    ],
+  },
+  {
+    title: "6. Com quem os dados passam",
+    paragraphs: [
+      "Usamos prestadores de serviço (operadores) que tratam dados em nosso nome e apenas para esse fim:",
+    ],
+    items: [
+      "Cloudflare: hospedagem do site e da API, proteção contra abuso e verificação Turnstile.",
+      "Neon: banco de dados PostgreSQL (região de São Paulo).",
+      "Resend: envio dos e-mails de confirmação da newsletter e avisos internos à equipe.",
+      "[PREENCHER: confirmar se há transferência internacional de dados e o mecanismo adotado (LGPD, art. 33), em especial para o envio de e-mails.]",
+    ],
+  },
+  {
+    title: "7. Por quanto tempo guardamos",
+    paragraphs: [],
+    items: [
+      "Fale conosco e triagem: 180 dias a partir do envio. Depois disso, os dados que identificam você são apagados automaticamente; permanece apenas o registro mínimo do seu consentimento.",
+      "Newsletter: até você cancelar a inscrição ou não confirmar o e-mail no prazo.",
+      "Demais registros (por exemplo, trilha de auditoria): [PREENCHER: prazo definido pelo ministério e validado pelo encarregado].",
+    ],
+  },
+  {
+    title: "8. Seus direitos",
+    paragraphs: [
+      "Nos termos do art. 18 da LGPD (Lei 13.709/2018), você pode pedir confirmação do tratamento, acesso, correção, anonimização, eliminação, portabilidade, informação sobre compartilhamento e a revogação do consentimento. Escreva para " + email + ". Responderemos em até [PREENCHER: prazo de resposta adotado pelo ministério].",
+      "Para sair da newsletter, use o link no final de qualquer e-mail recebido. Você também pode reclamar à Autoridade Nacional de Proteção de Dados (ANPD).",
+    ],
+  },
+  {
+    title: "9. Crianças e adolescentes",
+    paragraphs: [
+      "A triagem é destinada a maiores de 18 anos e exige essa confirmação. Se você é responsável por um menor e precisa de orientação, fale conosco pelos canais de contato.",
+    ],
+  },
+  {
+    title: "10. Cookies e links externos",
+    paragraphs: [
+      "O site não usa cookies de publicidade nem de análise de audiência. [PREENCHER: confirmar se o Cloudflare Turnstile grava algum cookie ou armazenamento no seu navegador.] Links para YouTube, Instagram, WhatsApp, Hotmart e outras plataformas levam a serviços de terceiros, com políticas próprias.",
+    ],
+  },
+  {
+    title: "11. Alterações desta política",
+    paragraphs: [
+      "Podemos atualizar esta política. A versão em vigor é identificada pela data registrada junto ao seu consentimento nos formulários. Versão vigente a partir de: [PREENCHER: data de vigência, no formato da versão registrada em siteConfig.privacyPolicyVersion].",
+    ],
+  },
+];
 ---
 
 <ContentLayout
@@ -25,34 +121,29 @@ import SectionHeading from "../components/ui/SectionHeading.astro";
   </section>
 
   <section class="py-24 bg-white">
-    <Container size="narrow" class="space-y-8 font-montserrat text-[#1C2530] leading-relaxed">
-      <div>
-        <h2 class="font-ruda font-bold text-2xl text-[#044A82] mb-3">1. Compromisso de Sigilo</h2>
-        <p class="text-sm sm:text-base text-[#575757]">
-          O Pure Life Ministries Brasil reconhece a extrema delicadeza e sensibilidade dos relatos espirituais, morais e comportamentais compartilhados pelos solicitantes. Nenhuma informação submetida no processo de triagem ou aconselhamento pastoral é comercializada, compartilhada com terceiros ou utilizada para fins de marketing/rastreamento.
-        </p>
-      </div>
-
-      <div>
-        <h2 class="font-ruda font-bold text-2xl text-[#044A82] mb-3">2. Criptografia e Isolamento de Dados</h2>
-        <p class="text-sm sm:text-base text-[#575757]">
-          Todos os dados de contato e relatos são protegidos por criptografia de campo AES-256-GCM com Dados Autenticados Adicionais (AAD) vinculados rigidamente ao identificador único do registro e à versão da chave de segurança. Nossos operadores só acessam informações mediante reautenticação e justificativa formal de atendimento.
-        </p>
-      </div>
-
-      <div>
-        <h2 class="font-ruda font-bold text-2xl text-[#044A82] mb-3">3. Retenção e Expurgo</h2>
-        <p class="text-sm sm:text-base text-[#575757]">
-          Submissões de triagem não convertidas em atendimento são mantidas apenas pelo período necessário para avaliação e expurgadas após o término do prazo de retenção, eliminando dados identificadores e preservando apenas o consentimento nos termos da LGPD (Lei 13.709/2018).
-        </p>
-      </div>
-
-      <div>
-        <h2 class="font-ruda font-bold text-2xl text-[#044A82] mb-3">4. Direitos do Titular</h2>
-        <p class="text-sm sm:text-base text-[#575757]">
-          Você possui o direito de confirmar a existência de tratamento, solicitar o acesso, retificação ou eliminação dos seus dados a qualquer momento pelo e-mail institucional: <strong>purelifeministriesbrasil1986@gmail.com</strong>.
-        </p>
-      </div>
+    <Container size="narrow" class="space-y-10 font-montserrat text-[#1C2530] leading-relaxed">
+      <!--
+        RASCUNHO. Trechos marcados com PREENCHER entre colchetes dependem de dados do ministério ou de validação jurídica e NÃO podem ir
+        a produção. O job de deploy falha enquanto existir algum (scripts/verify-policy-placeholders.mjs).
+        Ao publicar, atualize siteConfig.privacyPolicyVersion (YYYY-MM-DD) para a data de vigência.
+      -->
+      {
+        sections.map((section) => (
+          <div>
+            <h2 class="font-ruda font-bold text-2xl text-[#044A82] mb-3">{section.title}</h2>
+            {section.paragraphs.map((text) => (
+              <p class="text-sm sm:text-base text-[#575757] mb-3">{text}</p>
+            ))}
+            {section.items && (
+              <ul class="list-disc pl-6 space-y-1 text-sm sm:text-base text-[#575757]">
+                {section.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))
+      }
     </Container>
   </section>
 </ContentLayout>

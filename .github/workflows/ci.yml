@@ -81,6 +81,10 @@ jobs:
       - name: Build and verify with production values
         run: pnpm ci:verify
 
+      # Barra a publicação enquanto a Política de Privacidade tiver campos [PREENCHER ...] pendentes.
+      - name: Fail if the privacy policy has unfilled placeholders
+        run: pnpm verify:policy-placeholders
+
       # wrangler via npx: o wrangler-action instalaria o pacote no projeto e o pnpm bloqueia o postinstall do workerd.
       - name: Publish to Cloudflare Pages
         env:
