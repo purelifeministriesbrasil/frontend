@@ -5,9 +5,11 @@ interface Props {
   description?: string;
   align?: "left" | "center";
   invert?: boolean;
+  /** Nível do título. Use "h1" no primeiro título de cada página interna (uma única vez). */
+  as?: "h1" | "h2";
 }
 
-const { tag, title, description, align = "left", invert = false } = Astro.props;
+const { tag, title, description, align = "left", invert = false, as: Tag = "h2" } = Astro.props;
 ---
 
 <div class={`mb-12 ${align === "center" ? "text-center mx-auto max-w-3xl" : "max-w-2xl"}`}>
@@ -23,14 +25,14 @@ const { tag, title, description, align = "left", invert = false } = Astro.props;
       </span>
     )
   }
-  <h2
+  <Tag
     data-reveal
     class={`font-ruda font-black text-balance text-3xl sm:text-4xl lg:text-5xl leading-tight ${
       invert ? "text-white" : "text-[#1C2530]"
     }`}
   >
     {title}
-  </h2>
+  </Tag>
   {
     description && (
       <p
