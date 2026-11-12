@@ -36,7 +36,10 @@ if (!existsSync(headersPath)) {
   process.exit(1);
 }
 
-const apiUrl = (process.env.PUBLIC_API_URL ?? readDotEnv().PUBLIC_API_URL ?? "").trim();
+const fromEnv = process.env.PUBLIC_API_URL;
+const apiUrl = (fromEnv ?? readDotEnv().PUBLIC_API_URL ?? "").trim();
+// Informa de onde veio o valor: um build local sem a variável herda o .env (que pode ser o de produção).
+console.log(`[generate-csp] PUBLIC_API_URL lida de: ${fromEnv !== undefined ? "ambiente" : apiUrl ? ".env" : "nenhuma (mesma origem)"}`);
 let apiOrigin = "";
 if (apiUrl) {
   try {
