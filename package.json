@@ -12,7 +12,7 @@
     "verify:topology": "node ./scripts/verify-topology.mjs",
     "verify:no-inline-style": "node ./scripts/verify-no-inline-style.mjs",
     "verify:policy-placeholders": "node ./scripts/verify-policy-placeholders.mjs",
-    "ci:verify": "pnpm typecheck && pnpm build && pnpm verify:topology && pnpm verify:no-inline-style",
+    "ci:verify": "pnpm typecheck && pnpm build && pnpm verify:topology && pnpm verify:no-inline-style && pnpm verify:policy-placeholders",
     "verify:pnpm": "node ./scripts/verify-package-manager.mjs"
   },
   "dependencies": {
