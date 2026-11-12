@@ -4,7 +4,7 @@ Scripts Node sem dependências externas, executados pelos comandos do `package.j
 
 | Script | Comando | O que faz | Falha quando |
 |---|---|---|---|
-| `generate-csp.mjs` | `pnpm build` (após o `astro build`) | Lê `public/_headers`, calcula o SHA-256 de cada script inline do HTML gerado e grava a CSP final em `dist/_headers`, incluindo a origem de `PUBLIC_API_URL` e o Turnstile. Lê `PUBLIC_API_URL` do ambiente e, se ausente, do `.env` local (o log informa a origem); vazia = mesma origem | `PUBLIC_API_URL` inválida ou handler inline (`on*=`) |
+| `generate-csp.mjs` | `pnpm build` (após o `astro build`) | Lê `public/_headers`, calcula o SHA-256 de cada script e de cada bloco `<style>` inline do HTML gerado (a CSP não usa `'unsafe-inline'`) e grava a CSP final em `dist/_headers`, incluindo a origem de `PUBLIC_API_URL` e o Turnstile. Lê `PUBLIC_API_URL` do ambiente e, se ausente, do `.env` local (o log informa a origem); vazia = mesma origem | `PUBLIC_API_URL` inválida ou handler inline (`on*=`) |
 | `verify-topology.mjs` | `pnpm verify:topology` | Confere que as 19 páginas esperadas existem em `dist/` como HTML estático | Página faltando ou renderizada no servidor |
 | `verify-no-inline-style.mjs` | `pnpm verify:no-inline-style` | Procura `style="…"`, `@import` externo e fontes de sistema indevidas no HTML | Qualquer ocorrência |
 | `verify-dist-secrets.mjs` | `pnpm verify:dist-secrets` | Procura padrões de credenciais de servidor e nomes de variáveis exclusivas do servidor em `dist/` (o valor encontrado nunca é impresso) | Qualquer ocorrência |
