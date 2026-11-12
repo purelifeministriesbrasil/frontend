@@ -73,7 +73,7 @@ export default function DonationForm() {
       }
 
       // Geração local do QR Code a partir do payload "copia e cola" (§7.1): mesmo conteúdo do QR
-      // do provedor, sem trafegar imagem base64 e sem exigir `data:` no CSP de imagens.
+      // do provedor, sem trafegar a imagem base64 gerada pelo provedor (o SVG é montado no navegador).
       const qr = await import("qrcode");
       const svg = await qr.toString(result.data.pixCopyPaste, {
         type: "svg",
