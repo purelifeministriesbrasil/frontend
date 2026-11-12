@@ -8,6 +8,12 @@ import Button from "../components/ui/Button.astro";
 import { Picture } from "astro:assets";
 import { getWhatsAppOrderUrl } from "../lib/site-config.js";
 import pilhaDeMascarasCover from "../assets/images/books/pilha-de-mascaras.webp";
+import impactoPornografiaCover from "../assets/images/books/impacto-pornografia.webp";
+import vinteVerdadesCover from "../assets/images/books/20-verdades.webp";
+import curandoTraicaoCover from "../assets/images/books/curando-traicao.webp";
+import traumaRedimidoCover from "../assets/images/books/trauma-redimido.webp";
+import contaminadosBabiloniaCover from "../assets/images/books/contaminados-babilonia.webp";
+import raizExpostaCover from "../assets/images/books/raiz-exposta.webp";
 
 const books = [
   {
@@ -41,39 +47,43 @@ const books = [
     category: "geral",
     categoryLabel: "Público Geral",
     desc: "Uma análise contundente, bíblica e pastoral sobre os estragos espirituais, neurológicos, familiares e sociais causados pela indústria pornográfica na sociedade moderna e na Igreja.",
+    cover: impactoPornografiaCover,
     bgColor: "bg-[#044A82]",
   },
   {
     id: "20-verdades",
-    title: "As 20 Verdades que me Ajudaram contra o Vício em Pornografia",
+    title: "20 Verdades que me Ajudaram na Minha Batalha contra o Vício em Pornografia",
     author: "Steve Gallagher",
     price: "R$ 75,00",
     audience: "Devocional para homens, mulheres e jovens",
     category: "devocional",
     categoryLabel: "Devocional",
-    desc: "Manual devocional prático para fortalecimento diário da fé. Vinte princípios bíblicos imutáveis para quem deseja construir defesas espirituais sólidas e vencer as tentações cotidianas.",
+    desc: "Um diário de estudo de 40 dias para fortalecimento diário da fé. Vinte princípios bíblicos imutáveis para quem deseja construir defesas espirituais sólidas e vencer as tentações cotidianas.",
+    cover: vinteVerdadesCover,
     bgColor: "bg-[#454A50]",
   },
   {
     id: "curando-traicao",
     title: "Curando a Dor da Traição no Casamento",
-    author: "Kathy Gallagher",
+    author: "Railca Freire Gouvêa",
     price: "R$ 55,00",
     audience: "Para esposas traídas",
     category: "mulheres",
     categoryLabel: "Mulheres & Esposas",
     desc: "Balsamo pastoral e bíblico para esposas cujo casamento foi abalado pelo adultério ou infidelidade virtual. Conduz a leitora pelo vale da dor até a esperança soberana de Cristo.",
+    cover: curandoTraicaoCover,
     bgColor: "bg-[#3B4C60]",
   },
   {
     id: "trauma-redimido",
-    title: "Trauma Redimido",
-    author: "Pure Life Ministries",
+    title: "Trauma Redimido — Uma Resposta Bíblica ao Sofrimento Medicalizado",
+    author: "Julie Ganschow, Ph.D.",
     price: "R$ 85,00",
     audience: "Para pessoas que sofreram com trauma",
     category: "restauracao",
     categoryLabel: "Restauração",
     desc: "Abordagem teocêntrica para a cura de feridas emocionais profundas causadas por abusos passados, rejeição e traumas da infância, apontando para a suficiência redentora de Jesus.",
+    cover: traumaRedimidoCover,
     bgColor: "bg-[#1C2530]",
   },
   {
@@ -91,13 +101,14 @@ const books = [
   },
   {
     id: "contaminados-babilonia",
-    title: "Contaminados com a Babilônia",
+    title: "Contaminados pela Babilônia — A Sedução do Povo de Deus nos Últimos Dias",
     author: "Steve Gallagher",
     price: "R$ 45,00",
     audience: "Como a igreja começou a ser contaminada com o mundo",
     category: "igreja",
     categoryLabel: "Igreja & Cultura",
     desc: "Alerta profético e pastoral sobre a sutil infiltração dos valores mundanos, entretenimento corruptor e concessões morais que entorpecem a sensibilidade espiritual da Igreja.",
+    cover: contaminadosBabiloniaCover,
     bgColor: "bg-[#454A50]",
   },
   {
@@ -109,6 +120,7 @@ const books = [
     category: "homens",
     categoryLabel: "Vida Cristã",
     desc: "Vai além dos sintomas superficiais para dissecar o egoísmo idolátrico e o orgulho humano que alimentam a compulsão sexual, ensinando o caminho bíblico do morrer para si mesmo.",
+    cover: raizExpostaCover,
     bgColor: "bg-[#1C2530]",
   },
 ];
@@ -116,7 +128,7 @@ const books = [
 
 <ContentLayout
   title="Editora e Livraria Pure Life | Obras de Santidade Bíblica"
-  description="Catálogo oficial de literatura reformada da Pure Life Ministries Brasil: livros sobre pureza sexual, restauração do casamento e superação de traumas."
+  description="Catálogo oficial de literatura cristã da Pure Life Ministries Brasil: livros sobre pureza sexual, restauração do casamento e superação de traumas."
   canonical="https://purelifeministriesbrasil.org/editora/"
   currentPath="/editora/"
 >
@@ -125,7 +137,7 @@ const books = [
     <Container size="wide">
       <SectionHeading
         as="h1"
-        tag="Literatura Reformada"
+        tag="Literatura Cristã"
         title="Editora Pure Life Ministries Brasil"
         description="Obras fundamentadas na suficiência das Escrituras para a renovação da mente, santificação e restauração de vidas e lares cristãos."
         invert={true}

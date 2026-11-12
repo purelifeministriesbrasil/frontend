@@ -2,6 +2,9 @@
 import Container from "../ui/Container.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
 import Button from "../ui/Button.astro";
+import { Picture } from "astro:assets";
+import impactoPornografiaCover from "../../assets/images/books/impacto-pornografia.webp";
+import vinteVerdadesCover from "../../assets/images/books/20-verdades.webp";
 
 const featuredBooks = [
   {
@@ -33,9 +36,10 @@ const featuredBooks = [
     accentColor: "border-[#044A82]",
     badgeBg: "bg-[#044A82]/10 text-[#044A82]",
     bgColor: "bg-[#044A82]",
+    cover: impactoPornografiaCover,
   },
   {
-    title: "As 20 Verdades Contra o Vício em Pornografia",
+    title: "20 Verdades Contra o Vício em Pornografia",
     author: "Steve Gallagher",
     price: "R$ 75,00",
     audience: "Homens, Mulheres e Jovens",
@@ -43,6 +47,7 @@ const featuredBooks = [
     accentColor: "border-[#454A50]",
     badgeBg: "bg-[#454A50]/10 text-[#454A50]",
     bgColor: "bg-[#454A50]",
+    cover: vinteVerdadesCover,
   },
 ];
 ---
@@ -52,7 +57,7 @@ const featuredBooks = [
     <SectionHeading
       tag="Editora e Livraria Pure Life"
       title="Literatura que transforma pela verdade das Escrituras"
-      description="Publicamos e distribuímos obras fundamentais para o aconselhamento bíblico, santidade cristã e restauração de lares à luz da tradição reformada."
+      description="Publicamos e distribuímos obras fundamentais para o aconselhamento bíblico, santidade cristã e restauração de lares à luz das Escrituras."
       align="center"
     />
 
@@ -61,18 +66,33 @@ const featuredBooks = [
         featuredBooks.map((book) => (
           <div class="book-card group flex flex-col justify-between" data-reveal>
             <!-- Hardcover Book Mockup with 3D Spine and Shimmer -->
-            <div class={`book-cover relative h-52 flex flex-col justify-between p-5 ${book.bgColor}`}>
+            <div class={`book-cover relative h-52 flex flex-col justify-between p-5 overflow-hidden ${book.bgColor}`}>
+              {book.cover && (
+                <Picture
+                  src={book.cover}
+                  alt={`Capa do livro ${book.title}, de ${book.author}`}
+                  formats={["avif", "webp"]}
+                  fallbackFormat="webp"
+                  quality="mid"
+                  widths={[200, 360]}
+                  sizes="200px"
+                  loading="lazy"
+                  decoding="async"
+                  pictureAttributes={{ class: "contents" }}
+                  class="absolute inset-0 m-auto h-full w-auto object-contain py-3 z-20 drop-shadow-lg"
+                />
+              )}
               <div class="book-spine-crease"></div>
               <div class="book-cover-shimmer"></div>
               <div class="absolute right-0 top-0 bottom-0 w-1.5 bg-gradient-to-l from-white/20 to-transparent pointer-events-none"></div>
 
-              <div class="flex items-start z-10">
+              <div class={`flex items-start z-10 ${book.cover ? "invisible" : ""}`}>
                 <span class="font-montserrat text-[0.68rem] uppercase font-bold tracking-wider px-2.5 py-1 rounded-xs bg-white/20 text-white backdrop-blur-xs group-hover:scale-105 group-hover:bg-white/30 transition-all duration-300 border border-white/10">
                   {book.audience}
                 </span>
               </div>
 
-              <div class="relative z-10">
+              <div class={`relative z-10 ${book.cover ? "sr-only" : ""}`}>
                 <h3 class="font-ruda font-black text-white text-lg leading-snug group-hover:translate-x-1.5 transition-transform duration-300 drop-shadow-xs">
                   {book.title}
                 </h3>
