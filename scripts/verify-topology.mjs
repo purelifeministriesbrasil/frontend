@@ -60,5 +60,10 @@ if (headers.includes("__CSP__") || !/Content-Security-Policy: default-src 'self'
   console.error("[verify-topology] FAILED: CSP não gerado em dist/_headers. O build deve rodar scripts/generate-csp.mjs.");
   process.exit(1);
 }
+// script-src e style-src são autorizados por hash; 'unsafe-inline'/'unsafe-eval' anulariam a proteção.
+if (/'unsafe-(inline|eval)'/.test(headers)) {
+  console.error("[verify-topology] FAILED: CSP contém 'unsafe-inline' ou 'unsafe-eval'.");
+  process.exit(1);
+}
 
 console.log(`[verify-topology] SUCCESS: All ${requiredStaticPages.length} required pages were generated as 100% static HTML!`);
