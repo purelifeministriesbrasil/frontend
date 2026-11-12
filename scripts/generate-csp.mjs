@@ -51,9 +51,15 @@ if (apiUrl) {
 }
 
 const INLINE_SCRIPT = /<script(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/gi;
+const INLINE_STYLE = /<style\b[^>]*>([\s\S]*?)<\/style>/gi;
 const INLINE_HANDLER = /<[^>]+\son[a-z]+\s*=/i;
 
+const sha256 = (body) => `'sha256-${createHash("sha256").update(body, "utf8").digest("base64")}'`;
 const hashes = new Set();
+// Blocos <style> inline do HTML gerado (ex.: o estilo das ilhas que o Astro injeta) são autorizados
+// por hash, como os scripts: style-src fica sem 'unsafe-inline'. Atributos style="" continuam
+// proibidos (verify-no-inline-style.mjs) e alterações via CSSOM (element.style.x = ...) não são afetadas.
+const styleHashes = new Set();
 const offenders = [];
 
 for (const file of htmlFiles(distDir)) {
@@ -63,7 +69,10 @@ for (const file of htmlFiles(distDir)) {
     // JSON-LD é dado, não é executado: CSP não se aplica.
     if (/type\s*=\s*["']application\/ld\+json["']/i.test(attrs)) continue;
     if (body.length === 0) continue;
-    hashes.add(`'sha256-${createHash("sha256").update(body, "utf8").digest("base64")}'`);
+    hashes.add(sha256(body));
+  }
+  for (const [, body] of html.matchAll(INLINE_STYLE)) {
+    if (body.length > 0) styleHashes.add(sha256(body));
   }
 }
 
@@ -76,7 +85,7 @@ const TURNSTILE = "https://challenges.cloudflare.com";
 const directives = [
   "default-src 'self'",
   `script-src 'self' ${[...hashes].sort().join(" ")} ${TURNSTILE}`.replace(/\s+/g, " "),
-  "style-src 'self' 'unsafe-inline'",
+  `style-src 'self' ${[...styleHashes].sort().join(" ")}`.trim(),
   "img-src 'self' data: https://img.youtube.com",
   "font-src 'self'",
   `connect-src 'self' ${apiOrigin}`.trim(),
@@ -99,5 +108,5 @@ if (occurrences !== 1) {
 writeFileSync(headersPath, template.replace(CSP_LINE, (_line, prefix) => `${prefix}${csp}`));
 
 console.log(
-  `[generate-csp] CSP gerado com ${hashes.size} hash(es) de script inline; API: ${apiOrigin || "(mesma origem)"}.`
+  `[generate-csp] CSP gerado com ${hashes.size} hash(es) de script e ${styleHashes.size} de style inline; API: ${apiOrigin || "(mesma origem)"}.`
 );
