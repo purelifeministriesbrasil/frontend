@@ -16,7 +16,7 @@
     "verify:pnpm": "node ./scripts/verify-package-manager.mjs"
   },
   "dependencies": {
-    "@astrojs/preact": "4.1.3",
+    "@astrojs/preact": "6.1.2",
     "@tailwindcss/vite": "^4.0.9",
     "lucide-preact": "1.57.0",
     "preact": "10.29.8",
