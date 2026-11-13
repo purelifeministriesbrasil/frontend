@@ -1,0 +1,9 @@
+# Fins de linha LF no repositório, independentemente de core.autocrlf.
+* text=auto eol=lf
+*.webp binary
+*.avif binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.ico binary
+*.woff2 binary
