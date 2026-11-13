@@ -27,7 +27,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@astrojs/sitemap": "^3.7.4",
-    "@types/node": "^22.13.9",
+    "@types/node": "^26.6.6",
     "@types/qrcode": "^1.5.5",
     "astro": "^5.4.1",
     "sharp": "0.34.5",
