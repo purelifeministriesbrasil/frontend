@@ -60,8 +60,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fail if the Turnstile site key is missing
-        run: test -n "$PUBLIC_TURNSTILE_SITE_KEY"
+      # Vazia ou chave de teste oficial (1x…, 2x…, 3x…, que sempre aprovam/recusam) não vai para produção.
+      - name: Fail if the Turnstile site key is missing or a test key
+        run: |
+          test -n "$PUBLIC_TURNSTILE_SITE_KEY" || { echo "PUBLIC_TURNSTILE_SITE_KEY ausente"; exit 1; }
+          if printf '%s' "$PUBLIC_TURNSTILE_SITE_KEY" | grep -Eq '^[123]x0{20}[A-Z]{2}$'; then
+            echo "PUBLIC_TURNSTILE_SITE_KEY é uma chave de teste do Turnstile"; exit 1
+          fi
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4

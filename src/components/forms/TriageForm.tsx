@@ -183,7 +183,7 @@ export default function TriageForm() {
           Solicitação de Triagem e Aconselhamento
         </h2>
         <p className="font-montserrat text-[#575757] text-xs sm:text-sm mt-2">
-          Suas informações são protegidas com criptografia de ponta a ponta e sigilo pastoral absoluto.
+          Suas informações trafegam por conexão segura, são guardadas criptografadas e só são lidas pela equipe pastoral, sob sigilo.
         </p>
       </div>
 

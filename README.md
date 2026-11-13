@@ -1,171 +1,168 @@
-<p align="center">
-  <img src="public/favicon.svg" alt="Pure Life Ministries Brasil" width="72" />
-</p>
+# purelife-web
 
-<h1 align="center">purelife-web</h1>
+Site institucional estático do Pure Life Ministries Brasil (Astro SSG + ilhas Preact + Tailwind v4), publicado no Cloudflare Pages.
 
-<p align="center">
-  Site institucional do <strong>Pure Life Ministries Brasil</strong> — <code>purelifeministriesbrasil.org</code>
-</p>
+[![CI](https://github.com/purelifeministriesbrasil/frontend/actions/workflows/ci.yml/badge.svg)](https://github.com/purelifeministriesbrasil/frontend/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/purelifeministriesbrasil/frontend/actions/workflows/codeql.yml/badge.svg)](https://github.com/purelifeministriesbrasil/frontend/actions/workflows/codeql.yml)
+[![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-blue.svg)](LICENSE)
 
-<p align="center">
-  <a href="https://astro.build"><img src="https://img.shields.io/badge/Astro-5%20SSG-BC52EE.svg" alt="Astro 5" /></a>
-  <a href="https://preactjs.com"><img src="https://img.shields.io/badge/Preact-ilhas-673AB8.svg" alt="Preact" /></a>
-  <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind-v4-38bdf8.svg" alt="Tailwind CSS v4" /></a>
-  <a href="https://pages.cloudflare.com"><img src="https://img.shields.io/badge/Deploy-Cloudflare%20Pages-F38020.svg" alt="Cloudflare Pages" /></a>
-  <a href="./SECURITY.md"><img src="https://img.shields.io/badge/Seguran%C3%A7a-pol%C3%ADtica-red.svg" alt="Política de segurança" /></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/Licen%C3%A7a-MIT-blue.svg" alt="Licença MIT" /></a>
-</p>
-
----
+> Parte do ecossistema Pure Life Ministries Brasil: [backend](https://github.com/purelifeministriesbrasil/backend) · [frontend](https://github.com/purelifeministriesbrasil/frontend) · [documentação](https://purelifeministriesbrasil.github.io/documentation/)
 
 ## Sumário
 
 1. [Visão geral](#1-visão-geral)
 2. [Início rápido](#2-início-rápido)
-3. [Estrutura do repositório](#3-estrutura-do-repositório)
-4. [Onde editar o conteúdo](#4-onde-editar-o-conteúdo)
-5. [Variáveis de ambiente](#5-variáveis-de-ambiente)
-6. [Qualidade e segurança](#6-qualidade-e-segurança)
-7. [Publicação](#7-publicação)
-8. [Governança](#8-governança)
-
----
+3. [Comandos](#3-comandos)
+4. [Estrutura do repositório](#4-estrutura-do-repositório)
+5. [Configuração](#5-configuração)
+6. [Qualidade e CI](#6-qualidade-e-ci)
+7. [Publicação e reversão](#7-publicação-e-reversão)
+8. [Manutenção](#8-manutenção)
+9. [Governança](#9-governança)
 
 ## 1. Visão geral
 
-Site **100% estático** (Astro, `output: 'static'`) com **18 páginas**. Só os formulários são interativos, como
-ilhas **Preact** (API do React via `preact/compat`). Toda gravação de dados passa pela API
-(`api.purelifeministriesbrasil.org`, repositório [`backend`](https://github.com/purelifeministriesbrasil/backend)):
-o navegador nunca acessa o banco e não recebe nenhuma credencial.
+| Item | Valor |
+|---|---|
+| Pacote | `purelife-web` |
+| Renderização | Astro `output: 'static'`; formulários como ilhas Preact (`preact/compat`) |
+| Estilos | Tailwind CSS v4 (`@tailwindcss/vite`); folhas nunca inline (`inlineStylesheets: 'never'`) |
+| Hospedagem | Cloudflare Pages, projeto `purelife-site` |
+| Endereço provisório | https://purelife-site.pages.dev |
+| Endereço oficial | https://purelifeministriesbrasil.org (após a troca de domínio) |
+| API | Cloudflare Worker do repositório [backend](https://github.com/purelifeministriesbrasil/backend); o navegador nunca acessa o banco |
+| Sitemap | `@astrojs/sitemap`, excluindo `/triagem`, `/doar/obrigado`, `/newsletter` e `/404` |
 
-| Página | Caminho | Página | Caminho |
-|---|---|---|---|
-| Início | `/` | Editora | `/editora/` |
-| Sobre (com linha do tempo) | `/sobre/` | Conferência | `/conferencia/` |
-| Programas | `/programas/` | Viagem EUA | `/viagem-eua/` |
-| Programa Residencial | `/programas/residencial/` | Campus | `/campus/` |
-| Curso (Formação Superior) | `/curso/` | Perguntas frequentes | `/perguntas-frequentes/` |
-| Triagem | `/triagem/` → `/triagem/recebido/` | Contato | `/contato/` |
-| Doar | `/doar/` → `/doar/obrigado/` | Confirmação da newsletter | `/newsletter/confirmar/` (cancelamento: `/newsletter/cancelar/`) |
-| Política de privacidade | `/politica-de-privacidade/` | Página não encontrada | `/404` |
-
----
+Rotas (`src/pages/`): `/`, `/sobre/`, `/programas/`, `/programas/residencial/`, `/curso/`, `/triagem/`, `/triagem/recebido/`, `/doar/`, `/doar/obrigado/`, `/editora/`, `/conferencia/`, `/viagem-eua/`, `/campus/`, `/perguntas-frequentes/`, `/contato/`, `/politica-de-privacidade/`, `/newsletter/confirmar/`, `/newsletter/cancelar/`, `/404`.
 
 ## 2. Início rápido
 
-Pré-requisitos: **Node 22** e **pnpm**.
+Pré-requisitos:
+
+| Ferramenta | Versão |
+|---|---|
+| Node.js | 22 (`.nvmrc`; mesma versão do CI) |
+| pnpm | 12.18.0 (campo `packageManager`; conferido por `pnpm verify:pnpm`) |
+
+1. Instale as dependências.
 
 ```bash
-pnpm install
-cp .env.example .env     # ajuste os valores (veja a seção 5)
-pnpm dev                 # http://localhost:4321
+pnpm install --frozen-lockfile
 ```
+
+2. Rode o servidor local (http://localhost:4321).
+
+```bash
+pnpm dev
+```
+
+3. Gere o build com as quatro variáveis `PUBLIC_*` explícitas (mesmos valores do job `verify` do CI), para que um `.env` local antigo nunca entre no build.
+
+```bash
+PUBLIC_SITE_ORIGIN=https://purelifeministriesbrasil.org PUBLIC_API_URL=https://api.purelifeministriesbrasil.org PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA PUBLIC_ENABLE_PIX_GATEWAY=false pnpm ci:verify
+```
+
+`1x00000000000000000000AA` é a chave de teste oficial (pública) do Turnstile. Para desenvolvimento com `.env`, copie `.env.example` (só contém valores públicos).
+
+## 3. Comandos
 
 | Comando | O que faz |
 |---|---|
-| `pnpm dev` | Servidor local com recarga automática |
-| `pnpm typecheck` | `astro check` + `tsc` |
-| `pnpm build` | Gera `dist/` e grava a CSP com os *hashes* dos scripts em `dist/_headers` |
-| `pnpm preview` | Serve `dist/` (sem aplicar `_headers`) |
-| `pnpm ci:verify` | Validação completa: typecheck, build, topologia e ausência de estilos inline |
+| `pnpm dev` | `astro dev` |
+| `pnpm build` | `astro build` + `scripts/generate-csp.mjs` (grava a CSP em `dist/_headers`) |
+| `pnpm preview` | `astro preview` (não aplica `_headers`) |
+| `pnpm astro` | CLI do Astro |
+| `pnpm typecheck` | `astro check` + `tsc --noEmit` |
+| `pnpm verify:topology` | `scripts/verify-topology.mjs`: páginas exigidas existem como HTML estático; CSP sem `'unsafe-inline'`/`'unsafe-eval'` |
+| `pnpm verify:no-inline-style` | `scripts/verify-no-inline-style.mjs`: proíbe atributos `style=` no HTML gerado |
+| `pnpm verify:dist-secrets` | `scripts/verify-dist-secrets.mjs`: falha se `dist/` contiver algo com cara de credencial |
+| `pnpm ci:verify` | `typecheck` → `build` → `verify:topology` → `verify:no-inline-style` → `verify:dist-secrets` |
+| `pnpm verify:pnpm` | `scripts/verify-package-manager.mjs`: confere a versão do pnpm |
 
-Para testar com os headers reais do Cloudflare Pages (CSP incluída):
+`scripts/verify-schema-sync.mjs` não tem script no `package.json`; é chamado pelo workflow `schema-sync.yml`.
 
-```bash
-pnpm --dir ../backend exec wrangler pages dev ../frontend/dist
-```
+## 4. Estrutura do repositório
 
----
-
-## 3. Estrutura do repositório
-
-```
-frontend/
-├── public/                 # Copiado sem processamento para dist/
-│   ├── _headers            # Modelo dos headers de segurança (a CSP final é gerada no build)
-│   ├── _redirects          # 301 dos endereços do site antigo (WordPress)
-│   ├── fonts/              # Montserrat e Ruda (woff2, auto-hospedadas)
-│   └── og-image.jpg        # Imagem de compartilhamento (1200×630)
-├── scripts/                # Etapas de build e verificações do CI       → scripts/README.md
-├── src/                                                                 → src/README.md
-│   ├── assets/images/      # Fotos e logos otimizados pelo astro:assets
-│   ├── components/         # Componentes por área do site                → src/components/README.md
-│   ├── data/               # Conteúdo editável em TypeScript             → src/data/README.md
-│   ├── layouts/            # BaseLayout (SEO, cabeçalho, rodapé) e ContentLayout
-│   ├── lib/                # site-config, cliente da API, SEO e animações
-│   ├── pages/              # Rotas: cada arquivo vira uma página
-│   ├── schemas/            # Contratos zod/mini — idênticos ao backend   → src/schemas/README.md
-│   └── styles/             # Tailwind v4, tokens de design e fontes
-├── astro.config.mjs
-└── .github/                # CI, modelos de issue e de pull request
-```
-
----
-
-## 4. Onde editar o conteúdo
-
-O site novo é a **referência** de conteúdo. Não há painel administrativo: textos, preços e contatos ficam em
-poucos arquivos, separados do layout.
-
-| O que | Onde |
+| Caminho | Conteúdo |
 |---|---|
-| E-mail, WhatsApps, endereço, redes sociais, vídeos | `src/lib/site-config.ts` |
-| Curso, Programa Residencial (taxas), chave PIX | `src/lib/site-config.ts` |
-| Programas, depoimentos, fotos do campus, linha do tempo, Viagem EUA | `src/data/*.ts` |
-| Livros da Editora | `src/pages/editora.astro` |
+| `public/_headers` | Headers de segurança e cache; `__CSP__` é substituído no build |
+| `public/_redirects` | Redirecionamentos 301 dos endereços antigos |
+| `public/fonts/` | Fontes auto-hospedadas |
+| `scripts/` | Geração da CSP e verificações do CI (ver `scripts/README.md`) |
+| `src/assets/images/` | Imagens otimizadas pelo `astro:assets` (`books/`, `campus/`, logos, banners) |
+| `src/components/` | Componentes por área (`home/`, `layout/`, `forms/`, `donations/`, `programs/`, `course/`, `about/`, `ui/`) |
+| `src/data/` | Conteúdo em TypeScript: `programs.ts`, `testimonials.ts`, `campus-photos.ts`, `timeline.ts`, `usa-trip.ts` |
+| `src/layouts/` | `BaseLayout.astro`, `ContentLayout.astro` |
+| `src/lib/` | `site-config.ts`, `api.ts`, `seo.ts`, `reveal.ts` |
+| `src/pages/` | Rotas (cada arquivo vira uma página) |
+| `src/schemas/` | Contratos de validação, byte a byte idênticos ao backend |
+| `src/styles/` | `global.css`, `tokens.css`, `fonts.css` |
+| `.github/` | Workflows, `dependabot.yml`, `CODEOWNERS`, modelos de issue e PR |
+| `.editorconfig`, `.nvmrc`, `.gitattributes` | Padrões de editor, versão do Node (22) e fim de linha |
+
+## 5. Configuração
+
+Todas as variáveis são públicas (vão para o HTML/JS). Nenhum segredo pertence a este repositório.
+
+| Variável | Uso | CI (`verify`) | Produção (`deploy`) |
+|---|---|---|---|
+| `PUBLIC_SITE_ORIGIN` | Origem pública do site | `https://purelifeministriesbrasil.org` (env do workflow) | `https://purelifeministriesbrasil.org` (env do workflow) |
+| `PUBLIC_API_URL` | Base da API; entra na CSP (`connect-src`, `form-action`) | `https://api.purelifeministriesbrasil.org` | `https://api.purelifeministriesbrasil.org` |
+| `PUBLIC_TURNSTILE_SITE_KEY` | Site key do widget Turnstile | `1x00000000000000000000AA` (teste) | Variável do repositório `PUBLIC_TURNSTILE_SITE_KEY`; chaves de teste são recusadas |
+| `PUBLIC_ENABLE_PIX_GATEWAY` | `true` liga o PIX dinâmico; `false` mostra a chave PIX institucional | `false` | `false` |
+
+Os valores de CI e produção estão em `.github/workflows/ci.yml`. O secret `CLOUDFLARE_API_TOKEN` é usado só pelo passo de publicação.
+
+## 6. Qualidade e CI
+
+| Arquivo | Gatilho | Check | Garante |
+|---|---|---|---|
+| `ci.yml` | push e PR para `main` | `Typecheck, Static Build, CSP and Topology` | Versão do pnpm, `pnpm install --frozen-lockfile`, `pnpm ci:verify` |
+| `ci.yml` | push para `main` (após `verify`) | `Deploy to Cloudflare Pages (production)` | Chave Turnstile presente e não de teste; `pnpm ci:verify` com valores de produção; publicação no `purelife-site` |
+| `schema-sync.yml` | push e PR para `main`, segunda 12:00 UTC, manual | `src/schemas idêntico ao do backend` | `src/schemas/` igual ao `main` do backend (em PR apenas avisa) |
+| `codeql.yml` | PR, push em `main` e semanal (segunda) | `Análise de segurança (CodeQL)` | Análise estática de segurança (`security-and-quality`) |
+
+CSP: `scripts/generate-csp.mjs` calcula SHA-256 de cada `<script>` e de cada bloco `<style>` inline; `script-src` e `style-src` ficam sem `'unsafe-inline'`. Dependências são atualizadas pelo Dependabot (`.github/dependabot.yml`).
+
+## 7. Publicação e reversão
+
+| Etapa | Descrição |
+|---|---|
+| Publicar | Merge no `main` → job `verify` → job `deploy` (`wrangler pages deploy dist --project-name=purelife-site --branch=main`) |
+| Pré-requisitos | Secret `CLOUDFLARE_API_TOKEN` e variável `PUBLIC_TURNSTILE_SITE_KEY` (Settings → Secrets and variables → Actions); ambiente `production` |
+| Falha | Se `verify` ou as checagens do `deploy` falharem, nada é publicado |
+| Reverter | Cloudflare → Workers & Pages → `purelife-site` → Deployments → no deploy anterior, "Rollback to this deployment" |
+
+Runbook: [Implantação](https://purelifeministriesbrasil.github.io/documentation/operations/deployment/).
+
+## 8. Manutenção
+
+### Onde editar o conteúdo
+
+| Quero mudar | Arquivo |
+|---|---|
+| Livros da Editora (catálogo) | `src/pages/editora.astro` |
+| Capas dos livros | `src/assets/images/books/` (WebP, ~600 px de largura) |
+| Prévia de livros na home | `src/components/home/BooksPreview.astro` |
+| Conferência | `src/pages/conferencia.astro` e `src/components/home/ConferencePreview.astro` |
+| Perguntas frequentes | `src/pages/perguntas-frequentes.astro` (prévia: `src/components/home/FAQPreview.astro`) |
+| Programas | `src/data/programs.ts` |
+| Fotos do campus | `src/data/campus-photos.ts` e `src/assets/images/campus/` |
+| Depoimentos | `src/data/testimonials.ts` |
+| Linha do tempo / Viagem EUA | `src/data/timeline.ts` / `src/data/usa-trip.ts` |
+| E-mail, WhatsApps, endereço, redes, chave PIX | `src/lib/site-config.ts` |
 | Endereços antigos → novos | `public/_redirects` |
+| Schemas de validação | Não editar aqui: alterar no backend e copiar idêntico |
 
-Guia completo: [Gestão de Conteúdo do Site](https://purelifeministriesbrasil.github.io/documentation/operations/content-management/).
+Guias: [Guia do Mantenedor](https://purelifeministriesbrasil.github.io/documentation/operations/maintainer-guide/) · [Gestão de Conteúdo do Site](https://purelifeministriesbrasil.github.io/documentation/operations/content-management/).
 
----
+## 9. Governança
 
-## 5. Variáveis de ambiente
-
-Todas são **públicas** (acabam no HTML ou no JavaScript); nenhum segredo pertence a este repositório.
-
-| Variável | Produção | Uso |
-|---|---|---|
-| `PUBLIC_SITE_ORIGIN` | `https://purelifeministriesbrasil.org` | URLs canônicas, sitemap e Open Graph |
-| `PUBLIC_API_URL` | `https://api.purelifeministriesbrasil.org` | Base da API; entra na CSP (`connect-src`, `form-action`) |
-| `PUBLIC_TURNSTILE_SITE_KEY` | chave pública do widget | Turnstile (em desenvolvimento: `1x00000000000000000000AA`) |
-| `PUBLIC_ENABLE_PIX_GATEWAY` | `false` | `true` liga o PIX dinâmico; `false` mostra a chave PIX do CNPJ |
-
----
-
-## 6. Qualidade e segurança
-
-- **Estático garantido**: `scripts/verify-topology.mjs` falha se alguma das 18 páginas não for HTML estático.
-- **CSP sem `'unsafe-inline'` em scripts**: `scripts/generate-csp.mjs` calcula o SHA-256 de cada script inline.
-  Handlers inline (`onclick=`) e atributos `style=` quebram o build.
-- **Formulários**: Cloudflare Turnstile, `Idempotency-Key` por tentativa (duplo clique não duplica envio) e
-  validação idêntica à da API (`src/schemas/`).
-- **Desempenho**: imagens AVIF/WebP responsivas, fontes auto-hospedadas e *prefetch* ao passar o mouse.
-- **Acessibilidade**: link “pular para o conteúdo”, foco visível, rótulos em todos os campos e textos
-  alternativos em todas as fotos.
-
----
-
-## 7. Publicação
-
-Todo merge no `main` é publicado automaticamente pelo GitHub Actions (`.github/workflows/ci.yml`):
-
-```
-push no main → job verify (typecheck, build, CSP, topologia) → job deploy → Cloudflare Pages (purelife-site)
-```
-
-| Configuração no GitHub (*Settings → Secrets and variables → Actions*) | Tipo | Conteúdo |
-|---|---|---|
-| `CLOUDFLARE_API_TOKEN` | **Secret** | Token da conta institucional com permissão *Cloudflare Pages: Edit* |
-| `PUBLIC_TURNSTILE_SITE_KEY` | **Variable** | Chave pública do widget Turnstile institucional |
-
-Se a verificação falhar, nada é publicado. Para voltar a uma versão anterior:
-*Workers & Pages → purelife-site → Deployments → Rollback*. Runbook completo:
-[Implantação](https://purelifeministriesbrasil.github.io/documentation/operations/deployment/).
-
----
-
-## 8. Governança
-
-[Contribuição](CONTRIBUTING.md) · [Segurança e LGPD](SECURITY.md) · [Código de Conduta](CODE_OF_CONDUCT.md) ·
-[Licença MIT](LICENSE) · [Documentação técnica](https://purelifeministriesbrasil.github.io/documentation/)
+| Documento | Arquivo |
+|---|---|
+| Contribuição | [CONTRIBUTING.md](CONTRIBUTING.md) |
+| Segurança e LGPD | [SECURITY.md](SECURITY.md) |
+| Código de Conduta | [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) |
+| Responsáveis pelo código | [.github/CODEOWNERS](.github/CODEOWNERS) |
+| Licença | [MIT](LICENSE) |
+| Documentação técnica | https://purelifeministriesbrasil.github.io/documentation/ |
