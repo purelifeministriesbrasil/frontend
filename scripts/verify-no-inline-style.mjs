@@ -43,7 +43,8 @@ for (const file of htmlFiles) {
   }
 
   // 2. Check for external @import (e.g. Google Fonts)
-  if (content.includes("@import") && (content.includes("fonts.googleapis.com") || content.includes("http"))) {
+  // @import de origem externa: http(s):// ou //host, com ou sem url(...) e aspas.
+  if (/@import\s+(?:url\(\s*)?["']?\s*(?:https?:)?\/\//i.test(content)) {
     console.error(`[verify-no-inline-style] VIOLATION in ${relPath}: Found external @import fonts.`);
     violations++;
   }

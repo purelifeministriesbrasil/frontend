@@ -3,7 +3,7 @@
 // liberar 'unsafe-inline', calculamos o SHA-256 de cada script inline e o listamos em script-src.
 // Falha o build se encontrar handlers inline (onclick=...), que não podem ser autorizados por hash.
 import { createHash } from "node:crypto";
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { closeSync, existsSync, ftruncateSync, openSync, readdirSync, readFileSync, statSync, writeSync } from "node:fs";
 import { join } from "node:path";
 
 const distDir = join(process.cwd(), "dist");
@@ -31,7 +31,12 @@ function htmlFiles(dir) {
   });
 }
 
-if (!existsSync(headersPath)) {
+// Abre dist/_headers uma única vez (r+ falha se não existir) e grava pelo mesmo descritor no fim:
+// sem janela entre "verificar se existe" e "gravar" (CodeQL js/file-system-race).
+let headersFd;
+try {
+  headersFd = openSync(headersPath, "r+");
+} catch {
   console.error("[generate-csp] dist/_headers não encontrado. Rode `astro build` antes.");
   process.exit(1);
 }
@@ -105,7 +110,10 @@ if (occurrences !== 1) {
   console.error(`[generate-csp] Esperada exatamente 1 linha "Content-Security-Policy: __CSP__" em public/_headers (encontradas: ${occurrences}).`);
   process.exit(1);
 }
-writeFileSync(headersPath, template.replace(CSP_LINE, (_line, prefix) => `${prefix}${csp}`));
+const output = Buffer.from(template.replace(CSP_LINE, (_line, prefix) => `${prefix}${csp}`), "utf8");
+ftruncateSync(headersFd, 0);
+writeSync(headersFd, output, 0, output.length, 0);
+closeSync(headersFd);
 
 console.log(
   `[generate-csp] CSP gerado com ${hashes.size} hash(es) de script e ${styleHashes.size} de style inline; API: ${apiOrigin || "(mesma origem)"}.`
