@@ -7,3 +7,6 @@ allowBuilds:
 # Fixa a versão estável usada pelo restante da árvore. Revisar ao atualizar @astrojs/check.
 overrides:
   "@emnapi/runtime": 1.11.3
+  # GHSA-g7r4-m6w7-qqqr: esbuild <0.28.1 permite leitura arbitrária de arquivos pelo servidor de
+  # desenvolvimento no Windows. Remover quando vite/astro já trouxerem >=0.28.1.
+  esbuild: ^0.28.1
