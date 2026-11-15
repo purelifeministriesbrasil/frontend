@@ -21,13 +21,13 @@ jobs:
       PUBLIC_ENABLE_PIX_GATEWAY: "false"
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: "pnpm"
@@ -58,7 +58,7 @@ jobs:
       PUBLIC_ENABLE_PIX_GATEWAY: "false"
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # Vazia ou chave de teste oficial (1x…, 2x…, 3x…, que sempre aprovam/recusam) não vai para produção.
       - name: Fail if the Turnstile site key is missing or a test key
@@ -69,10 +69,10 @@ jobs:
           fi
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: "pnpm"
