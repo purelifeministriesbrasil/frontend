@@ -1,3 +1,9 @@
 allowBuilds:
   esbuild: true
   sharp: true
+
+# @astrojs/check → astro2tsx usa, no Windows, o binário WebAssembly, que puxa @emnapi/runtime
+# 2.0.0-beta e quebra o `astro check` ("this.bridge.setLastError is not a function").
+# Fixa a versão estável usada pelo restante da árvore. Revisar ao atualizar @astrojs/check.
+overrides:
+  "@emnapi/runtime": 1.11.3
