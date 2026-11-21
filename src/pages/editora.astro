@@ -276,15 +276,15 @@ const books = [
                 </div>
 
                 <!-- Card Footer / Order CTA -->
-                <div class="pt-4 border-t border-[#DEDEDE] flex items-center justify-between gap-3">
-                  <div>
+                <div class="pt-4 border-t border-[#DEDEDE] flex flex-wrap items-center justify-between gap-x-3 gap-y-3">
+                  <div class="shrink-0 whitespace-nowrap">
                     <span class="text-[0.68rem] uppercase font-bold text-[#727272] block">Valor</span>
                     <strong class="font-ruda text-xl text-[#1C2530] font-black group-hover:text-[#044A82] transition-colors">{book.price}</strong>
                   </div>
 
                   <a
                     href={getWhatsAppOrderUrl(book.title)}
-                    class="btn-primary text-xs px-4 py-2.5 inline-flex items-center gap-2 group-hover:shadow-md transition-all"
+                    class="btn-primary text-xs px-4 py-2.5 inline-flex items-center gap-2 whitespace-nowrap group-hover:shadow-md transition-all"
                     aria-label={`Solicitar Livro: ${book.title}`}
                   >
                     <span>Solicitar Livro</span>

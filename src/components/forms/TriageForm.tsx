@@ -347,11 +347,11 @@ export default function TriageForm() {
 
         {/* Relato Opcional */}
         <div>
-          <div className="flex items-center justify-between mb-1">
+          <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5 mb-1">
             <label htmlFor="triage-report" className="form-label mb-0">
               Relato Breve da Situação (Opcional)
             </label>
-            <span className="font-montserrat text-xs text-[#575757]">Máximo 2000 caracteres</span>
+            <span className="font-montserrat text-xs text-[#575757] whitespace-nowrap">Máximo 2000 caracteres</span>
           </div>
           <textarea
             id="triage-report"

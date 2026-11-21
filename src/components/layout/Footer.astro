@@ -60,7 +60,7 @@ import logoWhiteImg from "../../assets/images/logo-plm-branca.webp";
         </h2>
         <div class="flex flex-col gap-3 font-montserrat text-xs text-[#DEDEDE]">
           <address class="not-italic leading-relaxed">{contact.address.full}</address>
-          <a href={`mailto:${contact.email}`} class="hover:text-white transition-colors break-all">{contact.email}</a>
+          <a href={`mailto:${contact.email}`} class="hover:text-white transition-colors [overflow-wrap:anywhere]">{contact.email.split("@")[0]}<wbr />@{contact.email.split("@")[1]}</a>
           <a href={contact.whatsapp.url} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
             WhatsApp pastoral: {contact.whatsapp.display}
           </a>
