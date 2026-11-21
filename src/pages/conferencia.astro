@@ -3,8 +3,8 @@ export const prerender = true;
 
 import ContentLayout from "../layouts/ContentLayout.astro";
 import Container from "../components/ui/Container.astro";
-import SectionHeading from "../components/ui/SectionHeading.astro";
 import Button from "../components/ui/Button.astro";
+import ConferenceHero from "../components/conference/ConferenceHero.astro";
 import { siteConfig } from "../lib/site-config";
 
 const { pastConferences } = siteConfig.media;
@@ -51,18 +51,7 @@ const conferenceVideos = [
   canonical="https://purelifeministriesbrasil.org/conferencia/"
   currentPath="/conferencia/"
 >
-  <!-- Hero Section -->
-  <section class="py-20 bg-[#1C2530] text-white">
-    <Container size="wide">
-      <SectionHeading
-        as="h1"
-        tag="Conferência Anual"
-        title="2ª Conferência Pure Life Ministries Brasil — 2027"
-        description="28 e 29 de maio de 2027 · Brasília. Tema: VENHA O TEU REINO. Reunindo pastores, conselheiros e famílias para dias de restauração e capacitação bíblica profunda."
-        invert={true}
-      />
-    </Container>
-  </section>
+  <ConferenceHero />
 
   <!-- Informações Gerais da Conferência -->
   <section class="py-20 bg-[#F5F2EC]">
@@ -140,7 +129,7 @@ const conferenceVideos = [
       </div>
 
       <!-- Seção de Mensagens em Conferências Gravadas -->
-      <div class="border-t border-[#DEDEDE] pt-16">
+      <div id="conferencias-anteriores" class="border-t border-[#DEDEDE] pt-16 scroll-mt-24">
         <div class="text-center max-w-2xl mx-auto mb-12" data-reveal>
           <span class="font-montserrat text-xs uppercase font-bold tracking-widest text-[#044A82] block mb-2">
             Pregações & Ministrações Gravadas

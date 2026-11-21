@@ -1,0 +1,91 @@
+---
+import Container from "../ui/Container.astro";
+import Button from "../ui/Button.astro";
+import { Picture } from "astro:assets";
+import conferenceImg from "../../assets/images/conference.webp";
+---
+
+<section class="relative overflow-hidden bg-[#1C2530] text-white" aria-labelledby="conferencia-titulo">
+  <div class="absolute inset-0 opacity-25 pointer-events-none" aria-hidden="true">
+    <Picture
+      src={conferenceImg}
+      alt=""
+      formats={["avif", "webp"]}
+      fallbackFormat="webp"
+      quality="mid"
+      pictureAttributes={{ class: "contents" }}
+      widths={[480, 800, 1280]}
+      sizes="100vw"
+      loading="eager"
+      decoding="async"
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#1C2530]/70 via-[#1C2530]/85 to-[#1C2530] lg:bg-gradient-to-r lg:from-[#1C2530] lg:via-[#1C2530]/85 lg:to-[#1C2530]/40"></div>
+  </div>
+
+  <Container size="wide" class="relative z-10">
+    <div class="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-10 lg:gap-16 items-center py-14 sm:py-20 lg:py-24">
+      <div>
+        <div class="flex items-center gap-3.5 mb-5">
+          <span class="h-0.5 w-10 sm:w-12 bg-[#C1BDA6]" aria-hidden="true"></span>
+          <span class="font-montserrat text-[#C1BDA6] text-xs font-bold tracking-[0.2em] uppercase">Conferência Anual</span>
+        </div>
+
+        <h1 id="conferencia-titulo" class="font-ruda font-black text-balance text-white text-[2rem] sm:text-5xl lg:text-[3.4rem] leading-[1.08] tracking-tight mb-6">
+          <span class="text-[#C1BDA6]">2ª Conferência</span> Pure Life Ministries Brasil <span class="font-normal italic font-editorial text-[#C1BDA6]">— 2027</span>
+        </h1>
+
+        <ul class="flex flex-wrap gap-3 mb-7" aria-label="Data e local">
+          <li class="inline-flex items-center gap-2.5 border border-[#C1BDA6]/45 bg-[#1C2530]/70 px-4 py-2.5">
+            <svg class="w-4 h-4 text-[#C1BDA6] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" />
+            </svg>
+            <span class="font-montserrat text-sm font-semibold text-white">28 e 29 de maio de 2027</span>
+          </li>
+          <li class="inline-flex items-center gap-2.5 border border-[#C1BDA6]/45 bg-[#1C2530]/70 px-4 py-2.5">
+            <svg class="w-4 h-4 text-[#C1BDA6] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z" /><circle cx="12" cy="10" r="3" />
+            </svg>
+            <span class="font-montserrat text-sm font-semibold text-white">Brasília – DF</span>
+          </li>
+        </ul>
+
+        <p class="font-montserrat text-[#DEDEDE] text-base sm:text-lg font-light leading-relaxed max-w-xl mb-8">
+          Reunindo pastores, conselheiros e famílias para dias de restauração e capacitação bíblica profunda.
+        </p>
+
+        <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+          <Button href="/contato/?assunto=Conferencia" variant="primary" class="text-xs px-6 py-3.5 text-center">
+            Quero receber informações
+          </Button>
+          <Button href="#conferencias-anteriores" variant="outline-light" class="text-xs px-6 py-3.5 text-center">
+            Conferências anteriores
+          </Button>
+        </div>
+      </div>
+
+      <aside class="relative border border-[#C1BDA6]/40 bg-[#1C2530]/85 backdrop-blur-xs" aria-label="Tema da conferência">
+        <div class="absolute inset-x-0 top-0 h-1 bg-[#C1BDA6]" aria-hidden="true"></div>
+        <div class="px-6 sm:px-10 pt-9 pb-8 text-center">
+          <p class="font-montserrat text-[#C1BDA6] text-xs font-bold uppercase tracking-[0.2em] mb-4">Tema</p>
+          <p class="font-ruda font-black text-white text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.1] text-balance mb-5">VENHA O<br />TEU REINO</p>
+          <span class="block mx-auto h-px w-14 bg-[#C1BDA6]/60 mb-5" aria-hidden="true"></span>
+          <blockquote class="font-editorial italic text-[#DEDEDE] text-base sm:text-lg leading-relaxed text-balance">
+            “Venha o teu reino; faça-se a tua vontade, assim na terra como no céu.”
+          </blockquote>
+          <p class="font-montserrat text-[#C1BDA6] text-xs font-bold uppercase tracking-[0.15em] mt-3">Mateus 6.10</p>
+        </div>
+        <div class="grid grid-cols-2 divide-x divide-[#C1BDA6]/25 border-t border-[#C1BDA6]/25">
+          <div class="px-4 py-5 text-center">
+            <div class="font-ruda font-black text-[#C1BDA6] text-2xl sm:text-3xl leading-none">28–29</div>
+            <div class="font-montserrat text-[#DEDEDE] text-[0.7rem] uppercase tracking-widest mt-2">Maio · 2027</div>
+          </div>
+          <div class="px-4 py-5 text-center">
+            <div class="font-ruda font-black text-[#C1BDA6] text-2xl sm:text-3xl leading-none">2 dias</div>
+            <div class="font-montserrat text-[#DEDEDE] text-[0.7rem] uppercase tracking-widest mt-2">De ensino bíblico</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </Container>
+</section>
