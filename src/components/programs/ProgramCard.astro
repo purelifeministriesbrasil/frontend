@@ -73,7 +73,7 @@ import { Picture } from "astro:assets";
     </div>
 
     <!-- Conteúdo do Card -->
-    <div class="p-8">
+    <div class="p-5 sm:p-8">
       <h3 class="font-ruda font-black text-[#1C2530] group-hover:text-[#044A82] text-2xl mb-1 transition-colors duration-200">{title}</h3>
       <p class="font-editorial text-[#044A82] text-sm tracking-wide mb-4 font-semibold">{subtitle}</p>
       <p class="font-montserrat text-[#575757] text-sm leading-relaxed mb-6">
@@ -97,7 +97,7 @@ import { Picture } from "astro:assets";
   </div>
 
   <!-- Rodapé do Card com Liderança e CTA -->
-  <div class="p-8 pt-0">
+  <div class="p-5 sm:p-8 pt-0 sm:pt-0">
     <div class="border-t border-[#DEDEDE] pt-6 flex flex-wrap items-center justify-between gap-4">
       {leaderName && (
         <div>
@@ -107,13 +107,13 @@ import { Picture } from "astro:assets";
           <div class="font-ruda font-bold text-[#1C2530] text-sm">{leaderName}</div>
         </div>
       )}
-      <div class="flex flex-wrap gap-3 ml-auto">
+      <div class="flex flex-wrap gap-3 ml-auto max-w-full">
         {secondaryCtaText && secondaryCtaHref && (
-          <Button href={secondaryCtaHref} variant="outline" class="text-xs px-5 py-2.5 shrink-0">
+          <Button href={secondaryCtaHref} variant="outline" class="text-xs px-5 py-2.5 max-w-full whitespace-normal text-center">
             {secondaryCtaText}
           </Button>
         )}
-        <Button href={ctaHref} variant="primary" class="text-xs px-5 py-2.5 shrink-0" {...externalLinkAttrs}>
+        <Button href={ctaHref} variant="primary" class="text-xs px-5 py-2.5 max-w-full whitespace-normal text-center" {...externalLinkAttrs}>
           {ctaText}
           {ctaExternal && <span class="sr-only"> (abre em nova aba)</span>}
         </Button>

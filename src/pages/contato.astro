@@ -52,7 +52,7 @@ const { contact } = siteConfig;
               </div>
               <div>
                 <strong class="font-ruda font-bold text-[#1C2530] group-hover:text-[#044A82] transition-colors block">E-mail Institucional</strong>
-                <a href={`mailto:${contact.email}`} class="font-montserrat text-sm text-[#575757] hover:text-[#044A82] break-all">{contact.email}</a>
+                <a href={`mailto:${contact.email}`} class="font-montserrat text-sm text-[#575757] hover:text-[#044A82] [overflow-wrap:anywhere]">{contact.email.split("@")[0]}<wbr />@{contact.email.split("@")[1]}</a>
               </div>
             </div>
 
