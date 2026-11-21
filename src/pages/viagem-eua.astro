@@ -16,7 +16,7 @@ const tripWhatsAppUrl = whatsappUrl(
 
 <ContentLayout
   title="Viagem e Conferência PLM EUA 2027 | Pure Life Ministries Brasil"
-  description={`${usaTrip.title}: ${usaTrip.travelDates} em Cincinnati, Ohio & Kentucky. Conferência, Ark Encounter, Creation Museum e Museu da Força Aérea. Apenas ${usaTrip.seats} vagas, em até 10x sem juros.`}
+  description={`${usaTrip.title}: ${usaTrip.travelDates} em Cincinnati e Kentucky. Conferência, Ark Encounter e Creation Museum. ${usaTrip.seats} vagas, em até 10x sem juros.`}
   canonical="https://purelifeministriesbrasil.org/viagem-eua/"
   currentPath="/viagem-eua/"
 >
@@ -187,13 +187,6 @@ const tripWhatsAppUrl = whatsappUrl(
             ))}
           </div>
         </div>
-      </div>
-      <div class="mt-16 bg-[#1C2530] text-white p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <p class="font-ruda font-bold text-lg">Não perca a oportunidade de viver essa experiência transformadora.</p>
-        <Button href={usaTrip.paymentUrl} variant="primary" class="shrink-0" target="_blank" rel="noopener noreferrer">
-          Garantir minha vaga
-          <span class="sr-only"> (pagamento na plataforma da SEBI, abre em nova aba)</span>
-        </Button>
       </div>
     </Container>
   </section>

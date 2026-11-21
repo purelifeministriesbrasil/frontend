@@ -1,6 +1,7 @@
 ---
 import Container from "../ui/Container.astro";
 import Button from "../ui/Button.astro";
+import ConferenceThemeCard from "./ConferenceThemeCard.astro";
 import { Picture } from "astro:assets";
 import conferenceImg from "../../assets/images/conference.webp";
 ---
@@ -64,28 +65,7 @@ import conferenceImg from "../../assets/images/conference.webp";
         </div>
       </div>
 
-      <aside class="relative border border-[#C1BDA6]/40 bg-[#1C2530]/85 backdrop-blur-xs" aria-label="Tema da conferência">
-        <div class="absolute inset-x-0 top-0 h-1 bg-[#C1BDA6]" aria-hidden="true"></div>
-        <div class="px-6 sm:px-10 pt-9 pb-8 text-center">
-          <p class="font-montserrat text-[#C1BDA6] text-xs font-bold uppercase tracking-[0.2em] mb-4">Tema</p>
-          <p class="font-ruda font-black text-white text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.1] text-balance mb-5">VENHA O<br />TEU REINO</p>
-          <span class="block mx-auto h-px w-14 bg-[#C1BDA6]/60 mb-5" aria-hidden="true"></span>
-          <blockquote class="font-editorial italic text-[#DEDEDE] text-base sm:text-lg leading-relaxed text-balance">
-            “Venha o teu reino; faça-se a tua vontade, assim na terra como no céu.”
-          </blockquote>
-          <p class="font-montserrat text-[#C1BDA6] text-xs font-bold uppercase tracking-[0.15em] mt-3">Mateus 6.10</p>
-        </div>
-        <div class="grid grid-cols-2 divide-x divide-[#C1BDA6]/25 border-t border-[#C1BDA6]/25">
-          <div class="px-4 py-5 text-center">
-            <div class="font-ruda font-black text-[#C1BDA6] text-2xl sm:text-3xl leading-none">28–29</div>
-            <div class="font-montserrat text-[#DEDEDE] text-[0.7rem] uppercase tracking-widest mt-2">Maio · 2027</div>
-          </div>
-          <div class="px-4 py-5 text-center">
-            <div class="font-ruda font-black text-[#C1BDA6] text-2xl sm:text-3xl leading-none">2 dias</div>
-            <div class="font-montserrat text-[#DEDEDE] text-[0.7rem] uppercase tracking-widest mt-2">De ensino bíblico</div>
-          </div>
-        </div>
-      </aside>
+      <ConferenceThemeCard />
     </div>
   </Container>
 </section>

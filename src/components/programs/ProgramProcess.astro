@@ -2,6 +2,8 @@
 import Button from "../ui/Button.astro";
 import { siteConfig } from "../../lib/site-config";
 
+const { showCta = true } = Astro.props as { showCta?: boolean };
+
 const steps = [
   { num: "01", title: "Triagem Gratuita", desc: "Formulário online gratuito e confidencial, seguido de entrevista com nossa equipe de conselheiros para compreender a situação." },
   { num: "02", title: "Aprovação e Inscrição", desc: `Após a entrevista e a aprovação pastoral, é paga a taxa de inscrição de ${siteConfig.residentialProgram.registrationFeeFormatted}, com documentação e preparação para o ingresso.` },
@@ -42,8 +44,10 @@ const steps = [
     <p class="font-montserrat text-[#1C2530] text-sm leading-relaxed max-w-xl">
       Cada caso é avaliado individualmente com absoluto sigilo. {siteConfig.residentialProgram.feeNotice}
     </p>
-    <Button href="/triagem/" variant="primary" class="shrink-0 text-xs px-6 py-3.5">
-      Iniciar triagem gratuita
-    </Button>
+    {showCta && (
+      <Button href="/triagem/" variant="primary" class="shrink-0 text-xs px-6 py-3.5">
+        Iniciar triagem gratuita
+      </Button>
+    )}
   </div>
 </div>
