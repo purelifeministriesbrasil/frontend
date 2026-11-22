@@ -1,0 +1,20 @@
+---
+interface Props {
+  /** "lg" no cabeçalho da página; "md" na prévia da home. */
+  size?: "md" | "lg";
+}
+const { size = "lg" } = Astro.props;
+---
+
+<aside class="relative border border-[#C1BDA6]/40 bg-[#1C2530]/85 backdrop-blur-xs" aria-label="Tema da conferência">
+  <div class="absolute inset-x-0 top-0 h-1 bg-[#C1BDA6]" aria-hidden="true"></div>
+  <div class={`text-center px-6 sm:px-10 ${size === "lg" ? "pt-10 pb-10" : "pt-9 pb-9"}`}>
+    <p class="font-montserrat text-[#C1BDA6] text-xs font-bold uppercase tracking-[0.2em] mb-4">Tema</p>
+    <p class={`font-ruda font-black text-white leading-[1.1] text-balance mb-5 ${size === "lg" ? "text-3xl sm:text-4xl lg:text-[2.6rem]" : "text-3xl sm:text-4xl"}`}>VENHA O<br />TEU REINO</p>
+    <span class="block mx-auto h-px w-14 bg-[#C1BDA6]/60 mb-5" aria-hidden="true"></span>
+    <blockquote class="font-editorial italic text-[#DEDEDE] text-base sm:text-lg leading-relaxed text-balance">
+      “Venha o teu reino; faça-se a tua vontade, assim na terra como no céu.”
+    </blockquote>
+    <p class="font-montserrat text-[#C1BDA6] text-xs font-bold uppercase tracking-[0.15em] mt-3">Mateus 6.10</p>
+  </div>
+</aside>
