@@ -51,7 +51,6 @@ const books = [
     category: "geral",
     categoryLabel: "Público Geral",
     desc: "Uma análise contundente, bíblica e pastoral sobre os estragos espirituais, neurológicos, familiares e sociais causados pela indústria pornográfica na sociedade moderna e na Igreja.",
-    details: "Brochura · 16x23 cm · 142 páginas · ISBN 978-85-92317-33-1",
     cover: impactoPornografiaCover,
     bgColor: "bg-[#044A82]",
   },
@@ -76,7 +75,6 @@ const books = [
     category: "mulheres",
     categoryLabel: "Mulheres & Esposas",
     desc: "Balsamo pastoral e bíblico para esposas cujo casamento foi abalado pelo adultério ou infidelidade virtual. Conduz a leitora pelo vale da dor até a esperança soberana de Cristo.",
-    details: "192 páginas · ISBN 978-85-923173-1-7",
     cover: curandoTraicaoCover,
     bgColor: "bg-[#3B4C60]",
   },
@@ -101,7 +99,6 @@ const books = [
     category: "igreja",
     categoryLabel: "Igreja & Liderança",
     desc: "Nascido da restauração do próprio autor após ter a licença para pregar suspensa por causa do pecado, o livro chama a igreja a abandonar as máscaras de espiritualidade e a viver com transparência e santidade reais.",
-    details: "Brochura · 14x21 cm · 396 páginas · ISBN 978-85-87241-12-8",
     cover: pilhaDeMascarasCover,
     bgColor: "bg-[#044A82]",
   },
@@ -269,12 +266,9 @@ const books = [
                     </span>
                   </div>
 
-                  <p class={`font-montserrat text-[#454A50] text-sm leading-relaxed ${book.details ? "mb-2" : "mb-6"}`}>
+                  <p class={`font-montserrat text-[#454A50] text-sm leading-relaxed mb-6`}>
                     {book.desc}
                   </p>
-                  {book.details && (
-                    <p class="font-montserrat text-[#575757] text-xs mb-6">{book.details}</p>
-                  )}
                 </div>
 
                 <!-- Card Footer / Order CTA -->
